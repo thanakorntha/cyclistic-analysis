@@ -14,24 +14,22 @@ head(trip_data)
 # See list of columns and data types (numeric, character, etc) in the 'trip_data' data frame
 str(trip_data) 
 
-# Produce statistical summary of data 
-summary(trip_data)      
+# Summarize numeric statistics of the 'trip_data' data frame
+summary(trip_data)
 
 
 # --------------------------- #
 #   HANDLE DUPLICATE VALUES   #
 # --------------------------- #
 
-# Check number of unique ride trip data compared to number of total ride trip data (return TRUE or FALSE)
+# Check number of unique ride trip data compared to number of total ride trip data - return TRUE or FALSE
 length(unique(trip_data$ride_id)) == nrow(trip_data)
 
 # List all bike types of ride trip data
-trip_data %>% 
-    count(rideable_type)
+count(trip_data, rideable_type)
 
 # List all rider types of ride trip data
-trip_data %>% 
-    count(member_casual)
+count(trip_data, member_casual)
 
 
 # ------------------------------ #

@@ -33,8 +33,17 @@ trip_12 <- read_csv("./data/raw-data/202212-divvy-tripdata.csv")
 # Compare column names and data types each of the files
 compare_df_cols(trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
 
-# Merge individual month's data frames into one big data frame
+# Merge individual month's data frames into one big data frame named 'trip_data'
 trip_data <- bind_rows(trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
 
-# Check data structure of ride trip data
+
+# ---------------------- #
+#   INSPECT DATA FRAME   #
+# ---------------------- #
+
+# List column names in the 'trip_data' data frame
+colnames(trip_data)  
+
+# See list of columns and data types (numeric, character, etc) in the 'trip_data' data frame
 str(trip_data)
+ 

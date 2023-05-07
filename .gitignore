@@ -1,0 +1,16 @@
+# MacOS
+.DS_Store
+
+# VS Code Workspace
+cyclistic-analysis.code-workspace
+
+# R Project
+.Rproj.user
+.Rhistory
+cyclistic-analysis.Rproj
+
+# Folders
+docs/
+
+# Files
+*.csv

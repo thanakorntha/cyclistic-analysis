@@ -14,7 +14,7 @@ head(trip_data)
 # See list of columns and data types (numeric, character, etc) in the 'trip_data' data frame
 str(trip_data) 
 
-# Summarize descriptive statistics of the 'trip_data' data frame
+# Summarise descriptive statistics of the 'trip_data' data frame
 summary(trip_data)
 
 
@@ -173,6 +173,6 @@ head(trip_data_v2)
 # See list of columns and data types (numeric, character, etc) in the 'trip_data_v2' data frame
 str(trip_data_v2)
 
-# Summarize descriptive statistics of the 'trip_data_v2' data frame
+# Summarise descriptive statistics of the 'trip_data_v2' data frame
 summary(trip_data_v2)
 

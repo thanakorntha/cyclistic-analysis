@@ -42,8 +42,8 @@ trip_data <- bind_rows(trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, tri
 # ---------------------- #
 
 # List column names in the 'trip_data' data frame
-colnames(trip_data)  
+colnames(trip_data)
 
 # See list of columns and data types (numeric, character, etc) in the 'trip_data' data frame
 str(trip_data)
- 
+

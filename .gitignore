@@ -8,6 +8,7 @@ cyclistic-analysis.code-workspace
 .Rproj.user
 .Rhistory
 cyclistic-analysis.Rproj
+.RData
 
 # Folders
 docs/

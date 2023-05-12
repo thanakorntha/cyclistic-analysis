@@ -15,4 +15,4 @@ docs/
 
 # Files
 data/raw-data/*.csv
-trip_data.csv
+trip-data.csv

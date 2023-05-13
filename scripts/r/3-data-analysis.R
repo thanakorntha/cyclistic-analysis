@@ -11,15 +11,33 @@ trip_data_v2$month <- ordered(trip_data_v2$month,
                               levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"))
 
 
-# -------------------------------- #
-#   CONDUCT DESCRIPTIVE ANALYSIS   #
-# -------------------------------- #
-
-# (A) OVERALL RIDE SUMMARY
+# ------------------- #
+#   TOTAL RIDE TRIP   #
+# ------------------- #
 
 # See the total number of ride trip data
 trip_data_v2 %>%
     summarize(ride_count = n())
+
+# See the total number of ride trip data by user type
+trip_data_v2 %>%
+    group_by(member_casual) %>%
+    summarize(ride_count = n())
+
+# See the total number of ride trip data by user type and weekday
+trip_data_v2 %>%
+    group_by(day_of_week) %>%
+    summarize(ride_count = n())
+
+# See the total number of ride trip data by user type and weekday
+trip_data_v2 %>%
+    group_by(member_casual, day_of_week) %>%
+    summarize(ride_count = n())
+
+
+# ----------------- #
+#   TRIP DURATION   #
+# ----------------- #
 
 # Summarize descriptive analysis on the duration of ride (in seconds)
 mean(trip_data_v2$ride_length)    # straight average (total ride length / rides)
@@ -29,14 +47,6 @@ min(trip_data_v2$ride_length)     # shortest ride
 
 # Or condense the four lines above to one line using summary()
 summary(trip_data_v2$ride_length)
-
-
-# (B) RIDE SUMMARY BY MEMBER TYPE
-
-# See the total number of ride trip data by member type
-trip_data_v2 %>%
-    group_by(member_casual) %>%
-    summarize(ride_count = n())
 
 # Summarize descriptive analysis on the duration of ride (in seconds) by member type
 aggregate(trip_data_v2$ride_length ~ trip_data_v2$member_casual, FUN = mean)
@@ -49,20 +59,10 @@ trip_data_v2 %>%
     group_by(member_casual) %>%
     summarize(
         min_ride_length        = min(ride_length),
-        quartile1_ride_length  = quantile(ride_length, 0.25),
         median_ride_length     = median(ride_length),
         mean_ride_length       = mean(ride_length),
-        quartile3_ride_length  = quantile(ride_length, 0.75),
         max_ride_length        = max(ride_length)) %>%
     arrange(member_casual)
-
-
-# (C) RIDE SUMMARY BY MEMBER TYPES AND WEEKDAY
-
-# See the total number of ride trip data by member type
-trip_data_v2 %>%
-    group_by(member_casual, day_of_week) %>%
-    summarize(ride_count = n())
 
 # Summarize descriptive analysis on the duration of ride (in seconds) by member type and weekday
 aggregate(trip_data_v2$ride_length ~ trip_data_v2$member_casual + trip_data_v2$day_of_week, FUN = mean)
@@ -75,12 +75,45 @@ trip_data_v2 %>%
     group_by(member_casual, day_of_week) %>%
     summarize(
         min_ride_length        = min(ride_length),
-        quartile1_ride_length  = quantile(ride_length, 0.25),
         median_ride_length     = median(ride_length),
         mean_ride_length       = mean(ride_length),
-        quartile3_ride_length  = quantile(ride_length, 0.75),
         max_ride_length        = max(ride_length)) %>%
     arrange(member_casual, day_of_week)
+
+
+# ---------------- #
+#   TOP LOCATION   #
+# ---------------- #
+
+# Top 10 starting station throughout 2022
+trip_data_v2 %>%
+    group_by(start_station_name) %>%
+    summarize(ride_count = n()) %>%
+    arrange(desc(ride_count)) %>%
+    top_n(10)
+
+# Top 10 ending station throughout 2022
+trip_data_v2 %>%
+    group_by(end_station_name) %>%
+    summarize(ride_count = n()) %>%
+    arrange(desc(ride_count)) %>%
+    top_n(10)
+
+# Top 10 starting station for members
+trip_data_v2 %>%
+    group_by(member_casual, start_station_name) %>%
+    filter(member_casual == 'member') %>%
+    summarize(ride_count = n()) %>%
+    arrange(desc(ride_count)) %>%
+    top_n(10)
+
+# Top 10 starting station for casual riders
+trip_data_v2 %>%
+    group_by(member_casual, start_station_name) %>%
+    filter(member_casual == 'casual') %>%
+    summarize(ride_count = n()) %>%
+    arrange(desc(ride_count)) %>%
+    top_n(10)
 
 
 # -------------------------------------------- #

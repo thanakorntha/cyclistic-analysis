@@ -65,15 +65,26 @@ trip_data_v2 %>%
     group_by(member_casual) %>%
     summarize(ride_count = n())
 
-# See the total number of ride trip data by user type and weekday
+# See the total number of ride trip data by weekday
 trip_data_v2 %>%
     group_by(day_of_week) %>%
     summarize(ride_count = n())
 
 # See the total number of ride trip data by user type and weekday
 trip_data_v2 %>%
-    group_by(member_casual, day_of_week) %>%
+    group_by(day_of_week, member_casual) %>%
     summarize(ride_count = n())
+
+# See the total number of ride trip data by month
+trip_data_v2 %>%
+    group_by(month) %>%
+    summarize(ride_count = n())
+
+# See the total number of ride trip data by user type and month
+trip_data_v2 %>%
+    group_by(month, member_casual) %>%
+    summarize(ride_count = n()) %>% 
+    print(n = 24)
 
 
 # ----------------- #
@@ -81,6 +92,10 @@ trip_data_v2 %>%
 # ----------------- #
 
 # Summarize descriptive analysis on the duration of ride (in seconds)
+mean(trip_data_v2$ride_length)
+median(trip_data_v2$ride_length)
+max(trip_data_v2$ride_length)
+min(trip_data_v2$ride_length)
 mean(trip_data_v2$ride_length)
 median(trip_data_v2$ride_length)
 max(trip_data_v2$ride_length)
@@ -142,7 +157,7 @@ trip_data_v2 %>%
 #   TOP LOCATION   #
 # ---------------- #
 
-# Top 10 starting station throughout 2022
+# Top 10 starting stations throughout 2022
 trip_data_v2 %>%
     group_by(start_station_name) %>%
     summarize(
@@ -151,7 +166,7 @@ trip_data_v2 %>%
     arrange(desc(ride_count)) %>%
     top_n(10, ride_count)
 
-# Top 10 ending station throughout 2022
+# Top 10 ending stations throughout 2022
 trip_data_v2 %>%
     group_by(end_station_name) %>%
     summarize(
@@ -160,7 +175,7 @@ trip_data_v2 %>%
     arrange(desc(ride_count)) %>%
     top_n(10, ride_count)
 
-# Top 10 starting station for members
+# Top 10 starting stations for members
 trip_data_v2 %>%
     group_by(member_casual, start_station_name) %>%
     filter(member_casual == 'member') %>%
@@ -170,7 +185,7 @@ trip_data_v2 %>%
     arrange(desc(ride_count)) %>%
     top_n(10, ride_count)
 
-# Top 10 ending station for members
+# Top 10 ending stations for members
 trip_data_v2 %>%
     group_by(member_casual, end_station_name) %>%
     filter(member_casual == 'member') %>%
@@ -180,7 +195,7 @@ trip_data_v2 %>%
     arrange(desc(ride_count)) %>%
     top_n(10, ride_count)
 
-# Top 10 starting station for casual riders
+# Top 10 starting stations for casual riders
 trip_data_v2 %>%
     group_by(member_casual, start_station_name) %>%
     filter(member_casual == 'casual') %>%
@@ -190,7 +205,7 @@ trip_data_v2 %>%
     arrange(desc(ride_count)) %>%
     top_n(10, ride_count)
 
-# Top 10 ending station for casual riders
+# Top 10 ending stations for casual riders
 trip_data_v2 %>%
     group_by(member_casual, end_station_name) %>%
     filter(member_casual == 'casual') %>%
@@ -200,7 +215,7 @@ trip_data_v2 %>%
     arrange(desc(ride_count)) %>%
     top_n(10, ride_count)
 
-# Top 50 station for round-trip
+# Top 50 stations for round-trip
 trip_data_v2 %>%
     group_by(member_casual, start_station_name) %>%
     filter(start_station_name == end_station_name) %>%

@@ -65,6 +65,16 @@ trip_data_v2 %>%
     group_by(member_casual) %>%
     summarize(ride_count = n())
 
+# See the total number of ride trip data by bike type
+trip_data_v2 %>%
+    group_by(rideable_type) %>%
+    summarize(ride_count = n())
+
+# See the total number of ride trip data by user type and bike type
+trip_data_v2 %>%
+    group_by(rideable_type, member_casual) %>%
+    summarize(ride_count = n())
+
 # See the total number of ride trip data by weekday
 trip_data_v2 %>%
     group_by(day_of_week) %>%
@@ -145,12 +155,30 @@ aggregate(trip_data_v2$ride_length ~ trip_data_v2$member_casual + trip_data_v2$m
 # Or condense the four lines above to one unified code using group_by() and summarize()
 trip_data_v2 %>%
     group_by(month, member_casual) %>%
+    group_by(day_of_week, member_casual) %>%
     summarize(
         min_ride_length        = min(ride_length),
         median_ride_length     = median(ride_length),
         mean_ride_length       = mean(ride_length),
         max_ride_length        = max(ride_length)) %>%
-    arrange(member_casual, day_of_week)
+    arrange(day_of_week, member_casual)
+
+# Summarize descriptive analysis on the duration of ride (in seconds) by member type and month
+aggregate(trip_data_v2$ride_length ~ trip_data_v2$member_casual + trip_data_v2$month, FUN = mean)
+aggregate(trip_data_v2$ride_length ~ trip_data_v2$member_casual + trip_data_v2$month, FUN = median)
+aggregate(trip_data_v2$ride_length ~ trip_data_v2$member_casual + trip_data_v2$month, FUN = max)
+aggregate(trip_data_v2$ride_length ~ trip_data_v2$member_casual + trip_data_v2$month, FUN = min)
+
+# Or condense the four lines above to one unified code using group_by() and summarize()
+trip_data_v2 %>%
+    group_by(month, member_casual) %>%
+    summarize(
+        min_ride_length        = min(ride_length),
+        median_ride_length     = median(ride_length),
+        mean_ride_length       = mean(ride_length),
+        max_ride_length        = max(ride_length)) %>%
+    arrange(month, member_casual) %>%
+    print(n = 24)
 
 
 # ---------------- #

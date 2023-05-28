@@ -1,0 +1,1653 @@
+"","start_station_name","n"
+"1","10101 S Stony Island Ave",7
+"2","111th St - Morgan Park Metra",91
+"3","2112 W Peterson Ave",963
+"4","532 E 43rd St",194
+"5","63rd & Western Ave - north corner",32
+"6","63rd & Western Ave - south corner",34
+"7","63rd St Beach",851
+"8","83rd St (Avalon Park) Metra",179
+"9","900 W Harrison St",12172
+"10","Abbott Park",15
+"11","Aberdeen St & Jackson Blvd",12134
+"12","Aberdeen St & Monroe St",9992
+"13","Aberdeen St & Randolph St",10867
+"14","Ada St & 113th St",72
+"15","Ada St & 117th St",55
+"16","Ada St & 119th St",91
+"17","Ada St & 79th St",71
+"18","Ada St & 95th St",167
+"19","Ada St & Washington Blvd",8240
+"20","Adler Planetarium",16085
+"21","Al Raby School",259
+"22","Albany Ave & 103rd St",4
+"23","Albany Ave & 111th St - NW",5
+"24","Albany Ave & 16th St",434
+"25","Albany Ave & 26th St",380
+"26","Albany Ave & 63rd St",73
+"27","Albany Ave & Belmont Ave",2449
+"28","Albany Ave & Bloomingdale Ave",5210
+"29","Albany Ave & Douglas Blvd",186
+"30","Albany Ave & Montrose Ave",2224
+"31","Altgeld Gardens",78
+"32","Archer (Damen) Ave & 37th St",569
+"33","Archer Ave & 43rd St",488
+"34","Archer Park",74
+"35","Artesian Ave & 55th St",390
+"36","Artesian Ave & Hubbard St",3863
+"37","Ashland Ave & 13th St",3403
+"38","Ashland Ave & 45th St",54
+"39","Ashland Ave & 45th St - midblock south",37
+"40","Ashland Ave & 46th St",21
+"41","Ashland Ave & 50th St",171
+"42","Ashland Ave & 63rd St",213
+"43","Ashland Ave & 66th St",61
+"44","Ashland Ave & 71st St",52
+"45","Ashland Ave & 73rd St",9
+"46","Ashland Ave & 74th St",116
+"47","Ashland Ave & 76th St",74
+"48","Ashland Ave & 78th St",132
+"49","Ashland Ave & Archer Ave",1348
+"50","Ashland Ave & Augusta Blvd",7399
+"51","Ashland Ave & Belle Plaine Ave",3397
+"52","Ashland Ave & Blackhawk St",10019
+"53","Ashland Ave & Chicago Ave",6354
+"54","Ashland Ave & Division St",23693
+"55","Ashland Ave & Garfield Blvd",150
+"56","Ashland Ave & Grace St",7516
+"57","Ashland Ave & Grand Ave",6293
+"58","Ashland Ave & Lake St",5521
+"59","Ashland Ave & McDowell Ave",452
+"60","Ashland Ave & Pershing Rd",274
+"61","Ashland Ave & Wellington Ave",7030
+"62","Ashland Ave & Wrightwood Ave",6561
+"63","Augusta Blvd & Laramie Ave",312
+"64","Austin Ave & Roscoe St",237
+"65","Austin Ave & Wellington Ave - midblock",16
+"66","Austin Ave & Wrightwood Ave",28
+"67","Austin Blvd & Chicago Ave",300
+"68","Austin Blvd & Lake St",506
+"69","Austin Blvd & Madison St",345
+"70","Austin Blvd & North Ave",32
+"71","Austin Branch Chicago Public Library",40
+"72","Avenue J & 102nd St",28
+"73","Avenue J & 106th St",19
+"74","Avenue J & 112th St",17
+"75","Avenue L & 114th St",123
+"76","Avenue M & 132nd St",5
+"77","Avenue O & 118th St",140
+"78","Avenue O & 134th St",101
+"79","Avers Ave & Archer Ave",35
+"80","Avers Ave & Belmont Ave",2442
+"81","Avers Ave & Irving Park Rd",692
+"82","Avers Ave & Ogden Ave",1
+"83","Avondale Ave & Addison St",53
+"84","Avondale Ave & Irving Park Rd",2168
+"85","Back of the Yards Park",5
+"86","Baltimore Ave & 132nd St",26
+"87","Baltimore Ave & 133rd St",24
+"88","Baltimore Ave & 87th St",181
+"89","Bell Ave & 95th St",165
+"90","Bennett Ave & 79th St",97
+"91","Bennett Ave & 96th St",68
+"92","Bensley Ave & 103rd St",15
+"93","Benson Ave & Church St",5415
+"94","Bernard St & Elston Ave",2115
+"95","Big Marsh Park",242
+"96","Bishop St & 46th St",32
+"97","Bissell St & Armitage Ave",19167
+"98","Blackstone Ave & Hyde Park Blvd",4713
+"99","Bloomingdale Ave & Harlem Ave",271
+"100","Blue Island Ave & 18th St",6224
+"101","Bosworth Ave & Howard St",1005
+"102","Bradley Park",76
+"103","Brandon Ave & 91st St",104
+"104","Brighton Park Branch Chicago Library",23
+"105","Broadway & Argyle St",8922
+"106","Broadway & Barry Ave",29828
+"107","Broadway & Belmont Ave",16749
+"108","Broadway & Berwyn Ave",8457
+"109","Broadway & Cornelia Ave",21711
+"110","Broadway & Granville Ave",7576
+"111","Broadway & Ridge Ave",7616
+"112","Broadway & Sheridan Rd",15726
+"113","Broadway & Thorndale Ave",7504
+"114","Broadway & Waveland Ave",22042
+"115","Broadway & Wilson - Truman College Vaccination Site",9361
+"116","Broadway & Wilson Ave",2281
+"117","Buckingham Fountain",9682
+"118","Budlong Woods Library",1080
+"119","Buffalo Ave & 133rd St",26
+"120","Buffalo Ave & 89th St",24
+"121","Burling St & Diversey Pkwy",14899
+"122","Burnham Greenway & 105th St",235
+"123","Burnham Greenway & 112th St",538
+"124","Burnham Harbor",10502
+"125","California & 16th St",355
+"126","California Ave & 21st St",1276
+"127","California Ave & 23rd Pl",780
+"128","California Ave & 26th St",427
+"129","California Ave & 29th St",222
+"130","California Ave & 36th St",194
+"131","California Ave & Altgeld St",3970
+"132","California Ave & Byron St",2593
+"133","California Ave & Cortez St",8911
+"134","California Ave & Devon Ave - NE",56
+"135","California Ave & Devon Ave - NW",24
+"136","California Ave & Division St",4623
+"137","California Ave & Fletcher St",3523
+"138","California Ave & Francis Pl",5074
+"139","California Ave & Lake St",1100
+"140","California Ave & Marquette Rd",301
+"141","California Ave & Milwaukee Ave",13482
+"142","California Ave & Montrose Ave",3531
+"143","California Ave & North Ave",5431
+"144","California Ave & Ogden Ave",5
+"145","California Ave & Pershing Rd",28
+"146","California Ave & Touhy Ave - NW",245
+"147","California Ave & Touhy Ave - SW",2
+"148","California Ave & Winona St",1551
+"149","Calumet Ave & 103rd St",48
+"150","Calumet Ave & 18th St",8863
+"151","Calumet Ave & 21st St",4291
+"152","Calumet Ave & 33rd St",7689
+"153","Calumet Ave & 35th St",2427
+"154","Calumet Ave & 51st St",1408
+"155","Calumet Ave & 71st St",96
+"156","Calumet Ave & Garfield Blvd",210
+"157","Calumet Park",305
+"158","Campbell Ave & 51st St",410
+"159","Campbell Ave & Fullerton Ave",3785
+"160","Campbell Ave & Irving Park Rd",1360
+"161","Campbell Ave & Montrose Ave",3384
+"162","Campbell Ave & North Ave",6737
+"163","Canal St & Adams St",22210
+"164","Canal St & Harrison St",3229
+"165","Canal St & Jackson Blvd",11087
+"166","Canal St & Madison St",14650
+"167","Canal St & Monroe St",12612
+"168","Canal St & Taylor St",6905
+"169","Cannon Dr & Fullerton Ave",6491
+"170","Canty Elementary School",11
+"171","Carpenter St & 63rd St",48
+"172","Carpenter St & Huron St",11129
+"173","Central Ave & Chicago Ave",480
+"174","Central Ave & Congress Pkwy",123
+"175","Central Ave & Corcoran Pl",350
+"176","Central Ave & George St",148
+"177","Central Ave & Harrison St",136
+"178","Central Ave & Lake St",257
+"179","Central Ave & Madison St",231
+"180","Central Ave & North Ave",19
+"181","Central Ave & Parker Ave",1710
+"182","Central Ave & Roscoe St",991
+"183","Central Park & Augusta Blvd",417
+"184","Central Park Ave & 24th St",359
+"185","Central Park Ave & Bloomingdale Ave",3345
+"186","Central Park Ave & Douglas Blvd",199
+"187","Central Park Ave & Elbridge Ave",3242
+"188","Central Park Ave & Fillmore St",14
+"189","Central Park Ave & North Ave",1481
+"190","Central Park Ave & Ogden Ave",1632
+"191","Central Park Ave & Ohio St",673
+"192","Central Park Blvd & 5th Ave",209
+"193","Central St & Girard Ave",1202
+"194","Central St Metra",1241
+"195","Champlain Ave & 134th St",30
+"196","Chappel Ave & 71st St",39
+"197","Chase Ave & Touhy Ave - NE",206
+"198","Chase Ave & Touhy Ave - NW",69
+"199","Cherry Ave & Blackhawk St",2230
+"200","Chicago Ave & Sheridan Rd",4858
+"201","Chicago Ave & Washington St",3370
+"202","Chicago State University",493
+"203","Chopin Park",7
+"204","Christiana Ave & 111th St",2
+"205","Christiana Ave & 55th St",31
+"206","Christiana Ave & Archer Ave",331
+"207","Christiana Ave & Belmont Ave",193
+"208","Christiana Ave & Bryn Mawr Ave",2
+"209","Christiana Ave & Lawrence Ave",2287
+"210","Cicero Ave & Altgeld St",29
+"211","Cicero Ave & Cortland St - midblock",26
+"212","Cicero Ave & Flournoy St",96
+"213","Cicero Ave & Grace St",1356
+"214","Cicero Ave & Lake St",304
+"215","Cicero Ave & Le Moyne St - midblock",13
+"216","Cicero Ave & North Ave",56
+"217","Cicero Ave & Quincy St",129
+"218","Cicero Ave & Roscoe St",27
+"219","Cicero Ave & Wellington Ave",205
+"220","Cicero Ave & Wrightwood Ave",929
+"221","City Rack - Albany Ave & 103rd St",4
+"222","Cityfront Plaza Dr & Pioneer Ct",12776
+"223","Claremont Ave & 71st St",87
+"224","Claremont Ave & Hirsch St",3133
+"225","Clarendon Ave & Gordon Ter",13936
+"226","Clarendon Ave & Junior Ter",12445
+"227","Clarendon Ave & Leland Ave",7644
+"228","Clark St & 9th St (AMLI)",6148
+"229","Clark St & Armitage Ave",29051
+"230","Clark St & Berwyn Ave",11425
+"231","Clark St & Bryn Mawr Ave",8657
+"232","Clark St & Chicago Ave",12146
+"233","Clark St & Columbia Ave",2610
+"234","Clark St & Drummond Pl",22840
+"235","Clark St & Elm St",35037
+"236","Clark St & Elmdale Ave",3680
+"237","Clark St & Grace St",13892
+"238","Clark St & Ida B Wells Dr",6505
+"239","Clark St & Jarvis Ave",1259
+"240","Clark St & Lake St",15514
+"241","Clark St & Leland Ave",9756
+"242","Clark St & Lincoln Ave",27270
+"243","Clark St & Lunt Ave",3350
+"244","Clark St & Montrose Ave",7004
+"245","Clark St & Newport St",23732
+"246","Clark St & North Ave",12750
+"247","Clark St & Randolph St",15066
+"248","Clark St & Schiller St",19779
+"249","Clark St & Schreiber Ave",3431
+"250","Clark St & Touhy Ave",1146
+"251","Clark St & Wellington Ave",17449
+"252","Clark St & Winnemac Ave",15571
+"253","Clark St & Wrightwood Ave",26168
+"254","Clifton Ave & Armitage Ave",10521
+"255","Clinton St & 18th St",3293
+"256","Clinton St & Jackson Blvd",18533
+"257","Clinton St & Lake St",18151
+"258","Clinton St & Madison St",26299
+"259","Clinton St & Polk St",1172
+"260","Clinton St & Roosevelt Rd",8542
+"261","Clinton St & Tilden St",4304
+"262","Clinton St & Washington Blvd",25684
+"263","Clybourn Ave & Division St",7427
+"264","Clyde Ave & 87th St",120
+"265","Colfax Ave & 83rd St",134
+"266","Columbus Dr & Randolph St",18567
+"267","Commercial Ave & 100th St",63
+"268","Commercial Ave & 130th St",193
+"269","Commercial Ave & 83rd St",223
+"270","Commercial Ave & 89th St",31
+"271","Conservatory Dr & Lake St",918
+"272","Constance Ave & 95th St",130
+"273","Corliss Ave & 103rd St",3
+"274","Corliss Ave & 133rd St",14
+"275","Cornell Ave & Hyde Park Blvd",8649
+"276","Cornell Dr & Hayes Dr",139
+"277","Cottage Grove & 84th St",14
+"278","Cottage Grove & 85th St",18
+"279","Cottage Grove & 86th St",40
+"280","Cottage Grove Ave & 111th Pl",217
+"281","Cottage Grove Ave & 111th St",323
+"282","Cottage Grove Ave & 43rd St",1409
+"283","Cottage Grove Ave & 47th St",1615
+"284","Cottage Grove Ave & 51st St",1709
+"285","Cottage Grove Ave & 63rd St",1338
+"286","Cottage Grove Ave & 67th St",414
+"287","Cottage Grove Ave & 71st St",294
+"288","Cottage Grove Ave & 75th St",133
+"289","Cottage Grove Ave & 78th St",194
+"290","Cottage Grove Ave & 83rd St",336
+"291","Cottage Grove Ave & 87th St",96
+"292","Cottage Grove Ave & 89th Pl",32
+"293","Cottage Grove Ave & 91st St",77
+"294","Cottage Grove Ave & 92nd St",10
+"295","Cottage Grove Ave & 98th St",171
+"296","Cottage Grove Ave & Oakwood Blvd",1118
+"297","Daley Center Plaza",15616
+"298","Damen Ave & 33rd St",219
+"299","Damen Ave & 47th St",178
+"300","Damen Ave & 51st St",140
+"301","Damen Ave & 59th St",222
+"302","Damen Ave & 74th St",42
+"303","Damen Ave & 80th St",50
+"304","Damen Ave & 84th St",2
+"305","Damen Ave & Charleston St",6301
+"306","Damen Ave & Chicago Ave",11379
+"307","Damen Ave & Clybourn Ave",4787
+"308","Damen Ave & Cortland St",12515
+"309","Damen Ave & Coulter St",851
+"310","Damen Ave & Cullerton St",3253
+"311","Damen Ave & Division St",9673
+"312","Damen Ave & Foster Ave",4875
+"313","Damen Ave & Grand Ave",5789
+"314","Damen Ave & Leland Ave",5780
+"315","Damen Ave & Madison St",3196
+"316","Damen Ave & Melrose Ave",3969
+"317","Damen Ave & Pershing Rd",469
+"318","Damen Ave & Pierce Ave",21948
+"319","Damen Ave & Sunnyside Ave",3865
+"320","Damen Ave & Thomas St (Augusta Blvd)",8333
+"321","Damen Ave & Wabansia Ave",10880
+"322","Damen Ave & Walnut (Lake) St",3206
+"323","Damen Ave & Wellington Ave",5261
+"324","Dauphin Ave & 103rd St",142
+"325","Dauphin Ave & 87th St",199
+"326","Dayton St & North Ave",11876
+"327","Dearborn Pkwy & Delaware Pl",21441
+"328","Dearborn St & Adams St",9054
+"329","Dearborn St & Erie St",25946
+"330","Dearborn St & Monroe St",17452
+"331","Dearborn St & Van Buren St",7129
+"332","Delano Ct & Roosevelt Rd",7429
+"333","Desplaines St & Jackson Blvd",11655
+"334","Desplaines St & Kinzie St",20606
+"335","Desplaines St & Randolph St",11370
+"336","Divvy Valet - Oakwood Beach",12
+"337","Dodge Ave & Church St",1116
+"338","Dodge Ave & Main St",579
+"339","Dodge Ave & Mulford St",447
+"340","Dorchester Ave & 49th St",1325
+"341","Dorchester Ave & 63rd St",867
+"342","Doty Ave & 111th St",149
+"343","Drake Ave & Addison St",1670
+"344","Drake Ave & Montrose Ave",1574
+"345","Drexel Ave & 87th St",9
+"346","DuSable Lake Shore Dr & Belmont Ave",20780
+"347","DuSable Lake Shore Dr & Diversey Pkwy",22471
+"348","DuSable Lake Shore Dr & Monroe St",41278
+"349","DuSable Lake Shore Dr & North Blvd",40090
+"350","DuSable Lake Shore Dr & Wellington Ave",19771
+"351","DuSable Museum",1105
+"352","Dusable Harbor",19409
+"353","East End Ave & 75th St",54
+"354","East End Ave & 87th St",198
+"355","Eastlake Ter & Howard St",269
+"356","Eastlake Ter & Rogers Ave",1987
+"357","Eberhart Ave & 131st St",81
+"358","Eberhart Ave & 61st St",494
+"359","Eberhart Ave & 91st St",130
+"360","Eckhart Park",9127
+"361","Eggleston Ave & 114th St",4
+"362","Eggleston Ave & 115th St",2
+"363","Eggleston Ave & 69th St",186
+"364","Eggleston Ave & 92nd St",139
+"365","Eli Whitney Public School",17
+"366","Elizabeth (May) St & Fulton St",4861
+"367","Elizabeth St & 47th St",134
+"368","Elizabeth St & 59th St",72
+"369","Elizabeth St & 92nd St",205
+"370","Elizabeth St & Fulton St",1435
+"371","Ellis Ave & 132nd Pl",26
+"372","Ellis Ave & 53rd St",5942
+"373","Ellis Ave & 55th St",19163
+"374","Ellis Ave & 58th St",9666
+"375","Ellis Ave & 60th St",24162
+"376","Ellis Ave & 83rd St",182
+"377","Elmwood Ave & Austin St",1219
+"378","Elston Ave & Cortland St",8828
+"379","Elston Ave & George St",5913
+"380","Elston Ave & Henderson St",3373
+"381","Elston Ave & Wabansia Ave",3420
+"382","Emerald Ave & 28th St",2838
+"383","Emerald Ave & 31st St",6700
+"384","Emerald Ave & 43rd St",131
+"385","Emerald Ave & 45th St",250
+"386","Evans Ave & 63rd St",612
+"387","Evans Ave & 75th St",250
+"388","Evanston Civic Center",1389
+"389","Ewing Ave & 101st St",18
+"390","Ewing Ave & 105th St",36
+"391","Ewing Ave & 106th St",51
+"392","Ewing Ave & 112th St",10
+"393","Ewing Ave & 96th St",24
+"394","Ewing Ave & 99th St",11
+"395","Ewing Ave & Burnham Greenway",717
+"396","Ewing Ave & Indianapolis Ave",18
+"397","Exchange Ave & 79th St",255
+"398","Fairbanks Ct & Grand Ave",19449
+"399","Fairbanks St & Superior St",8237
+"400","Fairfield Ave & 44th St",444
+"401","Fairfield Ave & Roosevelt Rd",606
+"402","Federal St & Polk St",17948
+"403","Field Blvd & South Water St",12393
+"404","Field Museum",9039
+"405","Financial Pl & Ida B Wells Dr",8891
+"406","Forrestville Ave & 47th St",608
+"407","Fort Dearborn Dr & 31st St",8587
+"408","Francisco Ave & 47th St",389
+"409","Francisco Ave & Bloomingdale Ave",5102
+"410","Francisco Ave & Foster Ave",2435
+"411","Francisco Ave & Hollywood Ave",667
+"412","Francisco Ave & Montrose Ave",3897
+"413","Franklin St & Adams St",9663
+"414","Franklin St & Chicago Ave",16623
+"415","Franklin St & Illinois St",14355
+"416","Franklin St & Jackson Blvd",16889
+"417","Franklin St & Lake St",15377
+"418","Franklin St & Monroe St",14768
+"419","Fullerton & Monitor",1254
+"420","Glenwood Ave & Morse Ave",4667
+"421","Glenwood Ave & Touhy Ave",2157
+"422","Grand Ave & North Ave",34
+"423","Green St & 103rd St",64
+"424","Green St & Madison Ave",483
+"425","Green St & Madison St",22287
+"426","Green St & Randolph St",15383
+"427","Green St & Washington Blvd",3788
+"428","Greenview Ave & Diversey Pkwy",7128
+"429","Greenview Ave & Fullerton Ave",13040
+"430","Greenview Ave & Jarvis Ave",3549
+"431","Greenwood Ave & 47th St",2288
+"432","Greenwood Ave & 79th St",117
+"433","Greenwood Ave & 87th St",1
+"434","Greenwood Ave & 91st St",104
+"435","Greenwood Ave & 97th St",165
+"436","Greenwood Ave & Lake Park Ave",934
+"437","Hale Ave & 107th St",249
+"438","Hale Ave & 111th St",3
+"439","Halsted & 63rd - Kennedy-King Vaccination Site",336
+"440","Halsted St & 102nd St",34
+"441","Halsted St & 104th St",160
+"442","Halsted St & 111th St",291
+"443","Halsted St & 18th St",3979
+"444","Halsted St & 21st St",2055
+"445","Halsted St & 35th St",2692
+"446","Halsted St & 37th St",516
+"447","Halsted St & 41st St",13
+"448","Halsted St & 47th Pl",517
+"449","Halsted St & 51st St",354
+"450","Halsted St & 56th St",137
+"451","Halsted St & 59th St",75
+"452","Halsted St & 63rd St",240
+"453","Halsted St & 64th St",20
+"454","Halsted St & 69th St",104
+"455","Halsted St & 73rd St",181
+"456","Halsted St & 76th St",32
+"457","Halsted St & 78th St",204
+"458","Halsted St & 80th St",44
+"459","Halsted St & 94th St",11
+"460","Halsted St & 95th St - SE",10
+"461","Halsted St & 95th St - SW",30
+"462","Halsted St & 96th St",315
+"463","Halsted St & Archer Ave",2649
+"464","Halsted St & Clybourn Ave",21163
+"465","Halsted St & Dickens Ave",16833
+"466","Halsted St & Maxwell St",10786
+"467","Halsted St & North Branch St",2073
+"468","Halsted St & Polk St",15644
+"469","Halsted St & Roosevelt Rd",8025
+"470","Halsted St & Roscoe St",22082
+"471","Halsted St & Willow St",11982
+"472","Halsted St & Wrightwood Ave",20876
+"473","Hamilton Ave & 95th St",46
+"474","Hamilton Park",22
+"475","Hamlin Ave & 62nd Pl",457
+"476","Hamlin Ave & Chicago Ave",24
+"477","Hamlin Ave & Fullerton Ave",435
+"478","Hamlin Ave & Grand Ave",29
+"479","Hamlin Ave & Montrose Ave",697
+"480","Hampden Ct & Diversey Ave",17418
+"481","Harding Ave & 26th St",552
+"482","Harding Ave & 47th St",17
+"483","Harlem & Irving Park",1023
+"484","Harlem Ave & Grace St",157
+"485","Harold Washington Park",283
+"486","Harper Ave & 59th St",5472
+"487","Harper Ave & 63rd St",443
+"488","Harriet E Sayre Public School",31
+"489","Harvard Ave & 103rd St",24
+"490","Harvard Ave & 119th St",10
+"491","Harvey Ave & North Ave",126
+"492","Hegewisch Metra Station",120
+"493","Hermitage Ave & Polk St",5489
+"494","Hiawatha Park",457
+"495","Homan Ave & 111th St",13
+"496","Homan Ave & 26th St",188
+"497","Homan Ave & 65th St",274
+"498","Homan Ave & Fillmore St",702
+"499","Homewood Ave & 115th St",190
+"500","Homewood Ave & Monterey Ave",53
+"501","Honore St & 87th St - SE",16
+"502","Honore St & Division St",11892
+"503","Houston Ave & 91st St",111
+"504","Houston Ave & 92nd St",184
+"505","Hoyne Ave & 110th Pl",31
+"506","Hoyne Ave & 34th St",549
+"507","Hoyne Ave & 47th St",325
+"508","Hoyne Ave & Balmoral Ave",2580
+"509","Humboldt Blvd & Armitage Ave",5662
+"510","Hyde Park Blvd & 53rd St",2304
+"511","Hyde Park Blvd & 55th St",23111
+"512","Indiana Ave & 103rd St",194
+"513","Indiana Ave & 133rd St",18
+"514","Indiana Ave & 26th St",2673
+"515","Indiana Ave & 31st St",3874
+"516","Indiana Ave & 40th St",403
+"517","Indiana Ave & Roosevelt Rd",27179
+"518","Ingleside Ave & 79th St",256
+"519","Jefferson St & Monroe St",8431
+"520","Jeffery Blvd & 67th St",810
+"521","Jeffery Blvd & 71st St",494
+"522","Jeffery Blvd & 76th St",184
+"523","Jeffery Blvd & 83rd St",32
+"524","Jeffrey Blvd & 71st St",136
+"525","Jonathan Y Scammon Public School",165
+"526","Justine St & 87th St",22
+"527","Karlov Ave & Kamerling Ave",86
+"528","Karlov Ave & Madison St",146
+"529","Karlov Ave & Milwaukee Ave",26
+"530","Kedvale Ave & 63rd St",27
+"531","Kedvale Ave & Addison St",38
+"532","Kedvale Ave & Avondale Ave",533
+"533","Kedzie & 103rd St - East",20
+"534","Kedzie & 103rd St - West",5
+"535","Kedzie Ave & 104th St",118
+"536","Kedzie Ave & 110th St",121
+"537","Kedzie Ave & 21st St",563
+"538","Kedzie Ave & 24th St",317
+"539","Kedzie Ave & 45th St",395
+"540","Kedzie Ave & 48th Pl",1627
+"541","Kedzie Ave & 52nd St",337
+"542","Kedzie Ave & 54th St - SE",94
+"543","Kedzie Ave & 54th St - SW",83
+"544","Kedzie Ave & 57th St",929
+"545","Kedzie Ave & 58th St",74
+"546","Kedzie Ave & 61st Pl",152
+"547","Kedzie Ave & 63rd St",61
+"548","Kedzie Ave & 64th St - SE",6
+"549","Kedzie Ave & 64th St - SW",165
+"550","Kedzie Ave & Archer Ave",46
+"551","Kedzie Ave & Argyle St",659
+"552","Kedzie Ave & Bryn Mawr Ave",1065
+"553","Kedzie Ave & Chicago Ave",896
+"554","Kedzie Ave & Foster Ave",1281
+"555","Kedzie Ave & George St",6243
+"556","Kedzie Ave & Harrison St",224
+"557","Kedzie Ave & Lake St",1029
+"558","Kedzie Ave & Leland Ave",1769
+"559","Kedzie Ave & Milwaukee Ave",14831
+"560","Kedzie Ave & Palmer Ct",4629
+"561","Kedzie Ave & Pershing Rd",35
+"562","Kedzie Ave & Roosevelt Rd",374
+"563","Keef Ave & South Chicago Ave",165
+"564","Keeler Ave & 55th St",15
+"565","Keeler Ave & Madison St",60
+"566","Keeler Ave & Roosevelt Rd",254
+"567","Kenneth Ave & 50th St",216
+"568","Kenneth Ave & 63rd St",95
+"569","Kenosha & Wellington",2042
+"570","Kenton Ave & Madison St",130
+"571","Kenton Ave & Palmer St",190
+"572","Keystone Ave & Fullerton Ave",1306
+"573","Keystone Ave & Irving Park Rd",89
+"574","Keystone Ave & Montrose Ave",1161
+"575","Keystone Ave & North Ave",635
+"576","Kilbourn & Belden",1103
+"577","Kilbourn & Roscoe",1688
+"578","Kilbourn Ave & Fullerton Ave",15
+"579","Kilbourn Ave & Irving Park Rd",602
+"580","Kilbourn Ave & Milwaukee Ave",403
+"581","Kildare & Cermak",207
+"582","Kildare Ave & 26th St",95
+"583","Kildare Ave & 47th St",350
+"584","Kildare Ave & 55th St",398
+"585","Kildare Ave & 63rd St",33
+"586","Kildare Ave & Chicago Ave",190
+"587","Kildare Ave & Division Ave",29
+"588","Kildare Ave & Division St",201
+"589","Kildare Ave & Montrose Ave",929
+"590","Kildare Ave & Washignton Blvd",265
+"591","Kilpatrick Ave & Grand Ave",743
+"592","Kilpatrick Ave & Parker Ave",1322
+"593","Kimball Ave & Belmont Ave",2724
+"594","Kimball Ave & Carmen Ave",64
+"595","Kimbark Ave & 53rd St",16096
+"596","Kimbark Ave & 63rd St",103
+"597","Kimbark Ave & 67th St",266
+"598","King Dr & 83rd St",16
+"599","Kingsbury St & Erie St",17509
+"600","Kingsbury St & Kinzie St",33725
+"601","Knox Ave & Montrose Ave",1273
+"602","Kolin Ave & Archer Ave",61
+"603","Komensky Ave & 31st St",467
+"604","Komensky Ave & 55th St",566
+"605","Komensky Ave & 59th St",75
+"606","Kosciuszko Park",2812
+"607","Kostner Ave & 63rd St",452
+"608","Kostner Ave & Adams St",348
+"609","Kostner Ave & Armitage Ave",439
+"610","Kostner Ave & Lake St",153
+"611","Kostner Ave & North Ave",24
+"612","Kostner Ave & Wrightwood Ave",9589
+"613","La Villita Park (Albany/30th)",168
+"614","LaSalle Dr & Huron St",13014
+"615","LaSalle St & Adams St",4970
+"616","LaSalle St & Illinois St",24015
+"617","LaSalle St & Jackson Blvd",13806
+"618","LaSalle St & Washington St",9332
+"619","Lafayette Ave & 119th St",3
+"620","Lafayette Ave & 87th St - NW",133
+"621","Lafayette Ave & 87th St - SW",111
+"622","Lafayette Ave & 95th St",251
+"623","Laflin St & 51st St",174
+"624","Laflin St & 79th St",40
+"625","Laflin St & Cullerton St",3153
+"626","Lake Park Ave & 35th St",2667
+"627","Lake Park Ave & 44th St",1500
+"628","Lake Park Ave & 47th St",3367
+"629","Lake Park Ave & 53rd St",7425
+"630","Lake Park Ave & 56th St",7730
+"631","Lakefront Trail & Bryn Mawr Ave",13768
+"632","Lakefront Trail & Wilson Ave",8884
+"633","Lakeview Ave & Fullerton Pkwy",22520
+"634","Lamon Ave & Archer Ave",8
+"635","Lamon Ave & Armitage Ave",1107
+"636","Lamon Ave & Belmont Ave",2131
+"637","Lamon Ave & Chicago Ave",907
+"638","Langley Ave & 105th Pl",99
+"639","Langley Ave & 79th St",197
+"640","Laramie Ave & Belmont Ave",57
+"641","Laramie Ave & Fullerton Ave",123
+"642","Laramie Ave & Gladys Ave",82
+"643","Laramie Ave & Grand Ave",42
+"644","Laramie Ave & Kinzie St",247
+"645","Laramie Ave & Madison St",233
+"646","Laramie Ave & Warwick Ave",4
+"647","Larrabee St & Armitage Ave",9076
+"648","Larrabee St & Division St",11749
+"649","Larrabee St & Kingsbury St",18422
+"650","Larrabee St & Menomonee St",5781
+"651","Larrabee St & North Ave",7224
+"652","Larrabee St & Oak St",7872
+"653","Larrabee St & Webster Ave",22741
+"654","Latrobe Ave & Chicago Ave",183
+"655","Latrobe Ave & Lake St",31
+"656","Lavergne & Fullerton",1638
+"657","Lavergne Ave & 46th St",165
+"658","Lavergne Ave & Division St",345
+"659","Lawler Ave & 50th St",413
+"660","Lawndale Ave & 111th St",199
+"661","Lawndale Ave & 16th St",164
+"662","Lawndale Ave & 30th St",430
+"663","Lawndale Ave & Diversey Ave",1877
+"664","Lawndale Ave & Polk St",71
+"665","Lawrence Ave & 103rd St",68
+"666","Leamington Ave & Hirsch St",538
+"667","Leavitt St & Addison St",3325
+"668","Leavitt St & Archer Ave",1249
+"669","Leavitt St & Armitage Ave",5704
+"670","Leavitt St & Belmont Ave",4787
+"671","Leavitt St & Chicago Ave",5139
+"672","Leavitt St & Division St",4893
+"673","Leavitt St & Lawrence Ave",3071
+"674","Leavitt St & North Ave",7033
+"675","Legler Regional Library",20
+"676","Lincoln Ave & Addison St",3805
+"677","Lincoln Ave & Balmoral Ave",2942
+"678","Lincoln Ave & Belle Plaine Ave",5957
+"679","Lincoln Ave & Belmont Ave",8960
+"680","Lincoln Ave & Diversey Pkwy",15658
+"681","Lincoln Ave & Fullerton Ave",21057
+"682","Lincoln Ave & Peterson Ave",1446
+"683","Lincoln Ave & Roscoe St",10410
+"684","Lincoln Ave & Sunnyside Ave",6091
+"685","Lincoln Ave & Waveland Ave",4765
+"686","Lincoln Ave & Winona St",2745
+"687","Lincoln Park Conservatory",12803
+"688","Lincolnwood Dr & Central St",603
+"689","Linder Ave & Belmont Ave",12
+"690","Lockwood Ave & Wrightwood Ave",2203
+"691","Logan Blvd & Elston Ave",6467
+"692","Long & Irving Park",1772
+"693","Long Ave & Belden Ave",1439
+"694","Long Ave & Belmont Ave",825
+"695","Long Ave & North Ave",634
+"696","Longwood Dr & 111th St",9
+"697","Longwood Dr & 95th St",86
+"698","Loomis Blvd & 83rd St",1
+"699","Loomis Blvd & 84th St",163
+"700","Loomis St & 87th St",169
+"701","Loomis St & 89th St",158
+"702","Loomis St & Archer Ave",1458
+"703","Loomis St & Jackson Blvd",6228
+"704","Loomis St & Lexington St",22707
+"705","Lorel Ave & Chicago Ave",32
+"706","Lowe Ave & 98th St",8
+"707","Lowe Park",20
+"708","Lowell Ave & Elston Ave",229
+"709","MLK Jr Dr & 29th St",8978
+"710","MLK Jr Dr & 47th St",626
+"711","MLK Jr Dr & 56th St",493
+"712","MLK Jr Dr & 63rd St",519
+"713","MLK Jr Dr & 83rd St",162
+"714","MLK Jr Dr & Pershing Rd",1299
+"715","MTV Hubbard St",2903
+"716","Mackinaw Ave & 106th St",8
+"717","Mackinaw Ave & 108th St",15
+"718","Mackinaw Ave & 85th St",15
+"719","Major Ave & Bloomingdale Ave",335
+"720","Major Taylor Trail & 115th St",156
+"721","Major Taylor Trail & 124th St",119
+"722","Malcolm X College",466
+"723","Malcolm X College Vaccination Site",1603
+"724","Manor Ave & Leland Ave",2135
+"725","Maplewood Ave & 59th St",178
+"726","Maplewood Ave & Peterson Ave",713
+"727","Marine Dr & Ainslie St",7679
+"728","Marquette Ave & 79th St",155
+"729","Marquette Ave & 83rd St",24
+"730","Marquette Ave & 89th St",149
+"731","Marshfield Ave & 44th St",384
+"732","Marshfield Ave & 45th St",100
+"733","Marshfield Ave & 59th St",70
+"734","Marshfield Ave & 87th St",13
+"735","Martin Luther King Dr & 111th St",197
+"736","Martin Luther King Dr & 44th St",70
+"737","Martin Luther King Dr & 69th St",21
+"738","Maryland Ave & 104th St",375
+"739","Maryland Ave & 87th ST",18
+"740","Mason Ave & Belmont Ave",395
+"741","Mason Ave & Roosevelt Rd",27
+"742","May St & 63rd St",80
+"743","May St & 69th St",285
+"744","May St & 78th St",4
+"745","May St & Cullerton St",2770
+"746","May St & Taylor St",13503
+"747","Mayfield & Roosevelt Rd",157
+"748","McClurg Ct & Erie St",15712
+"749","McClurg Ct & Ohio St",21011
+"750","McCormick Blvd & Devon Ave",177
+"751","McCormick Place",6116
+"752","McVicker Ave & Grand Ave",41
+"753","Meade Ave & Addison St",540
+"754","Meade Ave & Diversey Ave",588
+"755","Melvina Ave & Belmont Ave",37
+"756","Menard Ave & Adams Blvd",17
+"757","Menard Ave & Agusta Blvd",57
+"758","Menard Ave & Belmont Ave",13
+"759","Menard Ave & Dakin St - midblock",376
+"760","Menard Ave & Division St",205
+"761","Menard Ave & Grand Ave",60
+"762","Menard Ave & Madison St",150
+"763","Menard Ave & North Ave",156
+"764","Michigan Ave & 102nd St",26
+"765","Michigan Ave & 110th St",27
+"766","Michigan Ave & 113th St",41
+"767","Michigan Ave & 114th St",77
+"768","Michigan Ave & 119th St",4
+"769","Michigan Ave & 14th St",11895
+"770","Michigan Ave & 18th St",9821
+"771","Michigan Ave & 71st St",107
+"772","Michigan Ave & 8th St",17718
+"773","Michigan Ave & 96th St",94
+"774","Michigan Ave & Ida B Wells Dr",7776
+"775","Michigan Ave & Jackson Blvd",13074
+"776","Michigan Ave & Lake St",21859
+"777","Michigan Ave & Madison St",10830
+"778","Michigan Ave & Oak St",39661
+"779","Michigan Ave & Pearson St",10567
+"780","Michigan Ave & Washington St",24185
+"781","Midway Orange Line",355
+"782","Mies van der Rohe Way & Chestnut St",15855
+"783","Mies van der Rohe Way & Chicago Ave",15393
+"784","Millard Ave & 26th St",454
+"785","Millennium Park",35005
+"786","Milwaukee Ave & Addison St",453
+"787","Milwaukee Ave & Cuyler Ave",834
+"788","Milwaukee Ave & Diversey Ave",776
+"789","Milwaukee Ave & Fullerton Ave",17440
+"790","Milwaukee Ave & Grand Ave",15429
+"791","Milwaukee Ave & Haussen Ct",211
+"792","Milwaukee Ave & Rockwell St",4879
+"793","Milwaukee Ave & School St",930
+"794","Milwaukee Ave & Wabansia Ave",12455
+"795","Milwaukee Ave & Waveland Ave",18
+"796","Monticello Ave & Belmont Ave",1002
+"797","Monticello Ave & Chicago Ave",436
+"798","Monticello Ave & Irving Park Rd",1688
+"799","Montrose Harbor",20478
+"800","Morgan Ave & 14th Pl",4886
+"801","Morgan St & 103rd St",11
+"802","Morgan St & 18th St",5970
+"803","Morgan St & 31st St",3726
+"804","Morgan St & 87th St",207
+"805","Morgan St & 95th St",69
+"806","Morgan St & Lake St",15090
+"807","Morgan St & Pershing Rd",154
+"808","Morgan St & Polk St",15495
+"809","Mozart Elementary School",2105
+"810","Mozart St & Jackson Blvd",329
+"811","Mt Greenwood Library - North",3
+"812","Mt Greenwood Library - South",13
+"813","Mulligan Ave & Wellington Ave",934
+"814","Museum of Science and Industry",4743
+"815","Muskegon Ave & 89th St",7
+"816","N Carpenter St & W Lake St",5865
+"817","N Clark St & W Elm St",15562
+"818","N Damen Ave & W Chicago Ave",6205
+"819","N Green St & W Lake St",16192
+"820","N Narragansett Ave & Grand Ave",132
+"821","N Paulina St & Lincoln Ave",7542
+"822","N Sayre Ave & W Belden Ave",4
+"823","N Sheffield Ave & W Wellington Ave",16982
+"824","N Shore Channel Trail & Argyle Ave",20
+"825","N Shore Channel Trail & Argyle St",1957
+"826","N Southport Ave & W Newport Ave",7584
+"827","Nagle Ave & Belmont Ave",80
+"828","Narragansett & Irving Park",979
+"829","Narragansett & McLean",516
+"830","Narragansett & Wrightwood",3420
+"831","Narragansett Ave & Fullerton Ave",294
+"832","Narragansett Ave & School St",704
+"833","Neva Ave & Grand Ave",261
+"834","New England Ave & Grace St",59
+"835","New St & Illinois St",21641
+"836","Newcastle Ave & Belden Ave",198
+"837","Newcastle Ave & Belmont Ave",14
+"838","Newcastle Ave & Wellington Ave",5
+"839","Newland Ave & Diversey Ave",11
+"840","Noble St & Milwaukee Ave",8471
+"841","Nordica & Medill",332
+"842","Nordica Ave & Addison St",42
+"843","Normal Ave & 72nd St",65
+"844","Normal Ave & Archer Ave",1120
+"845","North Ave & New England Ave",148
+"846","Oak Park & Wellington",525
+"847","Oakley Ave & Irving Park Rd",2540
+"848","Oakley Ave & Touhy Ave",659
+"849","Ogden Ave & Chicago Ave",11892
+"850","Ogden Ave & Congress Pkwy",3315
+"851","Ogden Ave & Race Ave",9889
+"852","Ogden Ave & Roosevelt Rd",1983
+"853","Oglesby Ave & 100th St",114
+"854","Oglesby Ave & 105th St",54
+"855","Oglesby Ave & 95th St",88
+"856","Oketo Ave & Addison St",246
+"857","Oketo Ave & Belmont Ave",22
+"858","Oleander Ave & Addison St",25
+"859","Olive Harvey College",132
+"860","Orange & Addison",608
+"861","Orleans St & Chestnut St (NEXT Apts)",9513
+"862","Orleans St & Elm St",5362
+"863","Orleans St & Hubbard St",8914
+"864","Orleans St & Merchandise Mart Plaza",16915
+"865","Orville T Bright School",7
+"866","Ozark Ave & Addison St",28
+"867","Panama Ave & Forest Preserve Ave",14
+"868","Panama Ave & Grace St",66
+"869","Park Manor Elementary School",8
+"870","Parkside Ave & Armitage Ave",145
+"871","Parnell Ave & 103rd St",3
+"872","Parnell Ave & 119th St",330
+"873","Parnell Ave & 98th St",5
+"874","Paulina Ave & North Ave",8913
+"875","Paulina St & 18th St",5226
+"876","Paulina St & Flournoy St",9238
+"877","Paulina St & Howard St",2692
+"878","Paulina St & Montrose Ave",4323
+"879","Penn Elementary School / KIPP Ascend Middle School",3
+"880","Peoria St & Jackson Blvd",17434
+"881","Percy Julian HS",6
+"882","Perry Ave & 108th Pl",153
+"883","Perry Ave & 69th St",348
+"884","Phillips Ave & 79th St",336
+"885","Phillips Ave & 83rd St",152
+"886","Pine Grove Ave & Irving Park Rd",15851
+"887","Pine Grove Ave & Waveland Ave",19957
+"888","Ping Tom Park (East)",1623
+"889","Piotrowski Park",4
+"890","Pittsburgh Ave & Irving Park",7
+"891","Plainfield & Irving Park",109
+"892","Plainfield Ave & Irving Park Rd",2
+"893","Prairie Ave & 43rd St",981
+"894","Prairie Ave & 47th St - midblock",356
+"895","Prairie Ave & Garfield Blvd",1816
+"896","Princeton Ave & 43rd St",123
+"897","Princeton Ave & 47th St",798
+"898","Princeton Ave & Garfield Blvd",470
+"899","Prospect Sq & 91st St",228
+"900","Pubic Rack - Pulaski Rd & 41st",18
+"901","Public  Rack - Albany Ave & 63rd St",36
+"902","Public Rack - 10557 S Western Ave",29
+"903","Public Rack - 111th St - Morgan Park Metra",23
+"904","Public Rack - 532 E 43rd St",64
+"905","Public Rack - 53rd St & Indiana Ave",2
+"906","Public Rack - 63rd & Western Ave N",37
+"907","Public Rack - 63rd & Western Ave S",7
+"908","Public Rack - Abbott Park",5
+"909","Public Rack - Aida Food Market",8
+"910","Public Rack - Al Raby School",186
+"911","Public Rack - Albany Ave & 111th St - NW",1
+"912","Public Rack - Ashland Ave & 45th St",113
+"913","Public Rack - Ashland Ave & 63rd St",71
+"914","Public Rack - Ashland Ave & 71st St",23
+"915","Public Rack - Ashland Ave & 74th St",1
+"916","Public Rack - Ashland Ave & 76th St",44
+"917","Public Rack - Ashland Ave & 83rd St",16
+"918","Public Rack - Ashland Ave & 91st St",65
+"919","Public Rack - Austin Ave & Roscoe St",253
+"920","Public Rack - Austin Ave & Wellington Ave",31
+"921","Public Rack - Austin Ave & Wellington Ave - midblock",14
+"922","Public Rack - Austin Ave & Wrightwood Ave",173
+"923","Public Rack - Austin Blvd & North Ave",137
+"924","Public Rack - Austin Branch Chicago Public Library",31
+"925","Public Rack - Ave L & 105th St",2
+"926","Public Rack - Ave N & 106th St",1
+"927","Public Rack - Avenue J & 102nd St",2
+"928","Public Rack - Avenue J & 106th St",4
+"929","Public Rack - Avenue J & 112th St",3
+"930","Public Rack - Avers Ave & Archer Ave",11
+"931","Public Rack - Avers Ave & Irving Park Rd",609
+"932","Public Rack - Avers Ave & Ogden Ave",59
+"933","Public Rack - Avondale Ave & Addison St",456
+"934","Public Rack - Baltimore Ave & 132nd St",5
+"935","Public Rack - Bell Ave & 95th St",43
+"936","Public Rack - Bensley Ave & 103rd St",3
+"937","Public Rack - Brainerd Park",104
+"938","Public Rack - Brandon Ave & 91st St",45
+"939","Public Rack - Brighton Park Branch Chicago Library",9
+"940","Public Rack - Buffalo Ave & 133rd St",5
+"941","Public Rack - Buffalo Ave & 89th St",5
+"942","Public Rack - Burnside Academy",2
+"943","Public Rack - California Ave & Cortez St",2286
+"944","Public Rack - California Ave & Devon Ave - NE",71
+"945","Public Rack - California Ave & Devon Ave - NW",134
+"946","Public Rack - California Ave & Ogden Ave",136
+"947","Public Rack - California Ave & Pershing Rd",11
+"948","Public Rack - California Ave & Touhy Ave - NW",118
+"949","Public Rack - California Ave & Touhy Ave - SW",18
+"950","Public Rack - California Ave & Touhy Ave - midblock",2
+"951","Public Rack - Calumet Ave & 51st St",135
+"952","Public Rack - Calumet Ave & Garfield Blvd",18
+"953","Public Rack - Campbell Ave & Pratt Blvd",300
+"954","Public Rack - Canty Elementary School",1
+"955","Public Rack - Central Ave & Adams St",747
+"956","Public Rack - Central Ave & Corcoran Pl",129
+"957","Public Rack - Central Ave & George St",124
+"958","Public Rack - Central Ave & North Ave",42
+"959","Public Rack - Central Park Ave & 16th St",11
+"960","Public Rack - Central Park Ave & Fillmore St",34
+"961","Public Rack - Central Park Ave & Fulton Blvd",3
+"962","Public Rack - Central Park Ave & Ogden Ave",41
+"963","Public Rack - Champlain Ave & 65th St",137
+"964","Public Rack - Chappel Ave & 71st St",2
+"965","Public Rack - Chase Ave & Touhy Ave - NE",136
+"966","Public Rack - Chase Ave & Touhy Ave - NW",50
+"967","Public Rack - Chopin Park",99
+"968","Public Rack - Christiana Ave & 55th St",5
+"969","Public Rack - Christiana Ave & Archer Ave",158
+"970","Public Rack - Christiana Ave & Belmont Ave",730
+"971","Public Rack - Christiana Ave & Bryn Mawr Ave",75
+"972","Public Rack - Christiana Ave & Lawrence Ave",233
+"973","Public Rack - Cicero Ave & Altgeld St",163
+"974","Public Rack - Cicero Ave & Cortland St - midblock",111
+"975","Public Rack - Cicero Ave & Le Moyne St - midblock",65
+"976","Public Rack - Cicero Ave & North Ave",282
+"977","Public Rack - Cicero Ave & Roscoe St",225
+"978","Public Rack - Cicero Ave & Wellington Ave",87
+"979","Public Rack - Cicero Ave & Wrightwood Ave",859
+"980","Public Rack - Claremont Ave & 71st St",11
+"981","Public Rack - Clyde Ave & 87th St",68
+"982","Public Rack - Colfax Ave & 83rd St",12
+"983","Public Rack - Commercial Ave & 89th St",3
+"984","Public Rack - Cornell Ave & 87th Pl",45
+"985","Public Rack - Cottage Grove & 85th St",14
+"986","Public Rack - Cottage Grove & 86th St",12
+"987","Public Rack - Cottage Grove Ave & 87th St",16
+"988","Public Rack - Cottage Grove Ave & 92nd St",9
+"989","Public Rack - Cottage Grove Ave & 98th St",29
+"990","Public Rack - Crandon Ave & 80th St",3
+"991","Public Rack - Damen Ave & 47th St",8
+"992","Public Rack - Damen Ave & 80th St",32
+"993","Public Rack - Division St & Christiana Ave",160
+"994","Public Rack - Drake Ave & Leland Ave",625
+"995","Public Rack - East End Ave & 75th St",72
+"996","Public Rack - East End Ave & 87th St",43
+"997","Public Rack - Eberhart Ave & 61st St",206
+"998","Public Rack - Eggleston Ave & 115th St",6
+"999","Public Rack - Eli Whitney Public School",101
+"1000","Public Rack - Ellis Ave & Doty Ave",2
+"1001","Public Rack - Emerald Ave & 43rd St",8
+"1002","Public Rack - Emerald Ave & 45th St",23
+"1003","Public Rack - Evans Ave & 63rd St",216
+"1004","Public Rack - Ewing Ave & 101st St",5
+"1005","Public Rack - Ewing Ave & 102nd St",2
+"1006","Public Rack - Ewing Ave & 105th St",14
+"1007","Public Rack - Ewing Ave & 106th St",12
+"1008","Public Rack - Ewing Ave & 106th St NW",1
+"1009","Public Rack - Ewing Ave & 107th St",29
+"1010","Public Rack - Ewing Ave & 95th St",3
+"1011","Public Rack - Ewing Ave & 96th St N",20
+"1012","Public Rack - Ewing Ave & 96th St S",2
+"1013","Public Rack - Ewing Ave & 99th St",1
+"1014","Public Rack - Exchange Ave & 73rd Pl",333
+"1015","Public Rack - Fairfield Ave & 63rd St",36
+"1016","Public Rack - Forrestville Ave & 47th St",132
+"1017","Public Rack - Francisco Ave & Touhy Ave",16
+"1018","Public Rack - Fullerton Ave & Lavergne Ave",71
+"1019","Public Rack - Fullerton Ave & Narragansett Ave",167
+"1020","Public Rack - Garfield Park Conservatory",6
+"1021","Public Rack - Grand Ave & Lawndale Ave",9
+"1022","Public Rack - Grand Ave & North Ave",134
+"1023","Public Rack - Green St & 103rd St",1
+"1024","Public Rack - Greenwood Ave & Lake Park Ave",107
+"1025","Public Rack - Halsted St & 102nd St",7
+"1026","Public Rack - Halsted St & 109th St",144
+"1027","Public Rack - Halsted St & 111th St",10
+"1028","Public Rack - Halsted St & 113th St",3
+"1029","Public Rack - Halsted St & 41st St",13
+"1030","Public Rack - Halsted St & 63rd St",7
+"1031","Public Rack - Halsted St & 64th St",42
+"1032","Public Rack - Halsted St & 76th St",10
+"1033","Public Rack - Halsted St & 95th St - SE",36
+"1034","Public Rack - Halsted St & 95th St - SW",3
+"1035","Public Rack - Hamilton Ave & 95th St",43
+"1036","Public Rack - Hamlin Ave & Chicago Ave",18
+"1037","Public Rack - Hamlin Ave & Fullerton Ave",2276
+"1038","Public Rack - Hamlin Ave & Grand Ave",198
+"1039","Public Rack - Hamlin Ave & Madison St",267
+"1040","Public Rack - Hamlin Ave & Montrose Ave",608
+"1041","Public Rack - Harding Ave & 47th St",6
+"1042","Public Rack - Harold Washington Park",286
+"1043","Public Rack - Harper Ave & 63rd St",62
+"1044","Public Rack - Harriet E Sayre Public School",9
+"1045","Public Rack - Harvard Ave & 103rd St",6
+"1046","Public Rack - Harvey Ave & North Ave",87
+"1047","Public Rack - Homan Ave & 111th St",7
+"1048","Public Rack - Homan Ave & 26th St",241
+"1049","Public Rack - Homan Ave & Lake St",113
+"1050","Public Rack - Homan Ave & Roosevelt",10
+"1051","Public Rack - Houston Ave & 131st St",4
+"1052","Public Rack - Hoyne Ave & 110th Pl",80
+"1053","Public Rack - Hoyne Ave & 51st St",6
+"1054","Public Rack - Hyde Park Blvd & 53rd St",77
+"1055","Public Rack - Hyde Park Blvd & 55th St",523
+"1056","Public Rack - Independence Blvd & Roosevelt",1
+"1057","Public Rack - Jeffery Blvd & 67th St",29
+"1058","Public Rack - Jeffery Blvd & 81st St",92
+"1059","Public Rack - Jeffery Blvd & 83rd St",18
+"1060","Public Rack - Jeffrey Blvd & 71st St",59
+"1061","Public Rack - Jensen Park",363
+"1062","Public Rack - Jonathan Y Scammon Public School",362
+"1063","Public Rack - Karlov Ave & 26th St",6
+"1064","Public Rack - Karlov Ave & Kamerling Ave",309
+"1065","Public Rack - Karlov Ave & Milwaukee Ave",320
+"1066","Public Rack - Kedvale Ave & 26th St",6
+"1067","Public Rack - Kedvale Ave & 63rd St",5
+"1068","Public Rack - Kedvale Ave & 63rd St E",1
+"1069","Public Rack - Kedvale Ave & 63rd St W",6
+"1070","Public Rack - Kedvale Ave & Addison St",34
+"1071","Public Rack - Kedvale Ave & Avondale Ave",154
+"1072","Public Rack - Kedzie & 103rd St - East",10
+"1073","Public Rack - Kedzie & 103rd St - W",6
+"1074","Public Rack - Kedzie Ave & 54th Pl",6
+"1075","Public Rack - Kedzie Ave & 54th St - SE",35
+"1076","Public Rack - Kedzie Ave & 54th St - SW",8
+"1077","Public Rack - Kedzie Ave & 58th St",36
+"1078","Public Rack - Kedzie Ave & 60th St",9
+"1079","Public Rack - Kedzie Ave & 61st Pl",8
+"1080","Public Rack - Kedzie Ave & 61st Pl E",48
+"1081","Public Rack - Kedzie Ave & 61st Pl W",65
+"1082","Public Rack - Kedzie Ave & 62nd Pl",68
+"1083","Public Rack - Kedzie Ave & 63rd St",29
+"1084","Public Rack - Kedzie Ave & 64th St - SE",18
+"1085","Public Rack - Kedzie Ave & 64th St - SW",20
+"1086","Public Rack - Kedzie Ave & Archer Ave",50
+"1087","Public Rack - Kedzie Ave & Argyle St",573
+"1088","Public Rack - Kedzie Ave & Arthington St",9
+"1089","Public Rack - Kedzie Ave & Chicago Ave",189
+"1090","Public Rack - Kedzie Ave & Pershing Rd",3
+"1091","Public Rack - Kedzie Ave & Walnut St",46
+"1092","Public Rack - Keef Ave & South Chicago Ave",34
+"1093","Public Rack - Keeler Ave & 26th St",2
+"1094","Public Rack - Keeler Ave & 55th St",13
+"1095","Public Rack - Kenneth Ave & 63rd St E",23
+"1096","Public Rack - Kenneth Ave & 63rd St W",5
+"1097","Public Rack - Kenton Ave & Palmer St",254
+"1098","Public Rack - Keystone Ave & Irving Park Rd",592
+"1099","Public Rack - Keystone Ave & North Ave",505
+"1100","Public Rack - Kilbourn Ave & Fullerton Ave",135
+"1101","Public Rack - Kildare Ave & 63rd St",2
+"1102","Public Rack - Kildare Ave & Division Ave",7
+"1103","Public Rack - Kildare Ave & Division St",309
+"1104","Public Rack - Kildare Ave & North Ave",25
+"1105","Public Rack - Kildare Ave & Washignton Blvd",2
+"1106","Public Rack - Kimball Ave & Carmen Ave",78
+"1107","Public Rack - Kimbark Ave & 63rd St",224
+"1108","Public Rack - Kimbark Ave & 67th St",141
+"1109","Public Rack - King Dr & 115th St",142
+"1110","Public Rack - King Dr & 71st St",84
+"1111","Public Rack - King Dr & 83rd St",8
+"1112","Public Rack - King Dr & Oakwood Blvd",548
+"1113","Public Rack - Kingston Ave & 75th St",41
+"1114","Public Rack - Kolin Ave & Archer Ave",15
+"1115","Public Rack - Komensky Ave & 26th St",19
+"1116","Public Rack - Komensky Ave & 59th St",1
+"1117","Public Rack - Komensky Ave & 63rd St",7
+"1118","Public Rack - Kostner Ave & 16th St",31
+"1119","Public Rack - Kostner Ave & Armitage Ave",415
+"1120","Public Rack - Kostner Ave & Diversey Ave",150
+"1121","Public Rack - Kostner Ave & Lake St",8
+"1122","Public Rack - Kostner Ave & North Ave",83
+"1123","Public Rack - Kostner Ave & Wrightwood Ave",25
+"1124","Public Rack - La Moyne Ave and Leamington Ave",30
+"1125","Public Rack - Lafayette Ave & 87th St SW",12
+"1126","Public Rack - Lafayette Ave & 95th St",99
+"1127","Public Rack - Laflin St & 51st St",6
+"1128","Public Rack - Laflin St &51st ST",4
+"1129","Public Rack - Lake Park Ave & 47th St",155
+"1130","Public Rack - Lake Shore Dr & Hayes Dr",387
+"1131","Public Rack - Lamon Ave & Erie St",25
+"1132","Public Rack - Langley Ave & 49th St",605
+"1133","Public Rack - Langley Ave & 79th St",49
+"1134","Public Rack - Langley Ave & 87th St",3
+"1135","Public Rack - Langley Ave & Oakwood Blvd",7
+"1136","Public Rack - Laporte Ave & Armitage Ave",27
+"1137","Public Rack - Laramie Ave & Belmont Ave",207
+"1138","Public Rack - Laramie Ave & Fullerton Ave",191
+"1139","Public Rack - Laramie Ave & Grand Ave",92
+"1140","Public Rack - Laramie Ave & Warwick Ave",56
+"1141","Public Rack - Latrobe Ave & Lake St",43
+"1142","Public Rack - Lawndale & 63rd St",4
+"1143","Public Rack - Lawndale Ave & 23rd St",29
+"1144","Public Rack - Lawndale Ave & 63rd St",63
+"1145","Public Rack - Lawndale Ave & Diversey Ave",2803
+"1146","Public Rack - Lawndale Ave & Polk St",32
+"1147","Public Rack - Leclaire Ave & Division St",87
+"1148","Public Rack - Legler Regional Library",72
+"1149","Public Rack - Linder Ave & Belmont Ave",64
+"1150","Public Rack - Lockwood Ave & Diversey Ave",407
+"1151","Public Rack - Longwood Dr & 111th St",6
+"1152","Public Rack - Longwood Dr & 95th St",17
+"1153","Public Rack - Loomis Blvd & 47th St",4
+"1154","Public Rack - Loomis Blvd & 83rd St",1
+"1155","Public Rack - Loomis St & 87th St",62
+"1156","Public Rack - Lorel Ave & Chicago Ave",28
+"1157","Public Rack - Lorel Ave & Grand Ave",223
+"1158","Public Rack - Lowell Ave & Elston Ave",435
+"1159","Public Rack - Mackinaw Ave & 106th St",2
+"1160","Public Rack - Maplewood Ave & 47th St",11
+"1161","Public Rack - Maplewood Ave & 63rd St",10
+"1162","Public Rack - Marquette Rd & 67th St",76
+"1163","Public Rack - Marshfield Ave & 45th St",32
+"1164","Public Rack - Marshfield Ave & 87th St",4
+"1165","Public Rack - Martin Luther King Dr & 44th St",31
+"1166","Public Rack - Martin Luther King Dr & 69th St",14
+"1167","Public Rack - May St & 78th St",11
+"1168","Public Rack - McCormick Blvd & Devon Ave",434
+"1169","Public Rack - McVicker Ave & Grand Ave",43
+"1170","Public Rack - Melvina Ave & Belmont Ave",92
+"1171","Public Rack - Menard Ave & Adams Blvd",30
+"1172","Public Rack - Menard Ave & Agusta Blvd",4
+"1173","Public Rack - Menard Ave & Belmont Ave",35
+"1174","Public Rack - Menard Ave & Dakin St - midblock",331
+"1175","Public Rack - Menard Ave & Grand Ave",126
+"1176","Public Rack - Menard Ave & Madison St",27
+"1177","Public Rack - Michele Clark Magnet High School",177
+"1178","Public Rack - Michigan Ave & 107th St",146
+"1179","Public Rack - Michigan Ave & 113th St",21
+"1180","Public Rack - Michigan Ave & 119th St",2
+"1181","Public Rack - Michigan Ave & 96th St",13
+"1182","Public Rack - Midway Orange Line",157
+"1183","Public Rack - Milwaukee Ave & Addison St",436
+"1184","Public Rack - Milwaukee Ave & Diversey Ave",2217
+"1185","Public Rack - Milwaukee Ave & Haussen Ct",709
+"1186","Public Rack - Milwaukee Ave & School St",836
+"1187","Public Rack - Milwaukee Ave & Waveland Ave",23
+"1188","Public Rack - Monticello Ave & Belmont Ave",719
+"1189","Public Rack - Morgan St & 87th St",4
+"1190","Public Rack - Morgan St & 95th St",7
+"1191","Public Rack - Mozart Elementary School",822
+"1192","Public Rack - Mt Greenwood Library N",8
+"1193","Public Rack - N Narragansett Ave & Grand Ave",126
+"1194","Public Rack - N Sayre Ave & W Belden Ave",10
+"1195","Public Rack - Nagle Ave & Belmont Ave",105
+"1196","Public Rack - Narragansett Ave & Fullerton Ave",190
+"1197","Public Rack - Neva Ave & Grand Ave",23
+"1198","Public Rack - Newcastle Ave & Belmont Ave",20
+"1199","Public Rack - Newcastle Ave & Wellington Ave",1
+"1200","Public Rack - Nordica Ave & Addison St",31
+"1201","Public Rack - Normal Ave & 111th St",25
+"1202","Public Rack - Normal Ave & 72nd St",8
+"1203","Public Rack - Oakley Ave & 50th Pl",1
+"1204","Public Rack - Oketo Ave & Belmont Ave",17
+"1205","Public Rack - Oleander Ave & Addison St",1
+"1206","Public Rack - Ozark Ave & Addison St",10
+"1207","Public Rack - Parnell Ave & 103rd St",19
+"1208","Public Rack - Paxton Ave & 79th St",167
+"1209","Public Rack - Penn Elementary School / KIPP Ascend Middle School",54
+"1210","Public Rack - Percy Julian HS",8
+"1211","Public Rack - Perry Ave & 108th Pl",6
+"1212","Public Rack - Perry Ave & 111th St",3
+"1213","Public Rack - Peterson Ave & Bernard Ave",10
+"1214","Public Rack - Peterson Ave & Drake Ave",3
+"1215","Public Rack - Piotrowski Park",2
+"1216","Public Rack - Prairie Ave & 47th St",145
+"1217","Public Rack - Prairie Ave & Garfield Blvd",92
+"1218","Public Rack - Prairie Ave & Garfield Blvd N",41
+"1219","Public Rack - Pulaski & 52nd",19
+"1220","Public Rack - Pulaski Rd & 15th St",35
+"1221","Public Rack - Pulaski Rd & 40th St",3
+"1222","Public Rack - Pulaski Rd & 44th St",126
+"1223","Public Rack - Pulaski Rd & 51st Rd",10
+"1224","Public Rack - Pulaski Rd & 5th Ave",25
+"1225","Public Rack - Pulaski Rd & 65th St",273
+"1226","Public Rack - Pulaski Rd & Armitage Ave",1090
+"1227","Public Rack - Pulaski Rd & Flournoy St",5
+"1228","Public Rack - Pulaski Rd & Fullerton Ave",315
+"1229","Public Rack - Pulaski Rd & Grenshaw St",9
+"1230","Public Rack - Pulaski Rd & Lake St",219
+"1231","Public Rack - Pulaski Rd & Polk St",2
+"1232","Public Rack - Pulaski Rd & Roosevelt Rd",46
+"1233","Public Rack - Pullman - Planet Fitness",21
+"1234","Public Rack - Pullman - Walmart",49
+"1235","Public Rack - Pullman Community Center",8
+"1236","Public Rack - Racine Ave & 109th Pl",111
+"1237","Public Rack - Racine Ave & 74th St",18
+"1238","Public Rack - Racine Ave & 76th",19
+"1239","Public Rack - Richmond St & Thorndale Ave",13
+"1240","Public Rack - Robert Fulton Elementary School",52
+"1241","Public Rack - Rockwell & 111th St",49
+"1242","Public Rack - Rockwell & Division",2393
+"1243","Public Rack - Rockwell Ave & Touhy Ave",249
+"1244","Public Rack - Roscoe St & Osceola Ave",4
+"1245","Public Rack - Roswell B. Mason Elementary School",39
+"1246","Public Rack - Rutherford Ave & Belmont Ave",4
+"1247","Public Rack - S Kostner Ave & W 18th Pl",7
+"1248","Public Rack - Sacramento Ave & Devon Ave",241
+"1249","Public Rack - Sacramento Ave & Greenleaf Ave",90
+"1250","Public Rack - Sacramento Blvd & Division St",30
+"1251","Public Rack - Saginaw Ave & 93rd St",56
+"1252","Public Rack - Sawyer Ave & Bryn Mawr Ave - SE",15
+"1253","Public Rack - Sawyer Ave & Bryn Mawr Ave - SW",34
+"1254","Public Rack - Sawyer Ave & Chicago Ave",197
+"1255","Public Rack - Sawyer Ave & Lawrence Ave",203
+"1256","Public Rack - Senka ""Edward Duke"" Park",2
+"1257","Public Rack - South Shore Dr & 71st St",127
+"1258","Public Rack - Spaulding Ave & Bryn Mawr Ave",145
+"1259","Public Rack - Spaulding Ave & Evergreen Ave",1994
+"1260","Public Rack - Spaulding Ave & Foster Ave",146
+"1261","Public Rack - Spaulding Ave & North Ave",1408
+"1262","Public Rack - Spencer Elementary Technology Academy",68
+"1263","Public Rack - Springfield Ave & 63rd St",6
+"1264","Public Rack - St Louis Ave & Berteau Ave",114
+"1265","Public Rack - St Louis Ave & Flournoy St",19
+"1266","Public Rack - State ST & 42nd St",158
+"1267","Public Rack - Stewart Ave & 123rd St",33
+"1268","Public Rack - Stony Island & 87th St",71
+"1269","Public Rack - Talman Ave & 51st St",11
+"1270","Public Rack - Talman Ave & Pershing Rd",13
+"1271","Public Rack - Throop St & 109th Pl",16
+"1272","Public Rack - Tripp Ave & North Ave",166
+"1273","Public Rack - Troy & 111th St",1
+"1274","Public Rack - Union Ave & 111th St",14
+"1275","Public Rack - Vincennes Ave & 77th St",84
+"1276","Public Rack - Vincennes Ave & 95th St",42
+"1277","Public Rack - Wabash Ave & 87th St",12
+"1278","Public Rack - Walden Pkwy & 103rd St",138
+"1279","Public Rack - Walden Pkwy & 99th St",13
+"1280","Public Rack - Wallace St & 119th St",44
+"1281","Public Rack - Waller Ave & Chicago Ave",15
+"1282","Public Rack - Washington Park Ct & 51st St",10
+"1283","Public Rack - Washtenaw Ave & Devon Ave",566
+"1284","Public Rack - Washtenaw Ave & Superior St",516
+"1285","Public Rack - Wentworth Ave & 103rd St",6
+"1286","Public Rack - Wentworth Ave & 79th St",14
+"1287","Public Rack - West Chatham Park",4
+"1288","Public Rack - Western Ave & 100th St",50
+"1289","Public Rack - Western Ave & 104th St - East",38
+"1290","Public Rack - Western Ave & 104th St - West",6
+"1291","Public Rack - Western Ave & 105th St",17
+"1292","Public Rack - Western Ave & 106th St - East",13
+"1293","Public Rack - Western Ave & 107th Pl",6
+"1294","Public Rack - Western Ave & 107th St",3
+"1295","Public Rack - Western Ave & 110th St",64
+"1296","Public Rack - Western Ave & 111th St - NW",22
+"1297","Public Rack - Western Ave & 111th St - SW",18
+"1298","Public Rack - Western Ave & 116th St",4
+"1299","Public Rack - Western Ave & 118th St",10
+"1300","Public Rack - Western Ave & 47th Pl",80
+"1301","Public Rack - Western Ave & 79th St",42
+"1302","Public Rack - Western Ave & 92nd Pl",27
+"1303","Public Rack - Western Ave & 96th St",108
+"1304","Public Rack - Western Ave & 98th St",23
+"1305","Public Rack - Western Ave & Devon Ave",901
+"1306","Public Rack - Western Ave & Jarvis Ave",353
+"1307","Public Rack - Western Blvd & 49th St",191
+"1308","Public Rack - Whipple St & 26th St",26
+"1309","Public Rack - Whipple St & 63rd St",25
+"1310","Public Rack - Wood St & 103rd St",28
+"1311","Public Rack - Wood St & 47th St",58
+"1312","Public Rack - Woodlawn Ave & 63rd St - NE",4488
+"1313","Public Rack - Woodlawn Ave & 63rd St - SE",181
+"1314","Public Rack - Woodlawn Ave & 63rd St N",893
+"1315","Public Rack - Woodlawn Ave & 63rd St S",136
+"1316","Public Rack - Yates Ave & 100th St",2
+"1317","Public Rack - Zapata Academy",8
+"1318","Pulaski & 52nd",47
+"1319","Pulaski & Ann Lurie Pl",238
+"1320","Pulaski Rd & 21st St",766
+"1321","Pulaski Rd & 40th St",61
+"1322","Pulaski Rd & 41st",24
+"1323","Pulaski Rd & 44th St",185
+"1324","Pulaski Rd & 51st Rd",71
+"1325","Pulaski Rd & 51st St",1428
+"1326","Pulaski Rd & 60th St",350
+"1327","Pulaski Rd & Armitage Ave",775
+"1328","Pulaski Rd & Congress Pkwy",207
+"1329","Pulaski Rd & Eddy St",770
+"1330","Pulaski Rd & Fullerton Ave",216
+"1331","Pulaski Rd & Lake St",195
+"1332","Pullman - Planet Fitness",9
+"1333","Pullman - Ross Dress for Less",20
+"1334","Pullman - Walmart",113
+"1335","Pullman Community Center",10
+"1336","Racine Ave & 109th Pl",170
+"1337","Racine Ave & 13th St",992
+"1338","Racine Ave & 15th St",3315
+"1339","Racine Ave & 18th St",7300
+"1340","Racine Ave & 35th St",1245
+"1341","Racine Ave & 61st St",67
+"1342","Racine Ave & 65th St",72
+"1343","Racine Ave & 74th St",29
+"1344","Racine Ave & 76th",108
+"1345","Racine Ave & 83rd St",2
+"1346","Racine Ave & Belmont Ave",14462
+"1347","Racine Ave & Congress Pkwy",7753
+"1348","Racine Ave & Fullerton Ave",16904
+"1349","Racine Ave & Garfield Blvd",242
+"1350","Racine Ave & Randolph St",5791
+"1351","Racine Ave & Washington Blvd",5816
+"1352","Racine Ave & Wrightwood Ave",8143
+"1353","Rainbow Beach",251
+"1354","Ravenswood Ave & Berteau Ave",4255
+"1355","Ravenswood Ave & Irving Park Rd",5717
+"1356","Ravenswood Ave & Lawrence Ave",15892
+"1357","Rhodes Ave & 32nd St",5040
+"1358","Rhodes Ave & 71st St",78
+"1359","Rhodes Ave & 79th St",20
+"1360","Richmond St & 59th St",240
+"1361","Richmond St & Diversey Ave",3232
+"1362","Richmond St & Lincoln Ave",543
+"1363","Ridge Blvd & Howard St",915
+"1364","Ridge Blvd & Touhy Ave",819
+"1365","Ritchie Ct & Banks St",12650
+"1366","Robert Fulton Elementary School",174
+"1367","Rockwell & 111th St",55
+"1368","Rockwell Ave & Touhy Ave",49
+"1369","Rockwell St & 57th St",320
+"1370","Rockwell St & 63rd St",180
+"1371","Rockwell St & Archer Ave",1324
+"1372","Rockwell St & Cermak Rd",1850
+"1373","Rockwell St & Eastwood Ave",3597
+"1374","Rockwell St & Fletcher St",4718
+"1375","Roscoe & Harlem",143
+"1376","Rush St & Cedar St",17175
+"1377","Rush St & Hubbard St",10215
+"1378","Rush St & Superior St",15845
+"1379","Rutherford Ave & Belmont Ave",31
+"1380","S Aberdeen St & W 106th St",410
+"1381","S Michigan Ave & E 118th St",62
+"1382","S Wentworth Ave & W 111th St",80
+"1383","Sacramento Ave & 25th St",1037
+"1384","Sacramento Ave & Devon Ave",268
+"1385","Sacramento Ave & Greenleaf Ave",21
+"1386","Sacramento Ave & Pershing Rd",616
+"1387","Sacramento Blvd & Addison St",1822
+"1388","Sacramento Blvd & Division St",20
+"1389","Sacramento Blvd & Franklin Blvd",386
+"1390","Sacramento Blvd & Fulton Ave",386
+"1391","Sacramento Blvd & Polk St",217
+"1392","Sacramento Blvd & Washington Blvd",18
+"1393","Sangamon St & 79th St",48
+"1394","Sangamon St & Lake St",8273
+"1395","Sangamon St & Washington Blvd",9251
+"1396","Sawyer Ave & 111th St",20
+"1397","Sawyer Ave & Bryn Mawr Ave - SE",18
+"1398","Sawyer Ave & Irving Park Rd",1148
+"1399","Sawyer Ave & Lawrence Ave",46
+"1400","Sayre & Diversey",702
+"1401","Sedgwick St & Huron St",13038
+"1402","Sedgwick St & North Ave",15881
+"1403","Sedgwick St & Schiller St",4626
+"1404","Sedgwick St & Webster Ave",14418
+"1405","Seeley Ave & Garfield Blvd",146
+"1406","Seeley Ave & Roscoe St",6499
+"1407","Senka ""Edward Duke"" Park",4
+"1408","Shabbona Park",349
+"1409","Shedd Aquarium",25133
+"1410","Sheffield Ave & Fullerton Ave",24181
+"1411","Sheffield Ave & Kingsbury St",13717
+"1412","Sheffield Ave & Waveland Ave",21189
+"1413","Sheffield Ave & Webster Ave",17796
+"1414","Sheffield Ave & Wellington Ave",18130
+"1415","Sheffield Ave & Willow St",11396
+"1416","Sheffield Ave & Wrightwood Ave",17646
+"1417","Sheridan Rd & Argyle St",3556
+"1418","Sheridan Rd & Buena Ave",9711
+"1419","Sheridan Rd & Columbia Ave",3716
+"1420","Sheridan Rd & Greenleaf Ave",2221
+"1421","Sheridan Rd & Irving Park Rd",18578
+"1422","Sheridan Rd & Lawrence Ave",7092
+"1423","Sheridan Rd & Loyola Ave",4836
+"1424","Sheridan Rd & Montrose Ave",14939
+"1425","Sheridan Rd & Noyes St (NU)",5856
+"1426","Shields Ave & 28th Pl",2876
+"1427","Shields Ave & 31st St",4212
+"1428","Shields Ave & 43rd St",214
+"1429","Shore Dr & 55th St",12066
+"1430","Smith Park",2164
+"1431","South Chicago Ave & 83rd St",88
+"1432","South Chicago Ave & Elliot Ave",35
+"1433","South Shore Dr & 67th St",1180
+"1434","South Shore Dr & 71st St",1565
+"1435","South Shore Dr & 74th St",515
+"1436","South Shore High School",138
+"1437","Southport Ave & Belmont Ave",12492
+"1438","Southport Ave & Clark St",3392
+"1439","Southport Ave & Clybourn Ave",10509
+"1440","Southport Ave & Irving Park Rd",8346
+"1441","Southport Ave & Roscoe St",20544
+"1442","Southport Ave & Waveland Ave",19227
+"1443","Southport Ave & Wellington Ave",13062
+"1444","Southport Ave & Wrightwood Ave",12112
+"1445","Spaulding Ave & 16th St",436
+"1446","Spaulding Ave & 63rd St",433
+"1447","Spaulding Ave & Armitage Ave",5428
+"1448","Spaulding Ave & Bryn Mawr Ave",30
+"1449","Spaulding Ave & Division St",2865
+"1450","Spaulding Ave & Evergreen Ave",1522
+"1451","Spaulding Ave & Foster Ave",11
+"1452","Spaulding Ave & North Ave",2019
+"1453","Springfield Ave & 47th St",273
+"1454","Springfield Ave & 63rd St",59
+"1455","St Louis Ave & 59th St",460
+"1456","St Louis Ave & Berteau Ave",43
+"1457","St Louis Ave & Norman Bobbins Ave",318
+"1458","St. Clair St & Erie St",24889
+"1459","St. Louis Ave & Balmoral Ave",976
+"1460","St. Louis Ave & Fullerton Ave",3617
+"1461","State St & 123rd St",91
+"1462","State St & 19th St",2811
+"1463","State St & 29th St",1207
+"1464","State St & 33rd St",13908
+"1465","State St & 35th St",4929
+"1466","State St & 47th st",171
+"1467","State St & 54th St",237
+"1468","State St & 76th St",92
+"1469","State St & 79th St",608
+"1470","State St & 95th St",757
+"1471","State St & Chicago Ave",20162
+"1472","State St & Harrison St",7688
+"1473","State St & Kinzie St",15698
+"1474","State St & Pearson St",8146
+"1475","State St & Pershing Rd",250
+"1476","State St & Randolph St",18742
+"1477","State St & Van Buren St",9362
+"1478","Stave St & Armitage Ave",4772
+"1479","Steelworkers Park",79
+"1480","Stetson Ave & South Water St",12394
+"1481","Stewart Ave & 123rd St",36
+"1482","Stewart Ave & 63rd St",180
+"1483","Stewart Ave & 83rd St",181
+"1484","Stockton Dr & Wrightwood Ave",16212
+"1485","Stony Is Ave & 73rd St",157
+"1486","Stony Island & 95th St",22
+"1487","Stony Island Ave & 64th St",523
+"1488","Stony Island Ave & 67th St",488
+"1489","Stony Island Ave & 71st St",424
+"1490","Stony Island Ave & 75th St",392
+"1491","Stony Island Ave & 82nd St",212
+"1492","Stony Island Ave & 86th St",88
+"1493","Stony Island Ave & 90th St",168
+"1494","Stony Island Ave & South Chicago Ave",127
+"1495","Streeter Dr & Grand Ave",75237
+"1496","Strohacker Park",25
+"1497","Summit Ave & 86th St",168
+"1498","Talman Ave & 51st St - midblock",147
+"1499","Talman Ave & Addison St",3586
+"1500","Theater on the Lake",32976
+"1501","Throop St & 52nd St",124
+"1502","Throop St & 58th St",90
+"1503","Throop St & Taylor St",7843
+"1504","Torrence Ave  & 106th St",11
+"1505","Torrence Ave & 103rd St",7
+"1506","Torrence Ave & 106th St",132
+"1507","Torrence Ave & 126th Pl",87
+"1508","Tripp Ave & 15th St",154
+"1509","Tripp Ave & 31st St",144
+"1510","Tripp Ave & 65th St",299
+"1511","Troy & 111th St",1
+"1512","Troy Ave & 27th St",140
+"1513","Troy St & Elston Ave",2322
+"1514","Troy St & Grace St",4748
+"1515","Troy St & Jackson Blvd",719
+"1516","Troy St & North Ave",3517
+"1517","Trumbull Ave & 111th St",15
+"1518","Tuley (Murray) Park",70
+"1519","Union Ave & Root St",413
+"1520","University Ave & 57th St",25488
+"1521","University Library (NU)",3200
+"1522","Valli Produce - Evanston Plaza",876
+"1523","Vernon Ave & 107th St",129
+"1524","Vernon Ave & 75th St",195
+"1525","Vernon Ave & 79th St",222
+"1526","Vincennes Ave & 104th St",151
+"1527","Vincennes Ave & 75th St",97
+"1528","Vincennes Ave & 87th St",4
+"1529","Vincennes Ave & 95th Pl",2
+"1530","Vincennes Ave & 99th St",43
+"1531","Virginia Ave & Catalpa Ave",1147
+"1532","W 103rd St & S Avers Ave",252
+"1533","W Armitage Ave & N Sheffield Ave",12389
+"1534","W Oakdale Ave & N Broadway",14987
+"1535","W Washington Blvd & N Peoria St",12991
+"1536","Wabash Ave & 16th St",8431
+"1537","Wabash Ave & 83rd St",76
+"1538","Wabash Ave & 87th St",560
+"1539","Wabash Ave & 9th St",15003
+"1540","Wabash Ave & Adams St",9936
+"1541","Wabash Ave & Cermak Rd",3702
+"1542","Wabash Ave & Grand Ave",27790
+"1543","Wabash Ave & Roosevelt Rd",21553
+"1544","Wabash Ave & Wacker Pl",12807
+"1545","Wacker Dr & Washington St",9356
+"1546","Walden Pkwy & 100th St",347
+"1547","Walden Pkwy & 103rd St",234
+"1548","Walden Pkwy & 99th St",40
+"1549","Wallace St & 112 St",25
+"1550","Wallace St & 35th St",1913
+"1551","Waller Ave & Chicago Ave",37
+"1552","Walsh Park",8339
+"1553","Warren Park East",1178
+"1554","Warren Park West",1208
+"1555","Washtenaw Ave & 63rd St",20
+"1556","Washtenaw Ave & Lawrence Ave",3168
+"1557","Washtenaw Ave & Madison St",685
+"1558","Washtenaw Ave & Ogden Ave",1013
+"1559","Washtenaw Ave & Peterson Ave",719
+"1560","Washtenaw Ave & Polk St",2337
+"1561","Washtenaw Ave & Superior St",7540
+"1562","Wells St & 19th St",2302
+"1563","Wells St & Concord Ln",37515
+"1564","Wells St & Elm St",31475
+"1565","Wells St & Evergreen Ave",20930
+"1566","Wells St & Hubbard St",24694
+"1567","Wells St & Huron St",25911
+"1568","Wells St & Institute Pl",363
+"1569","Wells St & Polk St",10797
+"1570","Wells St & Walton St",10560
+"1571","Wentworth Ave & 103rd St",18
+"1572","Wentworth Ave & 104th St",49
+"1573","Wentworth Ave & 24th St",2119
+"1574","Wentworth Ave & 33rd St",3143
+"1575","Wentworth Ave & 35th St",2116
+"1576","Wentworth Ave & 63rd St",571
+"1577","Wentworth Ave & 79th St",26
+"1578","Wentworth Ave & Cermak Rd",10077
+"1579","West Chatham Park",52
+"1580","West Lawn Park",6
+"1581","Western & 28th - Velasquez Institute Vaccination Site",238
+"1582","Western Ave & 100th St",144
+"1583","Western Ave & 104th St",292
+"1584","Western Ave & 104th St - East",23
+"1585","Western Ave & 105th St",28
+"1586","Western Ave & 106th St - East",72
+"1587","Western Ave & 106th St - West",10
+"1588","Western Ave & 111th St",354
+"1589","Western Ave & 111th St - NW",77
+"1590","Western Ave & 111th St - SE",19
+"1591","Western Ave & 111th St - SW",15
+"1592","Western Ave & 116th St",8
+"1593","Western Ave & 118th St",49
+"1594","Western Ave & 21st St",1532
+"1595","Western Ave & 24th St",1022
+"1596","Western Ave & 28th St",29
+"1597","Western Ave & 62nd St",106
+"1598","Western Ave & 79th St",330
+"1599","Western Ave & 92nd Pl",92
+"1600","Western Ave & Ardmore Ave",817
+"1601","Western Ave & Berteau Ave",2771
+"1602","Western Ave & Congress Pkwy",4028
+"1603","Western Ave & Division St",5694
+"1604","Western Ave & Fillmore St",5856
+"1605","Western Ave & Grace St",3512
+"1606","Western Ave & Granville Ave",1424
+"1607","Western Ave & Gunnison St",4384
+"1608","Western Ave & Howard St",1254
+"1609","Western Ave & Jarvis Ave",175
+"1610","Western Ave & Lake St",486
+"1611","Western Ave & Leland Ave",8126
+"1612","Western Ave & Lunt Ave",1533
+"1613","Western Ave & Monroe St",2364
+"1614","Western Ave & Roscoe St",3818
+"1615","Western Ave & Walton St",7772
+"1616","Western Ave & Winnebago Ave",10705
+"1617","Western Blvd & 48th Pl",446
+"1618","Western Blvd & 49th St",431
+"1619","Western Blvd & 53rd St",2
+"1620","Whippie St & 26th St",1
+"1621","Whipple St & Roosevelt Rd",201
+"1622","Whipple/Irving Park",1129
+"1623","William Rainey Harper High School",30
+"1624","Wilton Ave & Belmont Ave",27421
+"1625","Wilton Ave & Diversey Pkwy",20637
+"1626","Winchester (Ravenswood) Ave & Balmoral Ave",2383
+"1627","Winchester Ave & 87th St",20
+"1628","Winchester Ave & Elston Ave",3943
+"1629","Winthrop Ave & Lawrence Ave",6672
+"1630","Wolcott (Ravenswood) Ave & Montrose Ave",5735
+"1631","Wolcott Ave & 61st St",197
+"1632","Wolcott Ave & Fargo Ave",625
+"1633","Wolcott Ave & Polk St",10885
+"1634","Wood St & 103rd St",43
+"1635","Wood St & 35th St",1006
+"1636","Wood St & 47th St",185
+"1637","Wood St & Augusta Blvd",5963
+"1638","Wood St & Chicago Ave",7462
+"1639","Wood St & Hubbard St",4639
+"1640","Wood St & Milwaukee Ave",14779
+"1641","Wood St & Taylor St",6269
+"1642","Wood St & Webster Ave",1146
+"1643","Woodlawn & 103rd - Olive Harvey Vaccination Site",117
+"1644","Woodlawn Ave & 55th St",9451
+"1645","Woodlawn Ave & 75th St",85
+"1646","Woodlawn Ave & Lake Park Ave",1507
+"1647","Yale Ave & 119th St",4
+"1648","Yates Blvd & 75th St",301
+"1649","Yates Blvd & 93rd St",89
+"1650","Yates Blvd & Exchange Ave",1219
+"1651","Zapata Academy",25
+"1652",NA,476854

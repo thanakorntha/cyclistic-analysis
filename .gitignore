@@ -12,7 +12,3 @@ cyclistic-analysis.Rproj
 
 # Folders
 docs/
-
-# Files
-data/raw-data/*.csv
-trip-data.csv

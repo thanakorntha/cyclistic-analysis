@@ -185,4 +185,10 @@ trip_data_v2 %>%
 # -------------------------------------------- #
 
 # Export full ride trip data for data visualization
-write.csv(trip_data_v2,     file = "./data/processed-data/trip-data.csv")
+write.csv(trip_data_v2, file = "./data/processed-data/trip-data.csv")
+
+# Export station data
+# write.csv(start_station, file = "./data/processed-data/start-station-pre.csv")
+# write.csv(start_station_v2, file = "./data/processed-data/start-station-post.csv")
+# write.csv(end_station, file = "./data/processed-data/end-station-pre.csv")
+# write.csv(end_station_v2, file = "./data/processed-data/end-station-post.csv")

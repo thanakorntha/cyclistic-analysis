@@ -1,22 +1,21 @@
 # For palette choices: RColorBrewer::display.brewer.all() 
 
 
-# ---------------------- #
-#   VISUALIZE THE DATA   #
-# ---------------------- #
+# ----------------------- #
+#   THE NUMBER OF RIDES   #
+# ----------------------- #
 
+# TOTAL RIDES TAKEN BY MEMBERS AND CASUAL RIDERS
 trip_data_v2 %>% 
-    group_by(user_type) %>% 
-    summarise(number_of_rides = n()) %>% 
-    ggplot(aes(x = user_type, y = number_of_rides, fill = user_type)) + 
-    geom_col(position = "dodge") + 
-    guides(fill = "none") + 
-    labs(x = "User Type", y = "Number of Rides", title = "Total Number of Rides by User Type")
+    ggplot(aes(x = user_type, fill = bike_type)) + 
+    geom_bar() + 
+    scale_y_continuous(limits = c(0, 3000000)) + 
+    theme(legend.position = "bottom")
 
 
-# ---------------------- #
-#   VISUALIZE THE DATA   #
-# ---------------------- #
+# ------------------------- #
+#   THE DURATION OF RIDES   #
+# ------------------------- #
 
 # Let's visualize the number of rides by rider type
 trip_data_v2 %>% 
@@ -36,22 +35,73 @@ trip_data_v2 %>%
     geom_col(position = "dodge")
 
 
-# -------------------------- #
-#   VISUALIZE THE MAP DATA   #
-# -------------------------- #
+# ------------------------- #
+#   THE LOCATION OF RIDES   #
+# ------------------------- #
 
-# Let's create Chicago map first
-chicago <- get_stamenmap(
+# 
+member <- trip_data_v2[which(trip_data_v2$user_type == "member"), ]
+casual <- trip_data_v2[which(trip_data_v2$user_type == "casual"), ]
+
+# Get map and plot station locations 
+chicago_map <- ggmap(get_stamenmap(
     bbox = c(left = -87.920354, bottom = 41.642283, right = -87.372821, top = 42.110931), 
-    zoom = 12, 
-    maptype = "terrain"
-    )
+    zoom = 12, maptype = "terrain"), extent = "device", legend = "bottom")
 
-chicago_map <- ggmap(chicago)
+print(chicago_map)
 
-chicago_map + trip_data_v2 %>% 
-    filter(user_type == 'casual') %>% geom_point(data = trip_data_v2, aes(x = start_lng, y = start_lat), color = "red", size = 2, alpha = 0.5) + theme(legend.position="none")
+# START STATION ----
 
-chicago_map + trip_data_v2 %>% 
-    filter(user_type == 'casual') %>% 
-    stat_density2d(aes(x = start_lng, y = start_lat, fil = user_type, alpha = 0.5), size = 2, bins = 4, geom = "polygon")
+start_casual <- chicago_map + 
+    stat_density2d(aes(x = start_lng, y = start_lat, fill = ..level.., alpha = ..level..), 
+                   bins = 500, geom = "polygon", 
+                   data = casual) + 
+    scale_fill_gradient(low = "black", high = "red") +
+    facet_wrap(~ day_of_week) + 
+    theme(axis.text.x = element_blank(), 
+          axis.text.y = element_blank(), 
+          axis.ticks = element_blank(), 
+          axis.title.x = element_blank(), 
+          axis.title.y = element_blank())
+
+print(start_casual)
+
+start_member <- ggmap(chicago_map) + 
+    stat_density2d(aes(x = start_lng, y = start_lat, fill = ..level.., alpha = ..level..), 
+                   bins = 5000, geom = "polygon", 
+                   data = member) + 
+    scale_fill_gradient(low = "black", high = "red") +
+    facet_wrap(~ day_of_week) + 
+    theme(axis.text.x = element_blank(), 
+          axis.text.y = element_blank(), 
+          axis.ticks = element_blank(), 
+          axis.title.x = element_blank(), 
+          axis.title.y = element_blank())
+
+print(start_member)
+
+# END STATION ----
+
+ggmap(chicago_map) + 
+    stat_density2d(aes(x = end_lng, y = end_lat, fill = ..level.., alpha = ..level..), 
+                   bins = 5000, geom = "polygon", 
+                   data = casual) + 
+    scale_fill_gradient(low = "black", high = "red") +
+    facet_wrap(~ day_of_week) + 
+    theme(axis.text.x = element_blank(), 
+          axis.text.y = element_blank(), 
+          axis.ticks = element_blank(), 
+          axis.title.x = element_blank(), 
+          axis.title.y = element_blank())
+
+ggmap(chicago_map) + 
+    stat_density2d(aes(x = x = end_lng, y = end_lat, fill = ..level.., alpha = ..level..), 
+                   bins = 5000, geom = "polygon", 
+                   data = member) + 
+    scale_fill_gradient(low = "black", high = "red") +
+    facet_wrap(~ day_of_week) + 
+    theme(axis.text.x = element_blank(), 
+          axis.text.y = element_blank(), 
+          axis.ticks = element_blank(), 
+          axis.title.x = element_blank(), 
+          axis.title.y = element_blank())

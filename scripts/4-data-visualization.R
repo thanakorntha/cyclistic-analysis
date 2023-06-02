@@ -1,16 +1,42 @@
-# For palette choices: RColorBrewer::display.brewer.all() 
-
-
 # ----------------------- #
 #   THE NUMBER OF RIDES   #
 # ----------------------- #
 
-# TOTAL RIDES TAKEN BY MEMBERS AND CASUAL RIDERS
 trip_data_v2 %>% 
-    ggplot(aes(x = user_type, fill = bike_type)) + 
-    geom_bar() + 
+    ggplot() + 
+    geom_bar(mapping = aes(x = member_casual, fill = member_casual)) + 
     scale_y_continuous(limits = c(0, 3000000)) + 
-    theme(legend.position = "bottom")
+    theme_bw() + 
+    scale_fill_brewer(palette="Reds") + 
+    theme(legend.position = "none")
+
+trip_data_v2 %>% 
+    ggplot() + 
+    geom_bar(mapping = aes(x = member_casual, fill = rideable_type), 
+             position = "fill")
+
+trip_data_v2 %>% 
+    ggplot() + 
+    geom_bar(mapping = aes(x = member_casual, fill = rideable_type), 
+             position = "dodge")
+
+
+# ------------------------- #
+#   THE DURATION OF RIDES   #
+# ------------------------- #
+# 
+trip_data_v2 %>% 
+    mutate(lower_limit = median(ride_length) - 1.5 * IQR(ride_length),
+           upper_limit = median(ride_length) + 1.5 * IQR(ride_length)) %>%
+    filter(!(ride_length < lower_limit | ride_length > upper_limit)) %>%
+    # filter(!ride_length > 60) %>% 
+    ggplot(aes(x = member_casual, y = ride_length, fill = member_casual)) + 
+    labs(title = "Total rides taken by members and casual riders", x = "User Type", y = "Ride Length") +
+    geom_violin(trim = FALSE) + 
+    geom_boxplot(width = 0.1, fill = "white") + 
+    # theme_classic() + 
+    scale_fill_brewer(palette="Reds") + 
+    theme(legend.position = "none")
 
 
 # ------------------------- #
@@ -19,18 +45,18 @@ trip_data_v2 %>%
 
 # Let's visualize the number of rides by rider type
 trip_data_v2 %>% 
-    group_by(user_type, day_of_week) %>% 
+    group_by(member_casual, day_of_week) %>% 
     summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>% 
-    arrange(user_type, day_of_week)  %>% 
-    ggplot(aes(x = day_of_week, y = number_of_rides, fill = user_type)) +
+    arrange(member_casual, day_of_week)  %>% 
+    ggplot(aes(x = day_of_week, y = number_of_rides, fill = member_casual)) +
     geom_col(position = "dodge")
 
 # Let's create a visualization for average duration
 trip_data_v2 %>% 
-    group_by(user_type, day_of_week) %>% 
+    group_by(member_casual, day_of_week) %>% 
     summarise(number_of_rides = n(), average_duration = mean(ride_length)) %>% 
-    arrange(user_type, day_of_week)  %>% 
-    ggplot(aes(x = day_of_week, y = average_duration, fill = user_type)) + 
+    arrange(member_casual, day_of_week)  %>% 
+    ggplot(aes(x = day_of_week, y = average_duration, fill = member_casual)) + 
     labs(x = "Day of Week", y = "Average Duration", title = "", subtitle = "", caption = "") +
     geom_col(position = "dodge")
 
@@ -39,20 +65,36 @@ trip_data_v2 %>%
 #   THE LOCATION OF RIDES   #
 # ------------------------- #
 
-# 
-member <- trip_data_v2[which(trip_data_v2$user_type == "member"), ]
-casual <- trip_data_v2[which(trip_data_v2$user_type == "casual"), ]
-
-# Get map and plot station locations 
-chicago_map <- ggmap(get_stamenmap(
-    bbox = c(left = -87.920354, bottom = 41.642283, right = -87.372821, top = 42.110931), 
-    zoom = 12, maptype = "terrain"), extent = "device", legend = "bottom")
-
+# Get map and plot station locations
+chicago <- c(left = -87.920354, bottom = 41.642283, right = -87.372821, top = 42.110931)
+chicago_map <- get_stamenmap(bbox = chicago, zoom = 13, maptype = "terrain") %>% 
+    ggmap(extent = "device", legend = "topleft")
 print(chicago_map)
 
-# START STATION ----
+# 
+member <- trip_data_v2[which(trip_data_v2$member_casual == "member"), ]
+casual <- trip_data_v2[which(trip_data_v2$member_casual == "casual"), ]
 
-start_casual <- chicago_map + 
+# 
+popular_station <- chicago_map + 
+    stat_density2d(data = trip_data_v2, 
+                   mapping = aes(x = start_lng, y = start_lat, fill = ..level.., alpha = ..level..), 
+                   size = 2, 
+                   bins = 100, 
+                   geom = "polygon") + 
+    scale_fill_gradient(low = "black", high = "red") +
+    facet_wrap(~ day_of_week) + 
+    theme(axis.text.x = element_blank(), 
+          axis.text.y = element_blank(), 
+          axis.ticks = element_blank(), 
+          axis.title.x = element_blank(), 
+          axis.title.y = element_blank())
+
+# print result
+print(popular_station)
+
+# 
+popular_casual_station <- chicago_map + 
     stat_density2d(aes(x = start_lng, y = start_lat, fill = ..level.., alpha = ..level..), 
                    bins = 500, geom = "polygon", 
                    data = casual) + 
@@ -64,9 +106,11 @@ start_casual <- chicago_map +
           axis.title.x = element_blank(), 
           axis.title.y = element_blank())
 
-print(start_casual)
+# print result
+print(popular_casual_station)
 
-start_member <- ggmap(chicago_map) + 
+# 
+popular_member_station <- ggmap(chicago_map) + 
     stat_density2d(aes(x = start_lng, y = start_lat, fill = ..level.., alpha = ..level..), 
                    bins = 5000, geom = "polygon", 
                    data = member) + 
@@ -78,30 +122,5 @@ start_member <- ggmap(chicago_map) +
           axis.title.x = element_blank(), 
           axis.title.y = element_blank())
 
-print(start_member)
-
-# END STATION ----
-
-ggmap(chicago_map) + 
-    stat_density2d(aes(x = end_lng, y = end_lat, fill = ..level.., alpha = ..level..), 
-                   bins = 5000, geom = "polygon", 
-                   data = casual) + 
-    scale_fill_gradient(low = "black", high = "red") +
-    facet_wrap(~ day_of_week) + 
-    theme(axis.text.x = element_blank(), 
-          axis.text.y = element_blank(), 
-          axis.ticks = element_blank(), 
-          axis.title.x = element_blank(), 
-          axis.title.y = element_blank())
-
-ggmap(chicago_map) + 
-    stat_density2d(aes(x = x = end_lng, y = end_lat, fill = ..level.., alpha = ..level..), 
-                   bins = 5000, geom = "polygon", 
-                   data = member) + 
-    scale_fill_gradient(low = "black", high = "red") +
-    facet_wrap(~ day_of_week) + 
-    theme(axis.text.x = element_blank(), 
-          axis.text.y = element_blank(), 
-          axis.ticks = element_blank(), 
-          axis.title.x = element_blank(), 
-          axis.title.y = element_blank())
+# print result
+print(popular_member_station)

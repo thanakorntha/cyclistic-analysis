@@ -51,10 +51,10 @@ compare_df_cols(trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, trip_07, t
 # Combine month's data frames into a single data frame
 trip_data <- bind_rows(trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
 
-# Rename two columns to make them more meaningful
-trip_data <- rename(trip_data, 
-                    bike_type = rideable_type,
-                    user_type = member_casual)
+# # Rename two columns to make them more meaningful
+# trip_data <- rename(trip_data, 
+#                     bike_type = rideable_type,
+#                     user_type = member_casual)
 
 
 # ---------------------- #

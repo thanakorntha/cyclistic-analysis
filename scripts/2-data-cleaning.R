@@ -45,10 +45,8 @@ trip_data_v2 <- trip_data[order(trip_data$started_at), ]
 trip_data_v2 <- trip_data_v2 %>% 
     select(-c(start_station_id, end_station_id))
 
-# Examine the starting station names
+# Examine the starting and ending station names
 start_station <- count(trip_data_v2, start_station_name)
-
-# Examine the ending station names
 end_station <- count(trip_data_v2, end_station_name)
 
 # Remove all rows that have eight test stations in both the starting and ending locations
@@ -87,7 +85,7 @@ trip_data_v2 <- trip_data_v2 %>%
 # Count the total missing number each column
 colSums(is.na(trip_data_v2))
 
-# Remove all rows with eight test stations in starting and ending stations
+# Remove all rows that have no latitude and longgitude of ending stations
 # trip_data_v2 <- trip_data_v2[!(is.na(trip_data_v2$end_lat) | is.na(trip_data_v2$end_lng)), ]
 
 # Fill in the missing values in starting station based on latitude and longitude
@@ -102,14 +100,12 @@ trip_data_v2 <- trip_data_v2 %>%
     fill(end_station_name, .direction = "downup") %>% 
     ungroup()
 
-# Let's check the starting station names again
-start_station_v2 <- count(trip_data_v2, start_station_name)
-
-# Let's check the ending station names again
-end_station_v2 <- count(trip_data_v2, end_station_name)
-
 # Remove all rows that have any missing values
 trip_data_v2 <- trip_data_v2[complete.cases(trip_data_v2), ]
+
+# Let's check the starting and ending station names again
+start_station_v2 <- count(trip_data_v2, start_station_name)
+end_station_v2 <- count(trip_data_v2, end_station_name)
 
 # Check to make sure there is no missing values each column
 colSums(is.na(trip_data_v2))
@@ -133,9 +129,7 @@ trip_data_v2$ride_length <- as.numeric(difftime(trip_data_v2$ended_at, trip_data
 #   REMOVE OUTLIER VALUES    #
 # -------------------------- #
 
-# Remove all rows that have ride lengths that are less than 1 minute or greater than 24 hours
-# Remove all ride trip data, where the 'ride_length' field is less than 60 seconds
-# Remove any ride trip data from the 'trip_data_v2' data frame that have ride lengths that are less than 1 minute or greater than 24 hours
+# Remove all rows that are less than 1 minute or greater than 24 hours
 trip_data_v2 <- trip_data_v2[!(trip_data_v2$ride_length < 60 | trip_data_v2$ride_length > 86400), ]
 
 # Remove outliers

@@ -5,6 +5,7 @@
 # Install and load required packages
 library(tidyverse) # Help importing data and wrangling data
 library(janitor) # Help cleaning data
+library(ggmap) # Help creating map
 
 
 # ---------------- #

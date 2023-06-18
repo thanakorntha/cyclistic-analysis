@@ -3,10 +3,10 @@
 # --------------------- #
 
 # Install and load required packages
-library(tidyverse) # Help importing data and wrangling data
-library(janitor) # Help cleaning data
-library(ggmap) # Help creating map
-
+library(tidyverse) # Help import data and wrangle data
+library(janitor) # Help clean data
+library(ggplot2); theme_set(theme_bw()) # Help visualize the data (set theme to theme_bw()) 
+library(ggmap) # Help visualize the map
 
 # ---------------- #
 #   COLLECT DATA   #
@@ -26,7 +26,8 @@ trip_10 <- read_csv("./data/raw-data/202210-divvy-tripdata.csv")
 trip_11 <- read_csv("./data/raw-data/202211-divvy-tripdata.csv")
 trip_12 <- read_csv("./data/raw-data/202212-divvy-tripdata.csv")
 
-# Print a summary of each file, showing the number of rows and columns in the data, as well as the data types of each column
+# Print a summary of each file, showing the number of rows and columns in the data, 
+# as well as the data types of each column
 str(trip_01)
 str(trip_02)
 str(trip_03)
@@ -46,15 +47,14 @@ str(trip_12)
 # ---------------------------------------- #
 
 # Compare column names each of the files to identify any differences in the data between the months
-compare_df_cols(trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
+compare_df_cols(
+  trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, 
+  trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
 
 # Combine month's data frames into a single data frame
-trip_data <- bind_rows(trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
-
-# Rename two columns to make them more meaningful
-trip_data <- rename(trip_data, 
-                    bike_type = rideable_type,
-                    user_type = member_casual)
+trip_data <- bind_rows(
+  trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, 
+  trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
 
 
 # ---------------------- #

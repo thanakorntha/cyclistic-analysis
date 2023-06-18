@@ -176,10 +176,10 @@ trip_data_v2 %>%
 # -------------------------------------------- #
 
 # Export full ride trip data for data visualization
-write.csv(trip_data_v2, file = "./data/processed-data/trip-data.csv")
+write.csv(trip_data_v2, file = "./data/processed-data/trip-data.csv", row.names = FALSE, na = '', quote = FALSE)
 
-# Export station data
-# write.csv(start_station, file = "./data/processed-data/start-station-pre.csv")
-# write.csv(start_station_v2, file = "./data/processed-data/start-station-post.csv")
-# write.csv(end_station, file = "./data/processed-data/end-station-pre.csv")
-# write.csv(end_station_v2, file = "./data/processed-data/end-station-post.csv")
+# Export station data (pre and post clean)
+write.csv(preclean_start_station, file = "./data/clean-data/preclean-start-station.csv", row.names = FALSE, na = '', quote = FALSE)
+write.csv(preclean_end_station, file = "./data/clean-data/preclean-end-station.csv", row.names = FALSE, na = '', quote = FALSE)
+write.csv(postclean_start_station, file = "./data/clean-data/postclean-start-station.csv", row.names = FALSE, na = '', quote = FALSE)
+write.csv(postclean_end_station, file = "./data/clean-data/postclean-end-station.csv", row.names = FALSE, na = '', quote = FALSE)

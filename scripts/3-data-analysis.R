@@ -6,7 +6,7 @@
 trip_data_v2$day_of_week <- ordered(trip_data_v2$day_of_week, 
                                     levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
 
-# # Order the levels of the month from January to December
+# Order the levels of the month from January to December
 trip_data_v2$month <- ordered(trip_data_v2$month, 
                               levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"))
 

@@ -1,24 +1,66 @@
-# ----------------------- #
-#   THE NUMBER OF RIDES   #
-# ----------------------- #
+scale_y_continuous(labels = comma)
+theme(legend.position = "bottom")
+
+# ----------------------------- #
+#   USER TYPE (MEMBER_CASUAL)   #
+# ----------------------------- #
 
 trip_data_v2 %>% 
-    ggplot() + 
-    geom_bar(mapping = aes(x = member_casual, fill = member_casual)) + 
-    scale_y_continuous(limits = c(0, 3000000)) + 
-    theme_bw() + 
-    scale_fill_brewer(palette="Reds") + 
-    theme(legend.position = "none")
+  ggplot(aes(member_casual, fill = member_casual)) + 
+  geom_bar(color = "black", show.legend = FALSE) + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  geom_text(aes(label = ..count..), 
+            stat = "count", 
+            position = position_stack(vjust = 0.5)) + 
+  labs(title = "The Number of Rides taken by User Type", 
+       x = "User Type", 
+       y = "Number of Rides")
 
 trip_data_v2 %>% 
-    ggplot() + 
-    geom_bar(mapping = aes(x = member_casual, fill = rideable_type), 
-             position = "fill")
+  ggplot(aes(member_casual, fill = member_casual)) + 
+  geom_bar(color = "black", show.legend = FALSE) + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  geom_text(aes(label = ..count..), 
+            stat = "count", 
+            position = position_stack(vjust = 0.5)) + 
+  labs(title = "The Total Number of Rides taken by User Type", 
+       x = "User Type", 
+       y = "Number of Rides") + 
+  facet_wrap(~ day_of_week)
+
+
+# ----------------------------- #
+#   BIKE TYPE (RIDEABLE_TYPE)   #
+# ----------------------------- #
 
 trip_data_v2 %>% 
-    ggplot() + 
-    geom_bar(mapping = aes(x = member_casual, fill = rideable_type), 
-             position = "dodge")
+  group_by(member_casual, rideable_type) %>%
+  summarize(count = n(), .groups = 'drop') %>%
+  ggplot(aes(x = member_casual, y = count, fill = rideable_type)) + 
+  geom_col(color = "black") + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  geom_text(aes(label = count), 
+            position = position_stack(vjust = 0.5)) + 
+  labs(title = "The Number of Rides taken by User Type and Bike Type)", 
+       x = "User Type", 
+       y = "Number of Rides") + 
+  theme(legend.position = "bottom")
+
+trip_data_v2 %>% 
+  group_by(member_casual, rideable_type) %>%
+  summarize(count = n(), .groups = 'drop') %>%
+  mutate(freq = count / sum(count)) %>%
+  mutate(per = label_percent()(freq)) %>% 
+  ggplot(aes(x = member_casual, fill = rideable_type)) + 
+  geom_bar(position = "fill", color = "black") + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  geom_text(aes(label = count), 
+            stat = "count",
+            position = position_fill(vjust = 0.5))  + 
+  labs(title = "The Number of Rides taken by User Type and Bike Type)", 
+       x = "User Type", 
+       y = "Number of Rides") + 
+  theme(legend.position = "bottom")
 
 
 # ------------------------- #

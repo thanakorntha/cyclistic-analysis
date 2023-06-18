@@ -12,7 +12,8 @@ dim(trip_data)
 head(trip_data)
 tail(trip_data)
 
-# Print a summary of the data, showing the number of rows and columns in the data, as well as the data types of each column, the minimum and maximum values, and the mean and standard deviation of each column
+# Print a summary of the data, showing the number of rows and columns in the data, 
+# as well as the data types of each column, the minimum and maximum values, and the mean and standard deviation of each column
 summary(trip_data)
 
 
@@ -21,17 +22,13 @@ summary(trip_data)
 # --------------------------- #
 
 # Check if the number of unique values is equal to the number of rows in the 'trip_data' data frame
-if ( length(unique(trip_data$ride_id)) == nrow(trip_data) ) {
-    print("The number of unique 'ride_id' values is equal to the number of rows in the 'trip_data' table.")
-} else {
-    print("The number of unique 'ride_id' values is not equal to the number of rows in the 'trip_data' table.")
-}
+trip_data %>% 
+  summarize(total_ride = n(), 
+            unique_ride = length(unique(trip_data$ride_id)))
 
-# See how many observations fall under each bike type
-count(trip_data, rideable_type)
-
-# See how many observations fall under each user type
-count(trip_data, member_casual)
+# See how many observations fall under each bike type and user type
+count(trip_data, rideable_type, name = "total_ride")
+count(trip_data, member_casual, name = "total_ride")
 
 
 # -------------------- #
@@ -43,39 +40,39 @@ trip_data_v2 <- trip_data[order(trip_data$started_at), ]
 
 # Remove 'start_station_id' and 'end_station_id' due to unnecessary for this analysis
 trip_data_v2 <- trip_data_v2 %>% 
-    select(-c(start_station_id, end_station_id))
+  select(-c(start_station_id, end_station_id))
 
 # Examine the starting and ending station names
-start_station <- count(trip_data_v2, start_station_name)
-end_station <- count(trip_data_v2, end_station_name)
+start_station <- count(trip_data_v2, start_station_name, name = "total_station")
+end_station <- count(trip_data_v2, end_station_name, name = "total_station")
 
 # Remove all rows that have eight test stations in both the starting and ending locations
-trip_data_v2 <- trip_data_v2[!(trip_data_v2$start_station_name %in% c("Pawel Bialowas - Test- PBSC charging station", 
-                                                                      "Hastings WH 2", "DIVVY CASSETTE REPAIR MOBILE STATION", 
-                                                                      "Base - 2132 W Hubbard Warehouse", 
-                                                                      "Base - 2132 W Hubbard", 
-                                                                      "NewHastings", 
-                                                                      "WestChi", 
-                                                                      "WEST CHI-WATSON") | 
-                               trip_data_v2$end_station_name   %in% c("Pawel Bialowas - Test- PBSC charging station", 
-                                                                      "Hastings WH 2", 
-                                                                      "DIVVY CASSETTE REPAIR MOBILE STATION", 
-                                                                      "Base - 2132 W Hubbard Warehouse", 
-                                                                      "Base - 2132 W Hubbard", 
-                                                                      "NewHastings", 
-                                                                      "WestChi", 
-                                                                      "WEST CHI-WATSON")), ]
+trip_data_v2 <- trip_data_v2[
+    !(trip_data_v2$start_station_name %in% c("Pawel Bialowas - Test- PBSC charging station", 
+                                             "Hastings WH 2", "DIVVY CASSETTE REPAIR MOBILE STATION", 
+                                             "Base - 2132 W Hubbard Warehouse", 
+                                             "Base - 2132 W Hubbard", 
+                                             "NewHastings", 
+                                             "WestChi", 
+                                             "WEST CHI-WATSON") | 
+          trip_data_v2$end_station_name %in% c("Pawel Bialowas - Test- PBSC charging station", 
+                                               "DIVVY CASSETTE REPAIR MOBILE STATION", 
+                                               "Base - 2132 W Hubbard Warehouse", 
+                                               "Base - 2132 W Hubbard", 
+                                               "NewHastings", 
+                                               "WestChi", 
+                                               "WEST CHI-WATSON")), ]
 
 # Remove all unwanted characters from the starting and ending station names
 trip_data_v2 <- trip_data_v2 %>% 
-    mutate(start_station_name = str_replace_all(start_station_name, fixed("*"),           "")) %>% 
-    mutate(start_station_name = str_replace_all(start_station_name, fixed(" - Charging"), "")) %>% 
-    mutate(start_station_name = str_replace_all(start_station_name, fixed(" (Temp)"),     "")) %>% 
-    mutate(start_station_name = str_replace_all(start_station_name, fixed("amp;"),        "")) %>% 
-    mutate(end_station_name   = str_replace_all(end_station_name,   fixed("*"),           "")) %>% 
-    mutate(end_station_name   = str_replace_all(end_station_name,   fixed(" - Charging"), "")) %>% 
-    mutate(end_station_name   = str_replace_all(end_station_name,   fixed(" (Temp)"),     "")) %>% 
-    mutate(end_station_name   = str_replace_all(end_station_name,   fixed("amp;"),        ""))
+  mutate(start_station_name = str_replace_all(start_station_name, fixed("*"),           "")) %>% 
+  mutate(start_station_name = str_replace_all(start_station_name, fixed(" - Charging"), "")) %>% 
+  mutate(start_station_name = str_replace_all(start_station_name, fixed(" (Temp)"),     "")) %>% 
+  mutate(start_station_name = str_replace_all(start_station_name, fixed("amp;"),        "")) %>% 
+  mutate(end_station_name   = str_replace_all(end_station_name,   fixed("*"),           "")) %>% 
+  mutate(end_station_name   = str_replace_all(end_station_name,   fixed(" - Charging"), "")) %>% 
+  mutate(end_station_name   = str_replace_all(end_station_name,   fixed(" (Temp)"),     "")) %>% 
+  mutate(end_station_name   = str_replace_all(end_station_name,   fixed("amp;"),        ""))
 
 
 # ------------------------------ #
@@ -165,5 +162,6 @@ dim(trip_data_v2)
 head(trip_data_v2)
 tail(trip_data_v2)
 
-# Print a summary of the data, showing the number of rows and columns in the data, as well as the data types of each column, the minimum and maximum values, and the mean and standard deviation of each column
+# Print a summary of the data, showing the number of rows and columns in the data, 
+# as well as the data types of each column, the minimum and maximum values, and the mean and standard deviation of each column
 summary(trip_data_v2)

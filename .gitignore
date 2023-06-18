@@ -11,4 +11,5 @@ cyclistic-analysis.Rproj
 docs/
 
 # Files
-*.csv
+data/processed-data/*.csv
+data/raw-data/*.csv

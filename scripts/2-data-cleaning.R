@@ -43,25 +43,27 @@ trip_data_v2 <- trip_data_v2 %>%
   select(-c(start_station_id, end_station_id))
 
 # Examine the starting and ending station names
-start_station <- count(trip_data_v2, start_station_name, name = "total_station")
-end_station <- count(trip_data_v2, end_station_name, name = "total_station")
+preclean_start_station <- count(trip_data_v2, start_station_name, name = "total_station")
+preclean_end_station <- count(trip_data_v2, end_station_name, name = "total_station")
 
 # Remove all rows that have eight test stations in both the starting and ending locations
 trip_data_v2 <- trip_data_v2[
-    !(trip_data_v2$start_station_name %in% c("Pawel Bialowas - Test- PBSC charging station", 
-                                             "Hastings WH 2", "DIVVY CASSETTE REPAIR MOBILE STATION", 
-                                             "Base - 2132 W Hubbard Warehouse", 
-                                             "Base - 2132 W Hubbard", 
-                                             "NewHastings", 
-                                             "WestChi", 
-                                             "WEST CHI-WATSON") | 
-          trip_data_v2$end_station_name %in% c("Pawel Bialowas - Test- PBSC charging station", 
-                                               "DIVVY CASSETTE REPAIR MOBILE STATION", 
-                                               "Base - 2132 W Hubbard Warehouse", 
-                                               "Base - 2132 W Hubbard", 
-                                               "NewHastings", 
-                                               "WestChi", 
-                                               "WEST CHI-WATSON")), ]
+  !(trip_data_v2$start_station_name %in% c("Pawel Bialowas - Test- PBSC charging station", 
+                                           "Hastings WH 2", 
+                                           "DIVVY CASSETTE REPAIR MOBILE STATION", 
+                                           "Base - 2132 W Hubbard Warehouse", 
+                                           "Base - 2132 W Hubbard", 
+                                           "NewHastings", 
+                                           "WestChi", 
+                                           "WEST CHI-WATSON") | 
+    trip_data_v2$end_station_name %in% c("Pawel Bialowas - Test- PBSC charging station", 
+                                         "Hastings WH 2", 
+                                         "DIVVY CASSETTE REPAIR MOBILE STATION", 
+                                         "Base - 2132 W Hubbard Warehouse", 
+                                         "Base - 2132 W Hubbard", 
+                                         "NewHastings", 
+                                         "WestChi", 
+                                         "WEST CHI-WATSON")), ]
 
 # Remove all unwanted characters from the starting and ending station names
 trip_data_v2 <- trip_data_v2 %>% 
@@ -101,8 +103,8 @@ trip_data_v2 <- trip_data_v2 %>%
 trip_data_v2 <- trip_data_v2[complete.cases(trip_data_v2), ]
 
 # Let's check the starting and ending station names again
-start_station_v2 <- count(trip_data_v2, start_station_name)
-end_station_v2 <- count(trip_data_v2, end_station_name)
+postclean_start_station <- count(trip_data_v2, start_station_name, name = "total_station")
+postclean_end_station <- count(trip_data_v2, end_station_name, name = "total_station")
 
 # Check to make sure there is no missing values each column
 colSums(is.na(trip_data_v2))

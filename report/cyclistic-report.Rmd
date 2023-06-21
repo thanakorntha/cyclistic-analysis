@@ -19,7 +19,7 @@ header-includes:
   # Add logo on the top page
   - \usepackage{titling}
   - \pretitle{\begin{center}
-    \includegraphics[width=3in,height=3in]{../image/logo.png}\LARGE\\}
+    \includegraphics[width=3in,height=3in]{../logo.png}\LARGE\\}
   - \posttitle{\end{center}}
   # Make inline code gray
   - \definecolor{codegray}{HTML}{cccccc}
@@ -79,7 +79,7 @@ The data sets are collected by the City of Chicago (a government agency) and pub
 
 The data set is stored in twelve CSV files, one for each month of 2022 (*202201-divvy-tripdata.csv* through *202212-divvy-tripdata.csv*). Each file contains a set of fields (columns) and records (rows). Each record represents a single bike trip, which is uniquely identified by an identifier for the ride.
 
-![The spreadsheet example, containing records of Cyclistic's historical trip data in January 2022](../image/01-data-example.png)
+![The spreadsheet example, containing records of Cyclistic's historical trip data in January 2022](./image/01-data-example.png)
 
 The data sets contain the following fields:
 

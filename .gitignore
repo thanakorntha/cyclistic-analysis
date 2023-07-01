@@ -7,9 +7,6 @@
 cyclistic-analysis.Rproj
 .RData
 
-# Folders
-docs/
-
 # Files
-data/processed-data/*.csv
-data/raw-data/*.csv
+*.csv
+*.zip

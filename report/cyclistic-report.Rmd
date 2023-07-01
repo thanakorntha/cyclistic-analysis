@@ -12,7 +12,7 @@ output:
 fontfamily: iwona
 fontsize: 10pt
 papersize: a4
-geometry: [top=1in, bottom=1in, right=0.7in, left=0.7in]
+geometry: [top=1in, bottom=1in, right=1in, left=1in]
 linestretch: 1.5
 urlcolor: blue
 header-includes:
@@ -22,7 +22,7 @@ header-includes:
     \includegraphics[width=3in,height=3in]{../logo.png}\LARGE\\}
   - \posttitle{\end{center}}
   # Make inline code gray
-  - \definecolor{codegray}{HTML}{cccccc}
+  - \definecolor{codegray}{HTML}{eeeeee}
   - \let\textttOrig\texttt
   - \renewcommand{\texttt}[1]{\textttOrig{\colorbox{codegray}{#1}}}
 include-before:
@@ -79,8 +79,6 @@ The data sets are collected by the City of Chicago (a government agency) and pub
 
 The data set is stored in twelve CSV files, one for each month of 2022 (*202201-divvy-tripdata.csv* through *202212-divvy-tripdata.csv*). Each file contains a set of fields (columns) and records (rows). Each record represents a single bike trip, which is uniquely identified by an identifier for the ride.
 
-![The spreadsheet example, containing records of Cyclistic's historical trip data in January 2022](./image/01-data-example.png)
-
 The data sets contain the following fields:
 
 - `ride_id` : A unique identifier for the ride
@@ -113,268 +111,128 @@ While there are some restrictions on rider's personal information, there is stil
 
 # Data Cleaning and Manipulation
 
-This section documents the data cleaning and manipulation. It includes the following tasks: 
+This section provides a document of data cleaning and manipulation. The ***R programming language*** is used in conjunction with the ***RStudio*** integrated development environment (IDE) to complete data cleaning's tasks, including loading packages, importing and combining the data, cleaning the data, transforming the data and removing outliers. All R scripts are available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/a2c21af6a16766602a7a363a49aac7aa860eee4f/scripts).
 
-1. Setting up and loading data into R environment
-2. Removing duplicate or irrelevant observations
-3. Fixing structural errors
-4. Handle missing data
-5. Adding new columns
-6. Filter unwanted outliers
+## Loading the Packges
 
-This report uses the ***R programming language*** in conjunction with the ***RStudio*** integrated development environment (IDE) to complete these tasks. All R scripts are available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/a2c21af6a16766602a7a363a49aac7aa860eee4f/scripts).
+Prior to cleaning the data, it is important to set up the R environment first. This requires loading the following packages into the environment:
 
-## Setting Up and Loading Data into R Environment
+- `tidyverse` for importing, wrangling and visualizing the data
+- `skimr` for skimming the data
+- `janitor` for exploring and cleaning the data
 
-Prior to cleaning the data, it is important to set up the R environment on the project. This requires loading the following packages into the environment:
-
-- `tidyverse` for importing and wrangling the data
-- `janitor` for cleaning data
-- `ggplot2` for visualizing the data
-- `ggmap` for visualizing the data in a map
-
-```{r load-required-packages}
+```{r load-packages}
 library(tidyverse)
+library(skimr)
 library(janitor)
-library(ggplot2)
-library(ggmap)
 ```
+
+***Note:*** *Make sure to install required packages using* `install.packages()` *before loading packages through* `library()`.
+
+## Importing and Combining the Data
 
 ```{r import-data}
-data_files <- list.files("./data/raw-data", pattern = "*.csv")
-
-for(i in 1:length(data_files)) {
-  assign(paste0("trip_", stringr::str_pad(i, 2, pad = 0)), 
-         read_csv(paste0("./data/raw-data/", data_files[i])))
-}
-
-trip_data <- bind_rows(
-  trip_01, trip_02, trip_03, trip_04, trip_05, trip_06, 
-  trip_07, trip_08, trip_09, trip_10, trip_11, trip_12)
-
-trip_data_v2 <- trip_data[order(trip_data$started_at), ]
+trip_data <- list.files(path = "./data/raw-data/", 
+                        pattern = "*.csv", 
+                        full.names = TRUE) %>% 
+  lapply(read_csv) %>% 
+  bind_rows %>% 
+  arrange(started_at)
 ```
 
-Once the environment was set up, each CSV file was imported into a separate data frame, and then these data frames were combined into a single data frame, named *trip_data_v2*. Upon initial inspection, the data frame contains `r prettyNum(count(trip_data_v2), big.mark = ",")` rows and `r prettyNum(ncol(trip_data_v2))` columns. The table below provides a preview of the *trip_data_v2* data frame.
+Once packages are completely loaded, it is ready to import the data into the R environment. Each CSV file was imported into the environment. Subsequently, these data frames were combined into a single data frame, named ***trip_data***. Upon initial inspection, the data frame contains `r prettyNum(count(trip_data), big.mark = ",")` rows and `r prettyNum(ncol(trip_data))` columns. The table below provides a preview of the *trip_data* data frame.
 
 ```{r preview-data}
-trip_data_v2 %>% 
+trip_data %>% 
   head(1) %>% 
   t() %>% 
-  knitr::kable("simple", caption = "A preview of Cyclistic's historical trip data")
+  knitr::kable("simple", caption = "A preview of the Cyclistic's historical trip data")
 ```
 
-## Removing Duplicate or Irrelevant Observations
+## Cleaning the Data
 
-The first task in data cleaning and manipulation is to remove unwanted observations from the data set, including duplicate observations or irrelevant observations. Duplicate observations will happen most often during the data collection. This task involves two main parts, including removing irrelevant columns and remove duplicate values.
+The result of the `skim_without_charts()` function provides a concise summary of the *trip_data* dataset. The dataset contains `r prettyNum(count(trip_data), big.mark = ",")` rows and `r prettyNum(ncol(trip_data))` columns. The figure shows that the unique number of rows of `ride_id` is `r prettyNum(length(unique(trip_data$ride_id)), big.mark = ",")` rows, which is the same as the total number of rows. Therefore, it can be concluded that there are no duplicate values in the dataset.
 
-Initially, irrelevant columns were removed from the data set as they were not required for this analysis. This was done by using the `select()` function to remove the following columns: `start_station_id` and `end_station_id`. After that, it is important to remove duplicate records. To detect duplicate records in the `ride_id` column, the `summarize()` function was used to count the number of rows and unique rows in the data set. This function returned a data frame with two columns: `total_ride` (the number of rows) and `unique_ride` (the number of unique rows).
+![A broad overview of dataset summary in the Cyclistic's historical trip data (*trip_data*) from `skim_without_charts()`](./images/pre-skim-data.png){width="90%"}
 
-```{r remove-columns}
-trip_data_v2 <- trip_data_v2 %>%
-  select(-c(start_station_id, end_station_id))
+There are three data types in the dataset, including character, numeric and POSIXct. First, the **character** data type represents text or string values. Second, the **numeric** data type represents decimal values. Last, the **POSIXct** data type represents data and time values. Each data type include the following columns:
+
+- **character:** `ride_id`, `rideable_type`, `start_station_name`, `start_station_id`, `end_station_name`, `end_station_id` and `member_casual`.
+- **numeric:** `start_lat`, `start_lng`, `end_lat` and `end_lng`.
+- **POSIXct:** `started_at` and `ended_at`.
+
+The figure also shows that some columns have missing values. The following columns include:
+
+- `start_station_name` (`r prettyNum(sum(is.na(trip_data$start_station_name)), big.mark = ",")` rows)
+- `start_station_id` (`r prettyNum(sum(is.na(trip_data$start_station_id)), big.mark = ",")` rows)
+- `end_station_name` (`r prettyNum(sum(is.na(trip_data$end_station_name)), big.mark = ",")` rows)
+- `end_station_id` (`r prettyNum(sum(is.na(trip_data$end_station_id)), big.mark = ",")` rows)
+- `end_lat` (`r prettyNum(sum(is.na(trip_data$end_lat)), big.mark = ",")` rows)
+- `end_lng` (`r prettyNum(sum(is.na(trip_data$end_lng)), big.mark = ",")` rows)
+
+There are multiple ways to handle missing data, but in this case, it was decided to remove those columns as they are not required for this analysis. The following R code was used to select only the useful columns and then store the new dataset as ***trip_data_v2***:
+
+ 
+
+```{r clean-data, echo=TRUE}
+trip_data_v2 <- trip_data %>%
+  select(ride_id, started_at, ended_at, rideable_type, member_casual)
 ```
 
-```{r count-unique-ride}
-trip_data_v2 %>%
-  summarize(total_ride = n(), unique_ride = length(unique(trip_data_v2$ride_id))) %>%
-  knitr::kable("simple", caption = "The total number of rides and unique rides in Cyclistic's historical trip data")
+ 
+
+Finally, the *trip_data_v2* dataset has only 5 columns, which are `ride_id`, `started_at` and `ended_at`, `rideable_type`and `member_casual`.
+
+## Transforming the Data
+
+The next step is to add three new columns to the dataset, namely `month`, `day_of_week`, and `ride_length`, in order to facilitate data analysis and visualization. The `month` column will store the month in which the trip was taken, the `day_of_week` column will store the day of the week on which the trip was taken, and the `ride_length` column will store the duration of the trip in minutes. The following R codes can be used to add these three new columns to the dataset:
+
+ 
+
+```{r add-new-columns, echo=TRUE}
+trip_data_v2$ride_length <- difftime(trip_data_v2$ended_at, 
+                                     trip_data_v2$started_at, 
+                                     units = "mins")
+trip_data_v2$day_of_week <- weekdays(trip_data_v2$started_at)
+trip_data_v2$month <- format(trip_data_v2$started_at, "%b")
 ```
 
-The result shows that there are `r prettyNum(count(trip_data_v2), big.mark = ",")` rides in total and `r prettyNum(length(unique(trip_data_v2$ride_id)), big.mark = ",")` unique rides in the data set. This implies that the data set does not contain any duplicate values. Therefore, the task of removing duplicate records can be skipped in the `ride_id` column. There are currently  `r prettyNum(count(trip_data_v2), big.mark = ",")` rows and `r prettyNum(ncol(trip_data_v2))` columns remaining in the data set.
+ 
 
-## Fixing Structural Errors
+## Removing Outliers
 
-The next task is to fix structural errors occurred in the data. This involves ensuring that all data is in a consistent formats or naming conventions, with the same data types and values. This includes bike and rider types and station names.
+Once three new columns have been added to the dataset, it can be used for data analysis and visualization. The `skim_without_charts()` function is used to provides a concise summary of the *trip_data_v2* dataset again. The figure shows that there are minus number in minimum value (min) in the `ride_length` column. 
 
-### Bike and Rider Types
+![A broad overview of dataset summary in the Cyclistic's historical trip data (*trip_data_v2*) from `skim_without_charts()`](./images/post-skim-data.png){width="90%"}
 
-This step involved checking for irrelevant records in the `rideable_type` and `member_casual` columns. The `count()` function was used to count the number of records in each category.
+This means that there are outliers in the datset. Outliers can be caused by errors in data entry, measurement, or other factors. They can distort the results of an analysis, so it is important to remove them before proceeding. In this case, all trip data that were less than 60 seconds were filtered out. These trips are likely to be false starts or users attempting to re-dock a bike to ensure its security. Trips that exceeded a period of 24 consecutive hours were also removed. This is because these trips are likely to be the result of the rider not returning the bike. This was accomplished by running the following R code:
 
-```{r count-unique-types}
-trip_data_v2 %>%
-  count(rideable_type, name = "total_ride") %>%
-  knitr::kable("simple", caption = "A list of bike type in in Cyclistic's historical trip data")
+ 
 
-trip_data_v2 %>%
-  count(member_casual, name = "total_ride") %>%
-  knitr::kable("simple", caption = "A list of user type in in Cyclistic's historical trip data")
-```
-
-Tables 3 and 4 show that there are three types of bikes: classic_bike, docked_bike, and electric_bike. There are also two types of riders: casual and member. These results suggest that there are no consistency errors in the `rideable_type` or `member_casual` columns.
-
-### Station Names
-
-This step involved making the station names consistent in the `start_station_name` and `end_station_name` columns. The `count()` function was used again to ensure that there were no inconsistencies. The pre-cleaned versions of the `start_station_name` and `end_station_name` columns can be found in the *[preclean-start-station.csv](https://github.com/thanakorntha/cyclistic-analysis/blob/a2c21af6a16766602a7a363a49aac7aa860eee4f/data/clean-data/preclean-start-station.csv)* and *[preclean-end-station.csv](https://github.com/thanakorntha/cyclistic-analysis/blob/a2c21af6a16766602a7a363a49aac7aa860eee4f/data/clean-data/preclean-end-station.csv)*. 
-
-```{r pre-inspect-stations}
-preclean_start_station <- trip_data_v2 %>%
-  count(start_station_name, name = "total_station")
-
-preclean_start_station <- trip_data_v2 %>%
-  count(end_station_name, name = "total_station")
-```
-
-However, an inspection of these columns revealed some inconsistent formats. First, the data set included test stations, which should not be included in the analysis and must be removed. There were eight test stations, including `Pawel Bialowas - Test- PBSC charging station`, `Hastings WH 2`, `DIVVY CASSETTE REPAIR MOBILE STATION`, `Base - 2132 W Hubbard Warehouse`, `Base - 2132 W Hubbard`, `NewHastings`, `WestChi`, and `WEST CHI-WATSON`. The test stations were removed using the following R code:
-
-&nbsp;
-```{r remove-test-station, echo=TRUE}
-
-test_station_list <- c("Pawel Bialowas - Test- PBSC charging station",
-                       "Hastings WH 2",
-                       "DIVVY CASSETTE REPAIR MOBILE STATION",
-                       "Base - 2132 W Hubbard Warehouse",
-                       "Base - 2132 W Hubbard",
-                       "NewHastings",
-                       "WestChi",
-                       "WEST CHI-WATSON")
-
-trip_data_v2 <- trip_data_v2[
-  !( trip_data_v2$start_station_name %in% test_station_list | 
-     trip_data_v2$end_station_name %in% test_station_list ), ]
-```
-&nbsp;
-
-Additionally, it was found that the station names contained some extraneous characters and words. These extraneous characters and words could cause problems when grouping the data by station name, so they must be removed. The extraneous characters and words that were found include `*`, ` - Charging`, ` (Temp)`, and `amp;`. The following R code was used to remove these extraneous characters and words:
-
-&nbsp;
-```{r remove-unwanted-characters, echo=TRUE}
-trip_data_v2 <- trip_data_v2 %>%
-  mutate(start_station_name = str_replace_all(start_station_name, fixed("*"), "")) %>%
-  mutate(start_station_name = str_replace_all(start_station_name, fixed(" - Charging"), "")) %>%
-  mutate(start_station_name = str_replace_all(start_station_name, fixed(" (Temp)"), "")) %>%
-  mutate(start_station_name = str_replace_all(start_station_name, fixed("amp;"), "")) %>%
-  mutate(end_station_name = str_replace_all(end_station_name, fixed("*"), "")) %>%
-  mutate(end_station_name = str_replace_all(end_station_name, fixed(" - Charging"), "")) %>%
-  mutate(end_station_name = str_replace_all(end_station_name, fixed(" (Temp)"), "")) %>%
-  mutate(end_station_name = str_replace_all(end_station_name, fixed("amp;"), ""))
-```
-&nbsp;
-
-Finally, the task of fixing structural errors has been completed. The data set now contains `r prettyNum(count(trip_data_v2), big.mark = ",")` rows and `r prettyNum(ncol(trip_data_v2))` columns.
-
-## Handle Missing Data
-
-The third task in data cleaning and manipulation is to handle missing data. There are a few approaches to dealing with missing data, which include:
-
-1. **Imputation:** This involves filling in the missing values with estimates based on other observations.
-2. **Deletion:** This involves dropping the observations that have missing values.
-
-Neither of these approaches is ideal, but both can be considered. The following table shows a list of the total number of missing values in each column.
-
-```{r pre-check-na-values}
-trip_data_v2 %>%
-  is.na() %>%
-  colSums() %>%
-  knitr::kable("simple", col.names = "total_na", caption = "A list of the total number of missing values in each column (before removing missing values)")
-```
-
-The table above shows that there are four columns with missing values, including:
-
-- `start_station_name` (`r prettyNum(sum(is.na(trip_data_v2$start_station_name)), big.mark = ",")` rows)
-- `end_station_name` (`r prettyNum(sum(is.na(trip_data_v2$end_station_name)), big.mark = ",")` rows)
-- `end_lat` (`r prettyNum(sum(is.na(trip_data_v2$end_lat)), big.mark = ",")` rows)
-- `end_lng` (`r prettyNum(sum(is.na(trip_data_v2$end_lng)), big.mark = ",")` rows)
-
-In the next step, the missing values in the `start_station_name` and `end_station_name` columns will be replaced with the other observations based on geographic coordinates. The remaining missing values will be removed. The following R code was used to impute the missing station names with geographic coordinates:
-
-&nbsp;
-```{r fill-na-values, echo=TRUE}
-trip_data_v2 <- trip_data_v2 %>%
-    group_by(start_lat, start_lng) %>%
-    fill(start_station_name, .direction = "downup") %>%
-    ungroup()
-
-trip_data_v2 <- trip_data_v2 %>%
-    group_by(end_lat, end_lng) %>%
-    fill(end_station_name, .direction = "downup") %>%
-    ungroup()
-```
-&nbsp;
-
-The number of rows with missing values in the `start_station_name` and `end_station_name` columns is reduced to `r prettyNum(sum(is.na(trip_data_v2$start_station_name)), big.mark = ",")` and `r prettyNum(sum(is.na(trip_data_v2$end_station_name)), big.mark = ",")`, respectively. The remaining missing values (including `end_lat` and `end_lng`) are then removed by running the following R code:
-
-&nbsp;
-```{r remove-na-values, echo=TRUE}
-trip_data_v2 <- trip_data_v2[complete.cases(trip_data_v2), ]
-```
-&nbsp;
-
-```{r post-inspect-stations}
-postclean_start_station <- count(trip_data_v2, start_station_name, name = "total_station")
-postclean_end_station <- count(trip_data_v2, end_station_name, name = "total_station")
-```
-
-Missing data was completely removed from the data frame. After inspecting the station names again, all missing and inconsistent values were eliminated. The post-cleaned versions of the `start_station_name` and `end_station_name` columns can also be found in the *[postclean-start-station.csv](https://github.com/thanakorntha/cyclistic-analysis/blob/a2c21af6a16766602a7a363a49aac7aa860eee4f/data/clean-data/postclean-start-station.csv)* and *[postclean-end-station.csv](https://github.com/thanakorntha/cyclistic-analysis/blob/a2c21af6a16766602a7a363a49aac7aa860eee4f/data/clean-data/postclean-end-station.csv)* files. As shown in the table below, there are currently no missing values in the data frame.
-
-```{r post-check-na-values}
-trip_data_v2 %>%
-  is.na() %>%
-  colSums() %>%
-  knitr::kable("simple", col.names = "total_na", caption = "A list of the total number of missing values in each column (after removing missing values)")
-```
-
-The task has been completed. Now, there are `r prettyNum(count(trip_data_v2), big.mark = ",")` rows and `r prettyNum(ncol(trip_data_v2))` columns remaining in the data set.
-
-## Adding New Columns
-
-```{r add-new-columns}
-trip_data_v2 <- trip_data_v2 %>% 
-  mutate(month = format(as.Date(trip_data_v2$started_at), "%B")) %>% 
-  mutate(day_of_week = format(as.Date(trip_data_v2$started_at), "%A")) %>% 
-  mutate(ride_length = as.double(difftime(trip_data_v2$ended_at, 
-                                          trip_data_v2$started_at, 
-                                          units = "mins")))
-```
-
-The fourth step in the data cleaning and manipulation process is to add three new columns to the data set:
-
-- `month`: The month in which the trip was taken 
-- `day_of_week`: The day of the week on which the trip was taken
-- `ride_length`: The duration of the trip in minutes
-
-These columns were added using the `mutate()` function. It allows users to add new columns to a data set or to modify existing columns. There are currently `r prettyNum(ncol(trip_data_v2))` columns in the data set, as shown in Table 7. The addition of these new columns will make it possible to perform more detailed analysis of the data in the next section.
-
-```{r preview-data-2}
-trip_data_v2 %>%
-  head(1) %>%
-  t() %>%
-  knitr::kable("simple", caption = "A preview of Cyclistic's historical trip data")
-```
-
-## Filter Unwanted Outliers
-
-The final task in the data cleaning and manipulation process is to filter unwanted outliers. Outliers can be caused by errors in data entry, measurement, or other factors. They can distort the results of an analysis, so it is important to remove them before proceeding. In this case, all trip data that were less than 60 seconds were filtered out. These trips are likely to be false starts or users attempting to re-dock a bike to ensure its security. Trips that exceeded a period of 24 consecutive hours were also removed. This is because these trips are likely to be the result of the rider not returning the bike. This was accomplished by running the following R code:
-
-&nbsp;
-```{r remove-errors, echo=TRUE}
-trip_data_v2 <- trip_data_v2[!( trip_data_v2$ride_length < 1 | 
-                                trip_data_v2$ride_length > 1440), ]
-```
-&nbsp;
-
-The presence of outliers in a data set can skew the results of statistical analyses. To ensure that the data set was free of outliers, the interquartile range (IQR) method was used to filter them out. The IQR is a measure of the variability of a data set, and it is calculated by subtracting the first quartile (Q1) from the third quartile (Q3). Outliers are defined as data points that are more than 1.5 times the IQR away from Q1 or Q3. The following R code was used to remove outliers from the data set:
-
-&nbsp;
 ```{r remove-outliers, echo=TRUE}
-median_value <- median(trip_data_v2$ride_length)
-iqr_value <- IQR(trip_data_v2$ride_length)
-lower_limit <- median_value - 1.5 * iqr_value
-upper_limit <- median_value + 1.5 * iqr_value
+error_rows <- trip_data_v2$ride_length < 1 
+timeout_rows <- trip_data_v2$ride_length > 1440
 
-trip_data_v2 <- trip_data_v2[!( trip_data_v2$ride_length < lower_limit | 
-                                trip_data_v2$ride_length > upper_limit), ]
+trip_data_v2 <- trip_data_v2[!(error_rows | timeout_rows), ]
 ```
-&nbsp;
 
-The trip data that were less than `r format(round(lower_limit, 2), nsmall = 2)` minutes (technically 0 minutes) or greater than `r format(round(upper_limit, 2), nsmall = 2)` minutes were deleted from the data set. This left `r prettyNum(count(trip_data_v2), big.mark = ",")` rows remaining after removing unwanted outliers. This completes the data cleaning and manipulation process, and the data is now ready for analysis.
+ 
+
+This completes the data cleaning and manipulation process, and the data is now ready for analysis.
 
 # Analysis and Key Findings
 
+> To be written
+
+<!--
 ```{r load-additional-packages}
 # Load additional packages for setting beautiful table and graph
 theme_set(theme_bw())
 ```
+
+## Overall Summary
+
+
 
 ## The Number of Rides
 
@@ -397,11 +255,13 @@ Based on data analysis, :
 - 
 - 
 - 
+-->
 
 # Conclusion and Recommendations
 
+> To be written
 
-
+<!--
 ## Conclusion
 
 Based on the data collected, it can be concluded that
@@ -413,3 +273,4 @@ The report makes the following recommendations:
 1. 
 2. 
 3. 
+-->

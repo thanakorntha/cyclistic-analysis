@@ -26,6 +26,7 @@ header-includes:
   - \let\textttOrig\texttt
   - \renewcommand{\texttt}[1]{\textttOrig{\colorbox{codegray}{#1}}}
 include-before:
+  # Break TOC page to the next page
   - '`\newpage{}`{=latex}'
 ---
 
@@ -111,7 +112,7 @@ While there are some restrictions on rider's personal information, there is stil
 
 # Data Cleaning and Manipulation
 
-This section provides a document of data cleaning and manipulation. The ***R programming language*** is used in conjunction with the ***RStudio*** integrated development environment (IDE) to complete data cleaning's tasks, including loading packages, importing and combining the data, cleaning the data, transforming the data and removing outliers. All R scripts are available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/a2c21af6a16766602a7a363a49aac7aa860eee4f/scripts).
+This section provides a documentation of data cleaning and manipulation. The ***R programming language*** is used in conjunction with the ***RStudio*** integrated development environment (IDE) to complete data cleaning's tasks, including loading packages, importing and combining the data, cleaning the data, transforming the data and removing outliers. R script is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/1-data-cleaning.R).
 
 ## Loading the Packges
 
@@ -132,7 +133,7 @@ library(janitor)
 ## Importing and Combining the Data
 
 ```{r import-data}
-trip_data <- list.files(path = "./data/raw-data/", 
+trip_data <- list.files(path = "./data/", 
                         pattern = "*.csv", 
                         full.names = TRUE) %>% 
   lapply(read_csv) %>% 
@@ -190,9 +191,10 @@ The next step is to add three new columns to the dataset, namely `month`, `day_o
  
 
 ```{r add-new-columns, echo=TRUE}
-trip_data_v2$ride_length <- difftime(trip_data_v2$ended_at, 
-                                     trip_data_v2$started_at, 
-                                     units = "mins")
+trip_data_v2$ride_length <- as.double(
+  difftime(trip_data_v2$ended_at, 
+           trip_data_v2$started_at, 
+           units = "mins"))
 trip_data_v2$day_of_week <- weekdays(trip_data_v2$started_at)
 trip_data_v2$month <- format(trip_data_v2$started_at, "%b")
 ```
@@ -222,33 +224,206 @@ This completes the data cleaning and manipulation process, and the data is now r
 
 # Analysis and Key Findings
 
-> To be written
+This section provides a document of data cleaning and manipulation. R script is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/2-data-analysis.R).
 
-<!--
 ```{r load-additional-packages}
-# Load additional packages for setting beautiful table and graph
+# Set default theme
 theme_set(theme_bw())
+```
+
+```{r convert-level-columns}
+# Convert the 'day_of_week' column to a factor variable with a specified level order
+trip_data_v2$day_of_week <- ordered(trip_data_v2$day_of_week, 
+                                    levels = c("Monday", 
+                                               "Tuesday", 
+                                               "Wednesday", 
+                                               "Thursday", 
+                                               "Friday", 
+                                               "Saturday", 
+                                               "Sunday"))
+
+# Order the levels of the month from January to December
+trip_data_v2$month <- ordered(trip_data_v2$month, 
+                              levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                                         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
 ```
 
 ## Overall Summary
 
 
 
-## The Number of Rides
-
-
+```{r summary}
+trip_data_v2 %>%
+  summarize(mean = mean(ride_length), 
+            median = median(ride_length), 
+            min = min(ride_length), 
+            max = max(ride_length), 
+            sd = sd(ride_length), 
+            count = n()) %>% 
+  knitr::kable("simple", caption = "A statistical summary of the duration of rides in the Cyclistic's historical trip data")
+```
 
 ## The Duration of Rides
 
 
 
-## The Location of Rides
+```{r ride-length-user}
+# Group the data by the 'member_casual' column, calculating the mean and median of 'ride_length' for each group
+ride_length_user <- trip_data_v2 %>% 
+  group_by(member_casual) %>% 
+  summarize(mean_ride_length = mean(ride_length), 
+            median_ride_length = median(ride_length))
+
+# Plot a bar chart of average ride length grouped by user type
+ggplot(ride_length_user, 
+       aes(x = member_casual, 
+           y = mean_ride_length, 
+           fill = member_casual)) + 
+  geom_bar(stat = "identity", 
+           color = "black") + 
+  scale_fill_brewer(palette = "Pastel1") +
+  theme(legend.position = "none") + 
+  geom_text(aes(label = round(mean_ride_length, 2)), 
+            position = position_dodge(width = 0.9), 
+            vjust = 2) + 
+  labs(x = "User Type", 
+       y = "Average Ride Length (mins)")
+```
 
 
+
+```{r ride-length-user-day}
+# Group the data by 'member_casual' and 'day_of_week' columns, calculating the mean and median of 'ride_length' for each group
+ride_length_user_day <- trip_data_v2 %>% 
+  group_by(member_casual, 
+           day_of_week) %>% 
+  summarize(mean_ride_length = mean(ride_length), 
+            median_ride_length = median(ride_length), 
+            .groups = "drop")
+
+# Plot a bar chart of average ride length grouped by user type and day of week
+ggplot(ride_length_user_day, 
+       aes(x = day_of_week, 
+           y = mean_ride_length, 
+           fill = member_casual)) + 
+  geom_bar(stat = "identity", 
+           position = "dodge", 
+           color = "black") + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  theme(legend.position = "none") + 
+  geom_text(aes(label = round(mean_ride_length, 2)), 
+            size = 3, 
+            position = position_dodge(width = 0.9), 
+            vjust = 2) + 
+  labs(x = "User Type", 
+       y = "Average Ride Length (mins)")
+```
+
+
+
+```{r ride-length-user-month}
+# Group the data by 'member_casual' and 'month' columns, calculating the mean and median of 'ride_length' for each group
+ride_length_user_month <- trip_data_v2 %>% 
+  group_by(member_casual, 
+           month) %>% 
+  summarize(mean_ride_length = mean(ride_length), 
+            median_ride_length = median(ride_length))
+
+# Plot a bar chart of average ride length grouped by user type and month
+ggplot(ride_length_user_month, 
+       aes(x = month, 
+           y = mean_ride_length, 
+           group = member_casual, 
+           color = member_casual)) + 
+  geom_line() + 
+  geom_point() + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  theme(legend.position = "none") + 
+  labs(x = "User Type", 
+       y = "Average Ride Length (mins)")
+```
+
+## The Number of Rides
+
+
+
+```{r ride-count-user}
+# Group the data by the 'member_casual' column, counting the number of rides for each group
+ride_count_user <- trip_data_v2 %>% 
+  group_by(member_casual) %>% 
+  summarize(ride_count = n())
+
+# Plot a bar chart of ride count grouped by user type
+ggplot(ride_count_user, 
+       aes(x = member_casual, 
+           y = round(ride_count / 1000, 0), 
+           fill = member_casual)) + 
+  geom_bar(stat = "identity", 
+           color = "black") + 
+  scale_fill_brewer(palette = "Pastel1") +
+  theme(legend.position = "none") + 
+  geom_text(aes(label = round(ride_count / 1000, 0)), 
+            position = position_dodge(width = 0.9), 
+            vjust = 2) + 
+  labs(x = "User Type", 
+       y = "Number of Rides (1,000)")
+```
+
+
+
+```{r ride-count-user-day}
+# Group the data by 'member_casual' and 'day_of_week' columns, counting the number of rides for each group
+ride_count_user_day <- trip_data_v2 %>% 
+  group_by(member_casual, 
+           day_of_week) %>% 
+  summarize(ride_count = n())
+
+# Plot a bar chart of ride count grouped by user type and day of week
+ggplot(ride_count_user_day, 
+       aes(x = day_of_week, 
+           y = round(ride_count / 1000, 0), 
+           fill = member_casual)) + 
+  geom_bar(stat = "identity", 
+           position = "dodge", 
+           color = "black") + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  theme(legend.position = "none") + 
+  geom_text(aes(label = round(ride_count / 1000, 0)), 
+            size = 3, 
+            position = position_dodge(width = 0.9), 
+            vjust = 2) + 
+  labs(x = "User Type", 
+       y = "Number of Rides (1,000)")
+```
+
+
+
+```{r ride-count-user-month}
+# Group the data by 'member_casual' and 'month' columns, counting the number of rides for each group
+ride_count_user_month <- trip_data_v2 %>% 
+  group_by(member_casual, 
+           month) %>% 
+  summarize(ride_count = n())
+
+# Plot a line chart of ride count grouped by user type and day of week
+ggplot(ride_count_user_month, 
+       aes(x = month, 
+           y = round(ride_count / 1000, 0), 
+           group = member_casual, 
+           color = member_casual)) + 
+  geom_line() + 
+  geom_point() + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  theme(legend.position = "none") + 
+  labs(x = "User Type", 
+       y = "Number of Rides (1,000)")
+```
+
+<!--
 
 ## Key Findings
 
-Based on data analysis, :
+Based on data analysis, : 
 
 - 
 - 

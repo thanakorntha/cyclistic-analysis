@@ -224,7 +224,7 @@ This completes the data cleaning and manipulation process, and the data is now r
 
 # Analysis and Key Findings
 
-This section provides a document of data cleaning and manipulation. R script is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/2-data-analysis.R).
+This section presents an analysis of Cyclistic's historical trip data from January 2022 to December 2022, with the objective of identifying the differences in the use of Cyclistic bikes between annual members and casual riders. The R script used for this analysis is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/2-data-analysis.R).
 
 ```{r load-additional-packages}
 # Set default theme
@@ -335,8 +335,7 @@ ggplot(ride_length_user_month,
            y = mean_ride_length, 
            group = member_casual, 
            color = member_casual)) + 
-  geom_line() + 
-  geom_point() + 
+  geom_line(size = 1) + 
   scale_fill_brewer(palette = "Pastel1") + 
   theme(legend.position = "none") + 
   labs(x = "User Type", 
@@ -411,8 +410,7 @@ ggplot(ride_count_user_month,
            y = round(ride_count / 1000, 0), 
            group = member_casual, 
            color = member_casual)) + 
-  geom_line() + 
-  geom_point() + 
+  geom_line(size = 1) + 
   scale_fill_brewer(palette = "Pastel1") + 
   theme(legend.position = "none") + 
   labs(x = "User Type", 

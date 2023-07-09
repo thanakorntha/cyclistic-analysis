@@ -6,11 +6,13 @@
 install.packages("tidyverse")
 install.packages("skimr")
 install.packages("janitor")
+install.packages("scales")
 
 # Load the required packages
 library(tidyverse)
 library(skimr)
 library(janitor)
+library(scales)
 
 
 ## ------------------------------------- ##
@@ -18,9 +20,7 @@ library(janitor)
 ## ------------------------------------- ##
 
 # Import and combine the data
-trip_data <- list.files(path = "./data/raw-data/", 
-                        pattern = "*.csv", 
-                        full.names = TRUE) %>%
+trip_data <- list.files(path = "./data/", pattern = "*.csv", full.names = TRUE) %>% 
   lapply(read_csv) %>%
   bind_rows %>% 
   arrange(started_at)

@@ -273,7 +273,9 @@ find_mode <- function(x) {
 }
 ```
 
-## All Users
+## Data Analysis and Visualization
+
+### All Users
 
 Irure velit reprehenderit nostrud aliqua do velit. Ipsum exercitation quis commodo cillum. Ex eu elit laborum Lorem. Occaecat sit sint pariatur sit nulla nostrud exercitation amet ipsum pariatur magna dolor commodo mollit esse. Quis est incididunt velit ut mollit excepteur ad esse eiusmod fugiat.
 
@@ -347,16 +349,19 @@ ggplot(trip_data_v2, aes(x = ride_length)) +
 
  
 
-## User Type
+### User Type
 
 ```{r define-user-variables}
-# Group the data by the 'member_casual' column, calculating the mean, median, mode and count for each group
+# Group the data by the 'member_casual' column, calculating stats for each group
 stats_user <- trip_data_v2 %>% 
   group_by(member_casual) %>% 
   summarize(
     mean_ride_length = mean(ride_length), 
     median_ride_length = median(ride_length), 
     mode_ride_length = find_mode(ride_length), 
+    min_ride_length = min(ride_length), 
+    max_ride_length = max(ride_length), 
+    sd_ride_length = sd(ride_length), 
     ride_count = n()
   )
 ```
@@ -524,184 +529,203 @@ ggplot(stats_user, aes(x = member_casual, y = ride_count, fill = member_casual))
 
  
 
-\newpage
+### Month
 
-## Day of Week
-
-```{r define-user-day-variables}
-# Group the data by 'member_casual' and 'day_of_week' columns, calculating the mean, median, mode and count for each group
+```{r define-user-month-variables}
+# Group the data by 'member_casual' and 'month' columns, calculating stats for each group
 stats_user_month <- trip_data_v2 %>% 
-  group_by(member_casual, day_of_week) %>% 
+  group_by(member_casual, month) %>% 
   summarize(
     mean_ride_length = mean(ride_length), 
     median_ride_length = median(ride_length), 
-    mode_ride_length = find_mode(ride_length), 
+    # mode_ride_length = find_mode(ride_length), 
+    min_ride_length = min(ride_length), 
+    max_ride_length = max(ride_length), 
+    sd_ride_length = sd(ride_length), 
     ride_count = n(), 
     .groups = "drop"
   )
 ```
 
-```{r ride-length-user-day}
-# Plot a bar chart of average ride length grouped by user type and day of week
-ggplot(ride_length_user_day, aes(x = day_of_week, y = mean_ride_length, fill = member_casual)) + 
-  geom_bar(stat = "identity", position = "dodge", color = "black") + 
-  expand_limits(y = c(0, 30)) + 
-  geom_text(
-    aes(label = round(mean_ride_length, 2)), 
-    position = position_dodge(width = 0.9), 
-    vjust = 2, 
-    size = 2.5
-  ) + 
-  labs(
-    x = "Day of Week", 
-    y = "Average Ride Length", 
-    title = "Average Ride Length in Minute by Day of Week", 
-    subtitle = "Data from January 2022 to December 2022", 
-    caption = "Source: Divvy dataset"
-  ) + 
-  theme(
-    axis.title.x = element_text(size = 8), 
-    axis.title.y = element_text(size = 8), 
-    axis.text.x = element_text(size = 6), 
-    axis.text.y = element_text(size = 6), 
-    plot.title = element_text(size = 10, face = "bold"), 
-    plot.subtitle = element_text(size = 8), 
-    plot.caption = element_text(size = 6, face = "italic", hjust = 0), 
-    legend.position = "none"
-  ) + 
-  scale_fill_brewer(palette = "Pastel1")
-```
+Irure velit reprehenderit nostrud aliqua do velit. Ipsum exercitation quis commodo cillum. Ex eu elit laborum Lorem. Occaecat sit sint pariatur sit nulla nostrud exercitation amet ipsum pariatur magna dolor commodo mollit esse. Quis est incididunt velit ut mollit excepteur ad esse eiusmod fugiat.
 
-```{r ride-count-user-day}
-# Group the data by 'member_casual' and 'day_of_week' columns, counting the number of rides for each group
-ride_count_user_day <- trip_data_v2 %>% 
-  group_by(member_casual, day_of_week) %>% 
-  summarize(ride_count = n())
+ 
 
-# Plot a bar chart of ride count grouped by user type and day of week
-ggplot(ride_count_user_day, aes(x = day_of_week, y = ride_count, fill = member_casual)) + 
-  geom_bar(stat = "identity", position = "dodge", color = "black") + 
-  expand_limits(y = c(0, 450000)) + 
-  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) + 
-  geom_text(
-    aes(label = prettyNum(ride_count, big.mark = ",")), 
-    position = position_dodge(width = 0.9), 
-    vjust = 2, 
-    size = 2
-  ) + 
-  labs(
-    x = "Day of Week", 
-    y = "Number of Rides", 
-    title = "Number of Rides by Day of Week", 
-    subtitle = "Data from January 2022 to December 2022", 
-    caption = "Source: Divvy dataset"
-  ) + 
-  theme(
-    axis.title.x = element_text(size = 8), 
-    axis.title.y = element_text(size = 8), 
-    axis.text.x = element_text(size = 6), 
-    axis.text.y = element_text(size = 6), 
-    plot.title = element_text(size = 10, face = "bold"), 
-    plot.subtitle = element_text(size = 8), 
-    plot.caption = element_text(size = 6, face = "italic", hjust = 0), 
-    legend.position = "none"
-  ) + 
-  scale_fill_brewer(palette = "Pastel1")
-```
+```{r plot-line-duration-user-month}
+# Define labels for the plot
+label_5 <- labs(
+    x = "Month", 
+    y = "Ride duration (in minutes)", 
+  title = "Casual riders tend to ride longer in spring", 
+  subtitle = "Average ride duration for casual riders and annual members by month, 2022", 
+    caption = "Source: Cyclistic (Divvy) dataset with 5,541,268 ride records"
+  )
 
-\newpage
+# Define text annotation
+annotation_5 <- annotate(
+  "rect", 
+  xmin = 3, xmax = 5, 
+  ymin = 0, ymax = 30,
+  fill = "darkgray",
+  alpha = 0.15
+)
 
-## Month
-
-```{r ride-length-user-month}
-# Group the data by 'member_casual' and 'month' columns, calculating the mean and median of 'ride_length' for each group
-ride_length_user_month <- trip_data_v2 %>% 
-  group_by(member_casual, month) %>% 
-  summarize(mean_ride_length = mean(ride_length), 
-            median_ride_length = median(ride_length))
-
-# Plot a bar chart of average ride length grouped by user type and month
-ggplot(ride_length_user_month, aes(x = month, y = mean_ride_length, group = member_casual)) + 
+# Plot a line chart of average ride length grouped by user type and month
+ggplot(stats_user_month, aes(x = month, y = mean_ride_length, group = member_casual)) + 
   geom_line(aes(color = member_casual), size = 1) + 
   geom_point(aes(color = member_casual), size = 2) + 
-  expand_limits(y = c(0, 30)) + 
   geom_text(
     aes(label = round(mean_ride_length, 2)), 
     nudge_y = 1.5, 
     check_overlap = TRUE,
-    size = 2.5
+    size = 2
   ) + 
-  labs(
-    x = "Month", 
-    y = "Average Ride Length", 
-    title = "Average Ride Length in Minute by Month", 
-    subtitle = "Data from January 2022 to December 2022", 
-    caption = "Source: Divvy dataset"
-  ) + 
-  theme(
-    axis.title.x = element_text(size = 8), 
-    axis.title.y = element_text(size = 8), 
-    axis.text.x = element_text(size = 6), 
-    axis.text.y = element_text(size = 6), 
-    plot.title = element_text(size = 10, face = "bold"), 
-    plot.subtitle = element_text(size = 8), 
-    plot.caption = element_text(size = 6, face = "italic", hjust = 0), 
-    legend.position = "none"
-  ) + 
-  scale_fill_brewer(palette = "Pastel1")
+  # Add text annotations
+  annotation_5 +
+  # Format the x-axis and the y-axis 
+  expand_limits(y = c(0, 30)) + 
+  # Add a title, legend and color theme
+  label_5 + labs(color = "User Type") + 
+  plot_theme + legend_theme + theme(legend.position = c(0.9, 0.85)) + 
+  scale_color_brewer(palette = "YlGnBu")
 ```
 
-```{r ride-count-user-month}
-# Group the data by 'member_casual' and 'month' columns, counting the number of rides for each group
-ride_count_user_month <- trip_data_v2 %>% 
-  group_by(member_casual, month) %>% 
-  summarize(ride_count = n())
+ 
+
+```{r plot-line-count-user-month}
+# Define labels for the plot
+label_6 <- labs(
+  x = "Month", 
+  y = "Number of rides", 
+  title = "Cyclistic bike usage peaks at spring and summer", 
+  subtitle = "Total number of rides for casual riders and annual members by month, 2022", 
+  caption = "Source: Cyclistic (Divvy) dataset with 5,541,268 ride records"
+  )
+
+# Define text annotation
+annotation_6 <- annotate(
+  "rect", 
+  xmin = 3, xmax = 8, 
+  ymin = 0, ymax = 500000,
+  fill = "darkgray", 
+  alpha = 0.15
+)
 
 # Plot a line chart of ride count grouped by user type and day of week
-ggplot(ride_count_user_month, aes(x = month, y = ride_count, group = member_casual)) + 
+ggplot(stats_user_month, aes(x = month, y = ride_count, group = member_casual)) + 
   geom_line(aes(color = member_casual), size = 1) + 
   geom_point(aes(color = member_casual), size = 2) + 
-  expand_limits(y = c(0, 450000)) + 
   scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) + 
   geom_text(
     aes(label = prettyNum(ride_count, big.mark = ",")), 
     nudge_y = 15000, 
     check_overlap = TRUE,
-    size = 2
+    size = 1.75
   ) + 
-  labs(
-    x = "Month", 
-    y = "Number of Rides", 
-    title = "Number of Rides by Month", 
-    subtitle = "Data from January 2022 to December 2022", 
-    caption = "Source: Divvy dataset"
-  ) + 
-  theme(
-    axis.title.x = element_text(size = 8), 
-    axis.title.y = element_text(size = 8), 
-    axis.text.x = element_text(size = 6), 
-    axis.text.y = element_text(size = 6), 
-    plot.title = element_text(size = 10, face = "bold"), 
-    plot.subtitle = element_text(size = 8), 
-    plot.caption = element_text(size = 6, face = "italic", hjust = 0), 
-    legend.position = "none"
-  ) + 
-  scale_fill_brewer(palette = "Pastel1")
+  # Add text annotations
+  annotation_6 +
+  # Format the x-axis and the y-axis 
+  expand_limits(y = c(0, 500000)) + 
+  # Add a title, legend and color theme
+  label_6 + labs(color = "User Type") + 
+  plot_theme + legend_theme + theme(legend.position = c(0.9, 0.85)) + 
+  scale_color_brewer(palette = "YlGnBu")
 ```
 
-<!--
+ 
+
+<!-- \newpage -->
+
+<!-- ## Day of Week -->
+
+<!-- ```{r define-user-day-variables} -->
+<!-- # Group the data by 'member_casual' and 'day_of_week' columns, calculating stats for each group -->
+<!-- stats_user_day <- trip_data_v2 %>%  -->
+<!--   group_by(member_casual) %>%  -->
+<!--   summarize( -->
+<!--     mean_ride_length = mean(ride_length),  -->
+<!--     median_ride_length = median(ride_length),  -->
+<!--     mode_ride_length = find_mode(ride_length),  -->
+<!--     min_ride_length = min(ride_length),  -->
+<!--     max_ride_length = max(ride_length),  -->
+<!--     sd_ride_length = sd(ride_length),  -->
+<!--     ride_count = n(),  -->
+<!--     .groups = "drop" -->
+<!--   ) -->
+<!-- ``` -->
+
+<!-- ```{r ride-length-user-day} -->
+<!-- # Plot a bar chart of average ride length grouped by user type and day of week -->
+<!-- ggplot(stats_user_day, aes(x = day_of_week, y = mean_ride_length, fill = member_casual)) +  -->
+<!--   geom_bar(stat = "identity", position = "dodge", color = "black") +  -->
+<!--   expand_limits(y = c(0, 30)) +  -->
+<!--   geom_text( -->
+<!--     aes(label = round(mean_ride_length, 2)),  -->
+<!--     position = position_dodge(width = 0.9),  -->
+<!--     vjust = 2,  -->
+<!--     size = 2.5 -->
+<!--   ) +  -->
+<!--   labs( -->
+<!--     x = "Day of Week",  -->
+<!--     y = "Average Ride Length",  -->
+<!--     title = "Average Ride Length in Minute by Day of Week",  -->
+<!--     subtitle = "Data from January 2022 to December 2022",  -->
+<!--     caption = "Source: Divvy dataset" -->
+<!--   ) +  -->
+<!--   theme( -->
+<!--     axis.title.x = element_text(size = 8),  -->
+<!--     axis.title.y = element_text(size = 8),  -->
+<!--     axis.text.x = element_text(size = 6),  -->
+<!--     axis.text.y = element_text(size = 6),  -->
+<!--     plot.title = element_text(size = 10, face = "bold"),  -->
+<!--     plot.subtitle = element_text(size = 8),  -->
+<!--     plot.caption = element_text(size = 6, face = "italic", hjust = 0),  -->
+<!--     legend.position = "none" -->
+<!--   ) +  -->
+<!--   scale_fill_brewer(palette = "Pastel1") -->
+<!-- ``` -->
+
+<!-- ```{r ride-count-user-day} -->
+<!-- # Plot a bar chart of ride count grouped by user type and day of week -->
+<!-- ggplot(stats_user_day, aes(x = day_of_week, y = ride_count, fill = member_casual)) +  -->
+<!--   geom_bar(stat = "identity", position = "dodge", color = "black") +  -->
+<!--   expand_limits(y = c(0, 450000)) +  -->
+<!--   scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) +  -->
+<!--   geom_text( -->
+<!--     aes(label = prettyNum(ride_count, big.mark = ",")),  -->
+<!--     position = position_dodge(width = 0.9),  -->
+<!--     vjust = 2,  -->
+<!--     size = 2 -->
+<!--   ) +  -->
+<!--   labs( -->
+<!--     x = "Day of Week",  -->
+<!--     y = "Number of Rides",  -->
+<!--     title = "Number of Rides by Day of Week",  -->
+<!--     subtitle = "Data from January 2022 to December 2022",  -->
+<!--     caption = "Source: Divvy dataset" -->
+<!--   ) +  -->
+<!--   theme( -->
+<!--     axis.title.x = element_text(size = 8),  -->
+<!--     axis.title.y = element_text(size = 8),  -->
+<!--     axis.text.x = element_text(size = 6),  -->
+<!--     axis.text.y = element_text(size = 6),  -->
+<!--     plot.title = element_text(size = 10, face = "bold"),  -->
+<!--     plot.subtitle = element_text(size = 8),  -->
+<!--     plot.caption = element_text(size = 6, face = "italic", hjust = 0),  -->
+<!--     legend.position = "none" -->
+<!--   ) +  -->
+<!--   scale_fill_brewer(palette = "Pastel1") -->
+<!-- ``` -->
 
 ## Key Findings
 
-Based on data analysis, : 
+Based on data analysis, :
 
-- 
-- 
-- 
-- 
-- 
-
--->
+-
+-
+-
+-
+-
 
 # Conclusion and Recommendations
 

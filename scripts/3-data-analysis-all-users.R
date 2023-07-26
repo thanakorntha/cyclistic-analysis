@@ -28,17 +28,17 @@ label_1 <- labs(
   caption = "Source: Cyclistic (Divvy) dataset with 5,541,268 ride records"
 )
 
-# Define a text annotation for average line
-annotation_1 <- annotate(
+# Define text annotation for average line
+annotation_01 <- annotate(
   geom = "text", 
-  label = "AVG = 16.61 min.", 
-  x = mean(trip_data_v2$ride_length), 
+  label = c("AVERAGE", "MEDIAN", "MODE"), 
+  x = c(mean(trip_data_v2$ride_length), median(trip_data_v2$ride_length), find_mode(trip_data_v2$ride_length)), 
   y = Inf, 
   vjust = -0.75, 
   hjust = -0.1, 
   angle = "270", 
   size = 2, 
-  color = "#c76a27"
+  color = c("red", "blue", "darkgreen")
 )
 
 # Create a histogram of ride length

@@ -59,22 +59,25 @@ theme_nun <- function(base_size = 12) {
   theme_bw(base_size = base_size) %+replace%
     theme(
       # Figure
-      plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,5,0), hjust = 0),
+      plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,10,0), hjust = 0),
       plot.subtitle = element_text(size = rel(0.85), margin = margin(0,0,5,0), hjust = 0),
-      plot.caption = element_text(size = rel(0.70), face = "italic", margin = margin(0,0,5,0), hjust = 0),
+      plot.caption = element_text(size = rel(0.70), face = "italic", margin = margin(5,0,5,0), hjust = 0),
       # Graph area
       panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank(),
       panel.border = element_blank(),
       # Axis
-      axis.title = element_text(size = rel(0.85), face = "bold"),
-      axis.text = element_text(size = rel(0.70), face = "bold"),
-      axis.line = element_line(color = "black", arrow = arrow(length = unit(0.3, "lines"), type = "closed")),
+      axis.title = element_text(size = rel(0.70), face = "bold"),
+      axis.text = element_text(size = rel(0.55), face = "bold"),
+      axis.line = element_line(color = "black", arrow = arrow(length = unit(0.30, "lines"), type = "closed")),
       # Legend
-      legend.title = element_text(size = rel(0.85), face = "bold"),
+      legend.title = element_blank(), # element_text(size = rel(0.85), face = "bold"),
       legend.text = element_text(size = rel(0.70), face = "bold"),
+      legend.position = "top",
       legend.key = element_rect(fill = "transparent", colour = NA),
       legend.key.size = unit(1, "lines"),
       legend.background = element_rect(fill = "transparent", colour = NA),
+      legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = 'cm'),
       # The labels (faceting)
       strip.background = element_rect(fill = "#17252D", color = "#17252D"),
       strip.text = element_text(size = rel(0.85), face = "bold", color = "white", margin = margin(5,0,5,0))
@@ -224,7 +227,8 @@ trip_data_v2$ride_length <- as.double(
   difftime(trip_data_v2$ended_at, 
            trip_data_v2$started_at, 
            units = "mins"))
-trip_data_v2$day_of_week <- weekdays(trip_data_v2$started_at)
+# trip_data_v2$day_of_week <- weekdays(trip_data_v2$started_at)
+trip_data_v2$day_of_week <- wday(trip_data_v2$started_at, label = TRUE)
 trip_data_v2$month <- format(trip_data_v2$started_at, "%b")
 ```
 
@@ -251,13 +255,13 @@ trip_data_v2 <- trip_data_v2[!(error_rows | timeout_rows), ]
 
 This completes the data cleaning and manipulation process, and the data is now ready for analysis.
 
-# Data Analysis
+# Data Analysis and Key Findings
 
 ```{r order-date}
 # Convert the 'day_of_week' column to a factor variable with a specified level order
 trip_data_v2$day_of_week <- ordered(
   trip_data_v2$day_of_week, 
-  levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+  levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 )
 
 # Order the levels of the month from January to December
@@ -335,7 +339,7 @@ plot_01 +
 
 \newpage
 
-## Casual Riders vs Annual Members
+## Bike Usage between Casual Riders and Annual Members
 
 ```{r define-user-variables}
 # Group the data by the 'member_casual' column, calculating stats for each group
@@ -351,7 +355,7 @@ stats_user <- trip_data_v2 %>%
   )
 ```
 
-Based on the figures presented below, the median time duration for casual riders is 13.27 minutes, which is higher compared to the median time duration of 9.03 minutes for annual members. However, the data also shows that casual riders took a total of 2,269,498 rides, while annual members took 3,271,770 rides. 
+Casual riders appear to ride for longer periods of time than annual members. The median time duration for casual riders is 13.27 minutes, which is higher compared to the median time duration of 9.03 minutes for annual members. However, the data also shows that casual riders took a total of 2,269,498 rides, while annual members took 3,271,770 rides. From these findings, it can be concluded that annual members tend to be more regular users of the bike-sharing service. On the other hand, casual riders are more likely to take longer trips when they do use the service, even though they use it less frequently.
 
  
 
@@ -360,18 +364,24 @@ Based on the figures presented below, the median time duration for casual riders
 plot_02 <- ggplot(stats_user, aes(x = member_casual, y = median_ride_length, fill = member_casual)) +
   geom_bar(stat = "identity", color = "black") +
   theme(legend.position = "none") +
-  scale_fill_brewer(palette = "YlGnBu") +
   labs(
     x = "User Type",
-    y = "Time Duration (in Minutes)",
-    title = "Median Time Duration between Casual and Member",
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
+    y = "Time Duration (in minutes)",
+    title = "Median Time Duration on Cyclistic Bikes"
   )
 
 # Add annotation
 plot_02 +
   geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.9), vjust = 2) + 
-  annotate("pointrange", x = 2, y = 11.15, ymin = 9.03, ymax = 13.27, color = "red") +
+  annotate(
+    "segment",
+    x = 2,
+    xend = 2,
+    y = (13.27 / 1.03),
+    yend = (9.03 * 1.03),
+    arrow = arrow(ends = "both", angle = 90, length = unit(0.25,"cm")),
+    color = "red"
+  ) +
   annotate("text", label = "± 4.24 min.", x = 2, y = 11.15, hjust = -0.2, color = "red")
 ```
 
@@ -383,22 +393,153 @@ plot_03 <- ggplot(stats_user, aes(x = member_casual, y = ride_count, fill = memb
   geom_bar(stat = "identity", color = "black") +
   scale_y_continuous(labels = unit_format(unit = "M", scale = 1e-6)) +
   theme(legend.position = "none") +
-  scale_fill_brewer(palette = "YlGnBu") +
   labs(
     x = "User Type",
     y = "Number of Rides",
-    title = "Total Number of Rides between Casual and Member",
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
+    title = "Total Number of Cyclistic Rides"
   )
 
 # Add annotation
 plot_03 +
   geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), position = position_dodge(width = 0.9), vjust = 2) +
-  annotate("pointrange", x = 1, y = 2770634, ymin = 2269498, ymax = 3271770, colour = "red") +
+  annotate(
+    "segment",
+    x = 1,
+    xend = 1,
+    y = (3271770 / 1.03),
+    yend = (2269498 * 1.03),
+    arrow = arrow(ends = "both", angle = 90, length = unit(0.25,"cm")),
+    color = "red"
+  ) +
   annotate("text", label = "± 1,002,272", x = 1, y = 2770634, hjust = -0.2, color = "red")
 ```
 
-From these findings, it can be concluded that annual members tend to be more regular users of the bike-sharing service. On the other hand, casual riders are more likely to take longer trips when they do use the service, even though they use it less frequently.
+## Day of Week
+
+```{r define-user-day-variables}
+# Group the data by 'member_casual' and 'day_of_week' columns, calculating stats for each group
+stats_user_day <- trip_data_v2 %>% 
+  group_by(member_casual, day_of_week) %>% 
+  summarize(
+    mean_ride_length = mean(ride_length), 
+    median_ride_length = median(ride_length), 
+    min_ride_length = min(ride_length), 
+    max_ride_length = max(ride_length), 
+    sd_ride_length = sd(ride_length), 
+    ride_count = n(), 
+    .groups = "drop"
+  )
+```
+
+Casual riders tend to take longer bike rides than annual members, especially on the weekend. On average, casual riders spend about 15 minutes longer on bikes than annual members on the weekend, but annual members take time cycling at a consistent level throughout the day. In contrast, annual members use Cyclistic bikes more frequently on the weekday and their usage gradually decreases as the weekend approaches. Casual riders, on the other hand, tend to take more bike rides on weekends. This suggests that the longer ride times of casual riders are highly correlated with their increased usage during the weekends.
+
+ 
+
+```{r ride-length-user-day}
+# Create a bar chart
+plot_04 <- ggplot(stats_user_day, aes(x = day_of_week, y = median_ride_length, fill = member_casual)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(
+    x = "Day of Week",
+    y = "Time Duration (in minutes)", 
+    title = "Median Time Duration on Cyclistic Bikes by Day"
+  )
+
+# Add annotation
+plot_04 +
+  geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.90), hjust = -0.10, angle = 270) +
+  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
+  annotate(
+    "text", 
+    label = "Median \n 10.52", 
+    x = 7, 
+    y = median(trip_data_v2$ride_length), 
+    vjust = -0.30, 
+    hjust = -0.20, 
+    size = 2.50, 
+    color = "darkgray")
+```
+
+ 
+
+```{r ride-count-user-day}
+# Create a bar chart
+plot_05 <- ggplot(stats_user_day, aes(x = day_of_week, y = ride_count, fill = member_casual)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) + 
+  labs(
+    x = "Day of Week",
+    y = "Number of Rides", 
+    title = "Total Number of Cyclistic Rides by Day"
+  )
+
+# Add annotation
+plot_05 +
+  geom_text(aes(label = prettyNum(ride_count, big.mark = ",")),position = position_dodge(width = 0.90), hjust = -0.10, angle = 270)
+```
+
+## Hour
+
+```{r define-user-hour-variables}
+# Group the data by 'member_casual' and 'day_of_week' columns, calculating stats for each group
+stats_user_hour <- trip_data_v2 %>% 
+  mutate(hour = as.numeric(format(started_at, "%H"))) %>% 
+  group_by(member_casual, hour) %>% 
+  summarize(
+    mean_ride_length = mean(ride_length), 
+    median_ride_length = median(ride_length), 
+    min_ride_length = min(ride_length),
+    max_ride_length = max(ride_length), 
+    sd_ride_length = sd(ride_length), 
+    ride_count = n(), 
+    .groups = "drop"
+  )
+```
+
+Casual riders are most likely to take longer bike rides after the midday hours, from 1 PM to 3 PM. After that, their usage decreases slightly. Annual members, on the other hand, take time on bikes at a consistent level throughout the day, with no significant spikes or dips in usage. By the number of rides, annual members use Cyclistic bikes at a consistent rate throughout the day, with three peaks in usage: at 8 AM, at 12 PM, and at 5 PM, whereas casual riders start using Cyclistic bikes at 5 AM and gradually increase their usage until they peak at 5 PM.
+
+ 
+
+```{r plot-line-duration-user-hour}
+# Create a line chart
+plot_06 <- ggplot(stats_user_hour, aes(x = hour, y = median_ride_length, group = member_casual)) +
+  geom_line(aes(color = member_casual), size = 1) +
+  geom_point(aes(color = member_casual), size = 2) +
+  xlim(0, 23) +
+  expand_limits(y = c(0, 20)) +
+  labs(
+    x = "Hour",
+    y = "Time Duration (in minutes)",
+    title = "Median Time Duration on Cyclistic Bikes by Hour"
+  )
+# Add annotation
+plot_06 +
+  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
+  annotate("text", label = "Median = 10.52", x = 23, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "darkgray")
+  # annotate(geom = "text", label = c("8 AM", "12 PM", "5 PM"), x = c(8, 12, 17), y = Inf, vjust = 1.50, hjust = -0.20, size = 2.50, color = "darkgray")
+```
+
+ 
+
+```{r plot-line-count-user-hour}
+# Create a line chart
+plot_07 <- ggplot(stats_user_hour, aes(x = hour, y = ride_count, group = member_casual)) +
+  geom_line(aes(color = member_casual), size = 1) +
+  geom_point(aes(color = member_casual), size = 2) +
+  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) +
+  xlim(0, 23) +
+  expand_limits(y = c(0, 400000)) +
+  labs(
+    x = "Hour",
+    y = "Number of Rides", 
+    title = "Total Number of Cyclistic Rides by Hour"
+  )
+
+# Add annotation
+plot_07 +
+  geom_vline(xintercept = c(8, 12, 17), linetype = "dashed", size = 0.50, color = "darkgray") +
+  annotate(geom = "text", label = c("8 AM", "12 PM", "5 PM"), x = c(8, 12, 17), y = Inf, vjust = 1.50, hjust = -0.20, size = 2.50, color = "darkgray")
+```
 
 ## Month
 
@@ -423,194 +564,42 @@ Officia commodo cillum ea quis dolor aliquip cillum pariatur excepteur quis inci
 
 ```{r plot-line-duration-user-month}
 # Create a line chart
-plot_04 <- ggplot(stats_user_month, aes(x = month, y = median_ride_length, group = member_casual)) +
+plot_08 <- ggplot(stats_user_month, aes(x = month, y = median_ride_length, group = member_casual)) +
   geom_line(aes(color = member_casual), size = 1) +
   geom_point(aes(color = member_casual), size = 2) +
-  expand_limits(y = c(0, 16)) +
-  labs(color = "User Type") +
-  scale_color_brewer(palette = "YlGnBu") +
+  expand_limits(y = c(0, 20)) +
   labs(
     x = "Month", 
-    y = "Time Duration (in Minutes)", 
-    title = "Median Time Duration each Month between Casual and Member", 
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
+    y = "Time Duration (in minutes)", 
+    title = "Median Time Duration on Cyclistic Bikes by Month"
   )
 
 # Add annotation
-plot_04 +
-  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "red", linetype = "dashed", size = 0.50) +
-  annotate("text", label = "Median = 10.52", x = 12, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "red")
-  # geom_text(aes(label = round(median_ride_length, 2)), nudge_y = 0.50, check_overlap = TRUE,size = 2)
-  # annotate("rect", xmin = 3, xmax = 5, ymin = 5, ymax = 20, alpha = 0.15, fill = "darkgray")
+plot_08 +
+  # geom_text(aes(label = round(median_ride_length, 2)), nudge_y = 0.50, check_overlap = TRUE,size = 2) +
+  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
+  annotate("text", label = "Median = 10.52", x = 12, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "darkgray")
 ```
 
  
 
 ```{r plot-line-count-user-month}
 # Create line chart
-plot_05 <- ggplot(stats_user_month, aes(x = month, y = ride_count, group = member_casual)) +
+plot_09 <- ggplot(stats_user_month, aes(x = month, y = ride_count, group = member_casual)) +
   geom_line(aes(color = member_casual), size = 1) +
   geom_point(aes(color = member_casual), size = 2) +
   scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) +
-  expand_limits(y = c(0, 420000)) +
-  labs(color = "User Type") +
-  scale_color_brewer(palette = "YlGnBu") +
+  expand_limits(y = c(0, 500000)) +
   labs(
     x = "Month", 
     y = "Number of Rides", 
-    title = "Total Number of Rides each Month between Casual and Member",
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
+    title = "Total Number of Cyclistic Rides by Month",
   )
 
 # Add annotation
-plot_05
-  # geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), nudge_y = 12500, check_overlap = TRUE,size = 2)
-  # annotate("rect", xmin = 6, xmax = 8, ymin = 0, ymax = 500000, alpha = 0.15, fill = "darkgray")
-```
-
-## Day of Week
-
-```{r define-user-day-variables}
-# Group the data by 'member_casual' and 'day_of_week' columns, calculating stats for each group
-stats_user_day <- trip_data_v2 %>% 
-  group_by(member_casual, day_of_week) %>% 
-  summarize(
-    mean_ride_length = mean(ride_length), 
-    median_ride_length = median(ride_length), 
-    min_ride_length = min(ride_length), 
-    max_ride_length = max(ride_length), 
-    sd_ride_length = sd(ride_length), 
-    ride_count = n(), 
-    .groups = "drop"
-  )
-```
-
-Officia commodo cillum ea quis dolor aliquip cillum pariatur excepteur quis incididunt. Cupidatat nisi pariatur sunt velit et voluptate ex labore ullamco ex do eu. Irure Lorem amet et amet. Sit nisi et elit voluptate ipsum est reprehenderit mollit culpa commodo. Amet tempor proident excepteur labore incididunt voluptate esse cillum adipisicing non quis aliqua mollit labore.
-
- 
-
-```{r ride-length-user-day}
-# Create a bar chart
-plot_06 <- ggplot(stats_user_day, aes(x = day_of_week, y = median_ride_length, fill = member_casual)) +
-  geom_bar(stat = "identity", position = "dodge", color = "black") +
-  labs(fill = "User Type") +
-  scale_fill_brewer(palette = "YlGnBu") +
-  labs(
-    x = "Day of Week",
-    y = "Time Duration (in Minutes)", 
-    title = "Median Time Duration each Day between Casual and Member", 
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
-  )
-
-# Add annotation
-plot_06 +
-  geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.90), hjust = -0.10, angle = 270)
-```
-
- 
-
-```{r ride-count-user-day}
-# Create a bar chart
-plot_07 <- ggplot(stats_user_day, aes(x = day_of_week, y = ride_count, fill = member_casual)) +
-  geom_bar(stat = "identity", position = "dodge", color = "black") +
-  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) + 
-  labs(fill = "User Type") +
-  scale_fill_brewer(palette = "YlGnBu") +
-  labs(
-    x = "Day of Week",
-    y = "Number of Rides", 
-    title = "Total Number of Rides each Day between Casual and Member", 
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
-  )
-
-# Add annotation
-plot_07 +
-  geom_text(aes(label = prettyNum(ride_count, big.mark = ",")),position = position_dodge(width = 0.90), hjust = -0.10, angle = 270)
-```
-
-## Hour
-
-```{r define-user-hour-variables}
-# Group the data by 'member_casual' and 'day_of_week' columns, calculating stats for each group
-stats_user_hour <- trip_data_v2 %>% 
-  mutate(hour = as.numeric(format(started_at, "%H"))) %>% 
-  group_by(member_casual, hour) %>% 
-  summarize(
-    mean_ride_length = mean(ride_length), 
-    median_ride_length = median(ride_length), 
-    min_ride_length = min(ride_length),
-    max_ride_length = max(ride_length), 
-    sd_ride_length = sd(ride_length), 
-    ride_count = n(), 
-    .groups = "drop"
-  )
-```
-
-Officia commodo cillum ea quis dolor aliquip cillum pariatur excepteur quis incididunt. Cupidatat nisi pariatur sunt velit et voluptate ex labore ullamco ex do eu. Irure Lorem amet et amet. Sit nisi et elit voluptate ipsum est reprehenderit mollit culpa commodo. Amet tempor proident excepteur labore incididunt voluptate esse cillum adipisicing non quis aliqua mollit labore.
-
- 
-
-```{r plot-line-duration-user-hour}
-# Create a line chart
-plot_08 <- ggplot(stats_user_hour, aes(x = hour, y = median_ride_length, group = member_casual)) +
-  geom_line(aes(color = member_casual), size = 1) +
-  geom_point(aes(color = member_casual), size = 2) +
-  labs(color = "User Type") +
-  scale_color_brewer(palette = "YlGnBu") +
-  labs(
-    x = "Hour",
-    y = "Time Duration (in Minutes)",
-    title = "Median Time Duration each Hour between Casual and Member",
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
-  )
-
-# Add annotation
-plot_08 +
-  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "red", linetype = "dashed", size = 0.50) +
-  annotate("text", label = "Median = 10.52", x = 24, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "red")
-  # geom_vline(xintercept = c(8, 17), linetype = "dashed", size = 0.50, color = "#c76a27") +
-  # annotate(
-  #   geom = "text",
-  #   label = c("8 AM", "5 PM"),
-  #   x = c(8, 17),
-  #   y = Inf,
-  #   vjust = 1.50,
-  #   hjust = -0.20,
-  #   size = 2.50,
-  #   color = "#c76a27"
-  # )
-```
-
- 
-
-```{r plot-line-count-user-hour}
-# Create a line chart
-plot_09 <- ggplot(stats_user_hour, aes(x = hour, y = ride_count, group = member_casual)) +
-  geom_line(aes(color = member_casual), size = 1) +
-  geom_point(aes(color = member_casual), size = 2) +
-  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) +
-  labs(color = "User Type") +
-  scale_color_brewer(palette = "YlGnBu") +
-  labs(
-    x = "Hour",
-    y = "Number of Rides", 
-    title = "Total Number of Rides each Hour between Casual and Member", 
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
-  )
-
-# Add annotation
-plot_09 +
-  geom_vline(xintercept = c(8, 17), linetype = "dashed", size = 0.50, color = "#c76a27") +
-  annotate(
-    geom = "text",
-    label = c("8 AM", "5 PM"),
-    x = c(8, 17),
-    y = Inf,
-    vjust = 1.50,
-    hjust = -0.20,
-    size = 2.50,
-    color = "#c76a27"
-  )
+plot_09
+  # geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), nudge_y = 12500, check_overlap = TRUE,size = 2) +
+  # annotate("segment", x = 7, y = 300000, xend = 7, yend = 350000, arrow = arrow(type = "closed", length = unit(0.02, "npc")))
 ```
 
 ## Key Findings

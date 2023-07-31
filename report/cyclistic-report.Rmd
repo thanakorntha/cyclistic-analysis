@@ -255,7 +255,7 @@ trip_data_v2 <- trip_data_v2[!(error_rows | timeout_rows), ]
 
 This completes the data cleaning and manipulation process, and the data is now ready for analysis.
 
-# Data Analysis and Key Findings
+# Data Analysis
 
 ```{r order-date}
 # Convert the 'day_of_week' column to a factor variable with a specified level order
@@ -339,7 +339,7 @@ plot_01 +
 
 \newpage
 
-## Bike Usage between Casual Riders and Annual Members
+## The Difference of Bike Usage between Casual Riders and Annual Members
 
 ```{r define-user-variables}
 # Group the data by the 'member_casual' column, calculating stats for each group
@@ -372,13 +372,13 @@ plot_02 <- ggplot(stats_user, aes(x = member_casual, y = median_ride_length, fil
 
 # Add annotation
 plot_02 +
+  # Text label for bar chart
   geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.9), vjust = 2) + 
+  # Annotation for value difference
   annotate(
     "segment",
-    x = 2,
-    xend = 2,
-    y = (13.27 / 1.03),
-    yend = (9.03 * 1.03),
+    x = 2, xend = 2,
+    y = (13.27 / 1.03), yend = (9.03 * 1.03),
     arrow = arrow(ends = "both", angle = 90, length = unit(0.25,"cm")),
     color = "red"
   ) +
@@ -401,13 +401,13 @@ plot_03 <- ggplot(stats_user, aes(x = member_casual, y = ride_count, fill = memb
 
 # Add annotation
 plot_03 +
+  # Text label for bar chart
   geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), position = position_dodge(width = 0.9), vjust = 2) +
+  # Annotation for value difference
   annotate(
     "segment",
-    x = 1,
-    xend = 1,
-    y = (3271770 / 1.03),
-    yend = (2269498 * 1.03),
+    x = 1, xend = 1,
+    y = (3271770 / 1.03), yend = (2269498 * 1.03),
     arrow = arrow(ends = "both", angle = 90, length = unit(0.25,"cm")),
     color = "red"
   ) +
@@ -441,23 +441,25 @@ plot_04 <- ggplot(stats_user_day, aes(x = day_of_week, y = median_ride_length, f
   geom_bar(stat = "identity", position = "dodge", color = "black") +
   labs(
     x = "Day of Week",
-    y = "Time Duration (in minutes)", 
+    y = "Time Duration (in minutes)",
     title = "Median Time Duration on Cyclistic Bikes by Day"
   )
 
 # Add annotation
 plot_04 +
+  # Text label for bar chart
   geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.90), hjust = -0.10, angle = 270) +
   geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
   annotate(
-    "text", 
-    label = "Median \n 10.52", 
-    x = 7, 
-    y = median(trip_data_v2$ride_length), 
-    vjust = -0.30, 
-    hjust = -0.20, 
-    size = 2.50, 
-    color = "darkgray")
+    "text",
+    label = "Median \n 10.52",
+    x = 7,
+    y = median(trip_data_v2$ride_length),
+    vjust = -0.30,
+    hjust = -0.20,
+    size = 2.50,
+    color = "darkgray"
+  )
 ```
 
  
@@ -475,6 +477,7 @@ plot_05 <- ggplot(stats_user_day, aes(x = day_of_week, y = ride_count, fill = me
 
 # Add annotation
 plot_05 +
+  # Text label for bar chart
   geom_text(aes(label = prettyNum(ride_count, big.mark = ",")),position = position_dodge(width = 0.90), hjust = -0.10, angle = 270)
 ```
 
@@ -537,8 +540,22 @@ plot_07 <- ggplot(stats_user_hour, aes(x = hour, y = ride_count, group = member_
 
 # Add annotation
 plot_07 +
-  geom_vline(xintercept = c(8, 12, 17), linetype = "dashed", size = 0.50, color = "darkgray") +
-  annotate(geom = "text", label = c("8 AM", "12 PM", "5 PM"), x = c(8, 12, 17), y = Inf, vjust = 1.50, hjust = -0.20, size = 2.50, color = "darkgray")
+  # geom_vline(xintercept = c(8, 12, 17), linetype = "dashed", size = 0.50, color = "darkgray") +
+  # annotate(geom = "text", label = c("8 AM", "12 PM", "5 PM"), x = c(8, 12, 17), y = Inf, vjust = 1.50, hjust = -0.20, size = 2.50, color = "darkgray")
+  # Annotation for casual's peak
+  annotate("segment", x = 17, xend = 17, y = 120000, yend = 190000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
+  annotate("text", x = 17, y = 100000, size = 2.50, color = "gray40", label = "Casual riders' bike usage \n also peaks at 5 PM") +
+  # Annotation for member's peak
+  annotate("segment", x = 5, xend = 7.75, y = 375000, yend = 220000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
+  annotate("segment", x = 5, xend = 11.50, y = 375000, yend = 200000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
+  annotate("segment", x = 5, xend = 16.50, y = 375000, yend = 343000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
+  annotate("text", x = 5, y = 400000, size = 2.50, color = "gray40", label = "Annual members' bike usage \n peaks at 8 AM, 12 PM and 5 PM")
+  # # Annotation for overall trend
+  # annotate("segment", x = 5, xend = 17, y = 0, yend = 0, arrow = arrow(ends = "both", angle = 90, length = unit(0.10,"cm")), color = "darkgray") #+
+  # annotate(
+  #   "text", x = 6.50, y = 30000, size = 2.50, color = "gray50", 
+  #   label = "The number of users gradually increases from February to a peak in July and August, \n followed by a decrease in the remaining months of the year"
+  # )
 ```
 
 ## Month
@@ -558,7 +575,7 @@ stats_user_month <- trip_data_v2 %>%
   )
 ```
 
-Officia commodo cillum ea quis dolor aliquip cillum pariatur excepteur quis incididunt. Cupidatat nisi pariatur sunt velit et voluptate ex labore ullamco ex do eu. Irure Lorem amet et amet. Sit nisi et elit voluptate ipsum est reprehenderit mollit culpa commodo. Amet tempor proident excepteur labore incididunt voluptate esse cillum adipisicing non quis aliqua mollit labore.
+The findings show that the median ride time for both casual and member riders is relatively consistent throughout the year, with the exception of three months: March, April and May. However, casual riders tend to spend more time on bikes than annual members. They also shows that the number of Cyclistic rides increases from month to month, with a peak in July for casual riders and August for annual members. After that, the number of rides suddenly declines. This can be concluded that 
 
  
 
@@ -567,6 +584,7 @@ Officia commodo cillum ea quis dolor aliquip cillum pariatur excepteur quis inci
 plot_08 <- ggplot(stats_user_month, aes(x = month, y = median_ride_length, group = member_casual)) +
   geom_line(aes(color = member_casual), size = 1) +
   geom_point(aes(color = member_casual), size = 2) +
+  # geom_line(aes(color = member_casual), stat = "smooth", linetype = "longdash", alpha = 0.20) +
   expand_limits(y = c(0, 20)) +
   labs(
     x = "Month", 
@@ -576,9 +594,12 @@ plot_08 <- ggplot(stats_user_month, aes(x = month, y = median_ride_length, group
 
 # Add annotation
 plot_08 +
-  # geom_text(aes(label = round(median_ride_length, 2)), nudge_y = 0.50, check_overlap = TRUE,size = 2) +
-  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
-  annotate("text", label = "Median = 10.52", x = 12, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "darkgray")
+  # Median line
+  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkorange", linetype = "dashed", size = 0.50) +
+  annotate("text", label = "Median = 10.52", x = 12, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "darkorange") +
+  # Annotation for casual's trend
+  annotate("segment", x = 3, xend = 6, y = 17, yend = 17, arrow = arrow(ends = "both", angle = 90, length = unit(0.15,"cm")), color = "darkgray") +
+  annotate("text", x = 4.50, y = 18.25, size = 2.50, color = "gray40", label = "Casuals took a longer time \n on bikes from March to May")
 ```
 
  
@@ -597,20 +618,20 @@ plot_09 <- ggplot(stats_user_month, aes(x = month, y = ride_count, group = membe
   )
 
 # Add annotation
-plot_09
-  # geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), nudge_y = 12500, check_overlap = TRUE,size = 2) +
-  # annotate("segment", x = 7, y = 300000, xend = 7, yend = 350000, arrow = arrow(type = "closed", length = unit(0.02, "npc")))
+plot_09 + 
+  # Annotation for casual's trend
+  annotate("segment", x = 7, xend = 7, y = 325000, yend = 370000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
+  annotate("text", x = 7, y = 300000, size = 2.50, color = "gray40", label = "Casual riders' bike usage \n peaks in July") +
+  # Annotation for member's trend
+  annotate("segment", x = 8, xend = 8, y = 475000, yend = 430000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
+  annotate("text", x = 8, y = 500000, size = 2.50, color = "gray40", label = "Annual members' bike usage \n peaks in August") +
+  # Annotation for upward trend
+  annotate("segment", x = 3, xend = 8, y = 60000, yend = 60000, arrow = arrow(ends = "both", angle = 90, length = unit(0.15,"cm")), color = "darkgray") +
+  annotate( # \n Then, a number of users declined afterwards.
+    "text", x = 5.50, y = 25000, size = 2.50, color = "gray40", 
+    label = "Casuals and members grew 51% and 18% per month \n respectively, from March to July and August."
+  )
 ```
-
-## Key Findings
-
-Based on data analysis, :
-
-- 
-- 
-- 
-- 
-- 
 
 # Summary
 
@@ -619,6 +640,14 @@ This section provides concluding thought and recommendations of this
 ## Conclusion
 
 Based on the data collected, it can be concluded that Quis ad elit anim dolor nisi tempor cillum. Occaecat do ex reprehenderit velit ipsum cupidatat officia proident cupidatat do ullamco incididunt. Labore qui labore anim et proident deserunt aliqua. Enim irure aliquip nostrud tempor sit anim ex. Incididunt eu et adipisicing aute minim exercitation aliquip ex dolore deserunt fugiat ullamco quis irure magna. Ut non labore consequat ullamco occaecat exercitation officia cillum culpa fugiat pariatur.
+
+Based on data analysis, :
+
+- 
+- 
+- 
+- 
+- 
 
 ## Recommendations
 

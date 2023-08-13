@@ -1,28 +1,11 @@
-## ----------------------- ##
-#####   LOAD PACKAGES   #####
-## ----------------------- ##
-
-# Install the required packages
-install.packages("tidyverse")
-install.packages("skimr")
-install.packages("janitor")
-install.packages("scales")
-
-# Load the required packages
-library(tidyverse)
-library(skimr)
-library(janitor)
-library(scales)
-
-
 ## ------------------------------------- ##
 #####   IMPORT AND COMBINE THE DATA   #####
 ## ------------------------------------- ##
 
-# Import and combine the data
-trip_data <- list.files(path = "./data/", pattern = "*.csv", full.names = TRUE) %>% 
+# Import and merge the data
+trip_data <- list.files(path = "./data/", pattern = "*-divvy-tripdata.csv", full.names = TRUE) %>%
   lapply(read_csv) %>%
-  bind_rows %>% 
+  bind_rows %>%
   arrange(started_at)
 
 
@@ -30,7 +13,7 @@ trip_data <- list.files(path = "./data/", pattern = "*.csv", full.names = TRUE) 
 #####   SKIM THE DATA   #####
 ## ----------------------- ##
 
-# Preview the data using the head() function
+# Preview the data
 head(trip_data)
 
 # View all column names
@@ -57,7 +40,7 @@ trip_data_v2 <- trip_data %>%
 trip_data_v2$ride_length <- as.double(difftime(trip_data_v2$ended_at, trip_data_v2$started_at, units = "mins"))
 
 # Extract the day of the week from the 'trip_data_v2$started_at' column
-trip_data_v2$day_of_week <- weekdays(trip_data_v2$started_at)
+trip_data_v2$day_of_week <- wday(trip_data_v2$started_at, label = TRUE)
 
 # Extract the month of the year from the 'trip_data_v2$started_at' column
 trip_data_v2$month <- format(trip_data_v2$started_at, "%b")
@@ -67,7 +50,7 @@ trip_data_v2$month <- format(trip_data_v2$started_at, "%b")
 #####   SKIM THE NEW DATA   #####
 ## --------------------------- ##
 
-# Preview the data using the head() function
+# Preview the data
 head(trip_data_v2)
 
 # View all column names
@@ -81,12 +64,17 @@ skim_without_charts(trip_data_v2)
 #####   REMOVE OUTLIERS   #####
 ## ------------------------- ##
 
-# Identify the instances with outlier ride lengths
-error_rows <- trip_data_v2$ride_length < 1 
-timeout_rows <- trip_data_v2$ride_length > 1440
+# Remove the rows with error ride lengths
+trip_data_v2 <- trip_data_v2[!(trip_data_v2$ride_length < 1 | trip_data_v2$ride_length > 1440), ]
 
-# Retain only the rows with positive ride lengths
-trip_data_v2 <- trip_data_v2[!(error_rows | timeout_rows), ]
+# 
+trip_data_v2 %>%
+    group_by(rideable_type) %>%
+    summarise(count = n())
+
+# Remove the rows that contain docked_bike in rideable_type
+trip_data_v2 <- trip_data_v2 %>%
+    filter(!grepl("docked_bike", rideable_type))
 
 # Verify if any rows remain in the data frame
 nrow(trip_data_v2)

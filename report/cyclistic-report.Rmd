@@ -55,32 +55,35 @@ library(scales)
 
 ```{r theme_ggplot2, echo = FALSE}
 # Creating a ggplot2 theme
-theme_nun <- function(base_size = 12) {
+theme_nun <- function(base_size = 14) {
   theme_bw(base_size = base_size) %+replace%
     theme(
       # Figure
-      plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,10,0), hjust = 0),
-      plot.subtitle = element_text(size = rel(0.85), margin = margin(0,0,5,0), hjust = 0),
-      plot.caption = element_text(size = rel(0.70), face = "italic", margin = margin(5,0,5,0), hjust = 0),
+      plot.title = element_text(size = rel(1), face = "bold", margin = margin(0, 0, 10, 0), color = "#343434", hjust = 0),
+      plot.subtitle = element_text(size = rel(0.80), margin = margin(0, 0, 10, 0), color = "#343434",  hjust = 0),
+      plot.caption = element_text(size = rel(0.70), face = "italic", margin = margin(5, 0, 5, 0), color = "#343434",  hjust = 0),
       # Graph area
       panel.grid.minor = element_blank(),
       panel.grid.major.x = element_blank(),
       panel.border = element_blank(),
       # Axis
-      axis.title = element_text(size = rel(0.70), face = "bold"),
-      axis.text = element_text(size = rel(0.55), face = "bold"),
-      axis.line = element_line(color = "black", arrow = arrow(length = unit(0.30, "lines"), type = "closed")),
+      axis.title = element_text(size = rel(0.60), face = "bold", color = "#343434", hjust = 1),
+      axis.text = element_text(size = rel(0.55), color = "#343434"),
+      axis.line.x = element_line(color = "#343434"),
+      axis.ticks.x = element_line(color = "#343434"),
+      axis.line.y = element_blank(),
+      axis.ticks.y = element_blank(),
       # Legend
-      legend.title = element_blank(), # element_text(size = rel(0.85), face = "bold"),
-      legend.text = element_text(size = rel(0.70), face = "bold"),
+      legend.title = element_blank(),
+      legend.text = element_text(size = rel(0.60)),
       legend.position = "top",
       legend.key = element_rect(fill = "transparent", colour = NA),
       legend.key.size = unit(1, "lines"),
       legend.background = element_rect(fill = "transparent", colour = NA),
-      legend.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = 'cm'),
+      legend.margin = margin(0, 0, 0, 0),
       # The labels (faceting)
-      strip.background = element_rect(fill = "#17252D", color = "#17252D"),
-      strip.text = element_text(size = rel(0.85), face = "bold", color = "white", margin = margin(5,0,5,0))
+      strip.background = element_rect(fill = "#343434", color = "#343434"),
+      strip.text = element_text(size = rel(0.80), face = "bold", color = "white", margin = margin(5, 0, 5, 0))
     )
 }
 
@@ -93,7 +96,11 @@ theme_set(theme_nun())
 
 # Intoduction
 
-Cyclistic is a successful American bicycle-sharing program that was established in 2016. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system at any time. Cyclistic users are more likely to ride for leisure, but approximately 30% use them to commute to work each day. 
+This section provides an overview of Cyclistic's company detail and its current problem. 
+
+## Problem Statement
+
+Cyclistic is a successful American bicycle-sharing program that was established in 2016. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system at any time.
 
 Cyclistic's marketing strategy has primarily focused on building general awareness and appealing to broad consumer segments. The program offers a variety of pricing plans, including single-ride passes, full-day passes, and annual memberships. Cyclistic classifies its riders into the following groups based on these plans: *casual riders* (users who purchase single-ride passes or full-day passes) and *annual members* (users who purchase an annual membership).
 
@@ -101,100 +108,101 @@ Cyclistic's flexible pricing plans attract a larger customer base, but financial
 
 Therefore, Cyclistic's marketing analytics team is interested in understanding how casual riders and annual members use Cyclistic bikes differently. By understanding these differences, the marketing analytics team can develop more targeted marketing strategies to convert casual riders into annual members.
 
-This report analyzes Cyclistic's historical bike trip data from 2022 in order to identify how annual members and casual riders use Cyclistic bikes differently. The report aims to extract insights and develop the most appropriate marketing strategies that appeal to casual riders and encourage them to subscribe to annual memberships. This will enable the business to improve productivity and respond to economic changes in a productive and efficient manner. The report outlines the behavioral differences in Cyclistic bike usage between annual members and casual riders. The report further demonstrates that the recommended solutions will help Cyclistic to expand its business growth.
+## Purpose
 
-# Data Sources
+The purpose of the report is to analyze Cyclistic's historical bike trip data from January 2022 to December 2022 in order to identify how annual members and casual riders use Cyclistic bikes differently. It also aims to extract insights and develop the most appropriate marketing strategies that appeal to casual riders and encourage them to subscribe to annual memberships. 
 
-This report uses Cyclistic's historical trip data from January 2022 to December 2022 as its primary source. The data sets can be downloaded from the company's website, which can be find in the following details:
+# Dataset
+
+This section provides a comprehensive overview of the dataset used in the analysis. In order to understand the insights, it is essential to understand the data that has contributed to shaping the findings. This section also aims to ensure that the analysis is based on reliable information, making our conclusions strong and trustworthy. 
+
+## Dataset Overview
+
+The primary dataset used in the project is Cyclistic's historical trip data from January 2022 to December 2022. The data is collected by the City of Chicago (a government agency) and published by Cyclistic. It contains the historical trip data since 2013, whic can be found and downloaded in the following details:
 
 - Data Source: [Trip History Data](https://divvy-tripdata.s3.amazonaws.com/index.html)
 - Data Website: [System Data Website](https://divvybikes.com/system-data)
 - License: [Data License Agreement](https://ride.divvybikes.com/data-license-agreement)
 
-The data sets are collected by the City of Chicago (a government agency) and published by Cyclistic. They contain historical trip data for all of the company's customer (rider) data since 2013, including the following information: ride history, the location of stations for each ride, and other relevant information
+The data was downloaded and stored in ZIP files on the secure location. After extracting files, there are twelve CSV files, one for each month of 2022, including *202201-divvy-tripdata.csv* through *202212-divvy-tripdata.csv*. 
 
-## Data Description
+## Data Dictionary
 
-The data set is stored in twelve CSV files, one for each month of 2022 (*202201-divvy-tripdata.csv* through *202212-divvy-tripdata.csv*). Each file contains a set of fields (columns) and records (rows). Each record represents a single bike trip, which is uniquely identified by an identifier for the ride.
+Each dataset contains the following fields:
 
-The data sets contain the following fields:
-
-- `ride_id` : A unique identifier for the ride
-- `rideable_type` : The type of bike for the ride (classic bike, electric bike or docked bike)
-- `started_at` : The date and time at which the ride started
-- `ended_at` : The date and time at which the ride ended
-- `start_station_id` : The ID of the station where the ride started
-- `start_station_name` : The name of the station where the ride started
-- `end_station_id` : The ID of the station where the ride ended
-- `end_station_name` : The name of the station where the ride ended
-- `start_lat` : The latitude of the station where the ride started
-- `start_lng` : The longitude of the station where the ride started
-- `end_lat` : The latitude of the station where the ride ended
-- `end_lng` : The longitude of the station where the ride ended
-- `member_casual` : The type of user who took the ride (member or casual)
+Column                  Data Type          Definition                                 Possible Value
+--------------------    ---------------    ----------------------------------------   ---------------
+ride_id                 String             Unique ID number for all rides             -
+rideable_type           String             Type of bikes                              3
+started_at              Date/Time          Which date and time the ride started       -
+ended_at                Date/Time          Which date and time the ride ended         -
+start_station_id        String             ID number of the stating station           -
+start_station_name      String             Name of the the stating station            -
+end_station_id          String             ID number of the ending station            -
+end_station_name        String             Name of the the ending station             - 
+start_lat               Float              Latitude of the stating location           -  
+start_lng               Float              Longitude of the ending location           - 
+end_lat                 Float              Latitude of the stating location           -
+end_lng                 Float              Longitude of the ending location           -
+member_casual           String             Type of users                              2
+--------------------    ---------------    ----------------------------------------   ---------------
 
 ## Data Credibility
 
 The data is evaluated for bias and credibility using the ROCCC method:
 
-- **Reliable**: The data is considered reliable because it is open data provided by Cyclistic and the City of Chicago. It is a comprehensive and accurate dataset of Cyclistic's historical bike trips. The data includes information on the start and end location of each trip, the time of day the trip was taken, the type of user (casual or annual member), and the length of the trip. There are some missing values in some fields, but these can be used to explore how different customer types use Cyclistic bikes.
-- **Original**: The data is considered to be original, based on a primary source of information from the company.
-- **Comprehensive**: It is important to note that Cyclistic is subject to data privacy restrictions that prohibit the use of riders' personally identifiable information (PII). This means that the company cannot connect pass purchases to credit card numbers to determine if casual riders live in the Cyclistic service area or if they have purchased multiple single passes, as well as identify the rider's gender and age. Despite these restrictions, the data is complete and contains all the information needed to understand how members and casual riders use Cyclistic bikes. This includes information such as the number of rides taken, the length of each ride, the start and end stations of each ride, the time of day each ride was taken.
-- **Current**: The data is current and updated monthly. The selected datasets are the most recent data available.
-- **Cited**: The data is properly cited as it contains the dataset name, author, and published year.
+Name                   Rating       Reason
+--------------------   ----------   ---------------------------------------------------------------------------
+Reliable               High         Data includes useful information, such as location, date and user type 
+Original               High         Data comes from the first-party provider, provided by the company
+Comprehensive          Medium       Data has missing values in some columns
+Current                High         Data has been updated monthly since 2013
+Cited                  High         Data contains data process method and license from the company
+--------------------   ----------   ---------------------------------------------------------------------------
 
-Overall, the Cyclistic bike data is considered a credible source for analysis based on the Reliability, Originality, Comprehensiveness, Currency, and Citation (ROCCC) method. The data can be used to explore how different customer types use Cyclistic bikes. For example, the data can be used to determine which customer segments are most likely to use Cyclistic bikes for commuting, recreation, or transportation. The data can also be used to identify trends in bike usage, such as the time of day when bikes are most likely to be used or the types of bikes that are most popular.
+Overall, the data is considered a credible source for analysis based on the Reliability, Originality, Comprehensiveness, Current, and Citation (ROCCC) method. The data can be used to explore how different customer types use Cyclistic bikes. For example, the data can be used to determine which customer segments are most likely to use Cyclistic bikes for commuting, recreation, or transportation. The data can also be used to identify trends in bike usage, such as the time of day when bikes are most likely to be used or the types of bikes that are most popular.
 
 While there are some restrictions on rider's personal information, there is still a great deal of information that can be learned from it. However, the data needs to be processed before analysis can be performed. This includes cleaning the data to remove errors and inconsistencies, and transforming the data into a format that is suitable for analysis. The data processing will be performed in the next section.
 
 # Data Cleaning and Manipulation
 
-This section provides a documentation of data cleaning and manipulation. The ***R programming language*** is used in conjunction with the ***RStudio*** integrated development environment (IDE) to complete data cleaning's tasks, including loading packages, importing and combining the data, cleaning the data, transforming the data and removing outliers. R script is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/1-data-cleaning.R).
+This section provides a documentation of data cleaning and manipulation. This process uses the ***R programming language*** and  ***RStudio*** integrated development environment (IDE) to complete the following tasks, including loading the packages, importing and combining the data, cleaning the data, transforming the data and removing outliers. R script is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/1-data-cleaning.R).
 
 ## Loading the Packages
 
-Prior to cleaning the data, it is important to set up the R environment first. This requires loading the following packages into the environment:
+To perform the data cleaning process, it requires the following packages: 
 
 - `tidyverse` for importing, wrangling and visualizing the data
 - `skimr` for skimming the data
 - `janitor` for exploring and cleaning the data
-- `scales` for 
-
-***Note:*** *Make sure to install required packages using* `install.packages()` *before loading packages through* `library()`.
+- `scales` for converting from data values to perceptual properties
 
 ## Importing and Combining the Data
 
 ```{r import-data}
-trip_data <- list.files(path = "./data/", 
-                        pattern = "*.csv", 
-                        full.names = TRUE) %>% 
-  lapply(read_csv) %>% 
-  bind_rows %>% 
+# Import and merge the data
+trip_data <- list.files(path = "./data/", pattern = "*-divvy-tripdata.csv", full.names = TRUE) %>%
+  lapply(read_csv) %>%
+  bind_rows %>%
   arrange(started_at)
 ```
 
-Once packages are completely loaded, it is ready to import the data into the R environment. Each CSV file was imported into the environment. Subsequently, these data frames were combined into a single data frame, named ***trip_data***. Upon initial inspection, the data frame contains `r prettyNum(count(trip_data), big.mark = ",")` rows and `r prettyNum(ncol(trip_data))` columns. The table below provides a preview of the *trip_data* data frame.
+After loading all necessary packages, it is important to import all 12-month data and then merge them into a single data, called ***trip_data***. 
 
-```{r preview-data}
-trip_data %>% 
-  head(1) %>% 
-  t() %>% 
-  knitr::kable("simple", caption = "A preview of the Cyclistic's historical trip data")
+```{r preview-data-1}
+trip_data %>%
+  head(1) %>%
+  t() %>%
+  knitr::kable()
 ```
 
 ## Cleaning the Data
 
-The result of the `skim_without_charts()` function provides a concise summary of the *trip_data* dataset. The dataset contains `r prettyNum(count(trip_data), big.mark = ",")` rows and `r prettyNum(ncol(trip_data))` columns. The figure shows that the unique number of rows of `ride_id` is `r prettyNum(length(unique(trip_data$ride_id)), big.mark = ",")` rows, which is the same as the total number of rows. Therefore, it can be concluded that there are no duplicate values in the dataset.
+From the result of the `skim_without_charts()` function, it provides a summary of the ***trip_data*** data. It contains `r prettyNum(count(trip_data), big.mark = ",")` rows and `r prettyNum(ncol(trip_data))` columns. It also shows that the unique number of rows of `ride_id` is `r prettyNum(length(unique(trip_data$ride_id)), big.mark = ",")` rows, which is the same as the total number of rides. Therefore, it can be concluded that there are no duplicate values in the data.  
 
-![A broad overview of dataset summary in the Cyclistic's historical trip data (*trip_data*) from `skim_without_charts()`](./images/pre-skim-data.png){width="90%"}
+![](./images/pre-skim-data.png){width="100%"}
 
-There are three data types in the dataset, including character, numeric and POSIXct. First, the **character** data type represents text or string values. Second, the **numeric** data type represents decimal values. Last, the **POSIXct** data type represents data and time values. Each data type include the following columns:
-
-- **character:** `ride_id`, `rideable_type`, `start_station_name`, `start_station_id`, `end_station_name`, `end_station_id` and `member_casual`.
-- **numeric:** `start_lat`, `start_lng`, `end_lat` and `end_lng`.
-- **POSIXct:** `started_at` and `ended_at`.
-
-The figure also shows that some columns have missing values. The following columns include:
+The picture also reveals that the table has 13 columns of 3 data types: 7 **character**, 4 **numeric**, and 2 **POSIXct**. 6 columns have missing values, as follows:
 
 - `start_station_name` (`r prettyNum(sum(is.na(trip_data$start_station_name)), big.mark = ",")` rows)
 - `start_station_id` (`r prettyNum(sum(is.na(trip_data$start_station_id)), big.mark = ",")` rows)
@@ -203,154 +211,173 @@ The figure also shows that some columns have missing values. The following colum
 - `end_lat` (`r prettyNum(sum(is.na(trip_data$end_lat)), big.mark = ",")` rows)
 - `end_lng` (`r prettyNum(sum(is.na(trip_data$end_lng)), big.mark = ",")` rows)
 
-There are multiple ways to handle missing data, but in this case, it was decided to remove those columns as they are not required for this analysis. The following R code was used to select only the useful columns and then store the new dataset as ***trip_data_v2***:
-
- 
-
-```{r clean-data, echo=TRUE}
+```{r clean-data}
+# Create a new data frame with the desired columns
 trip_data_v2 <- trip_data %>%
   select(ride_id, started_at, ended_at, rideable_type, member_casual)
 ```
 
- 
-
-Finally, the *trip_data_v2* dataset has only 5 columns, which are `ride_id`, `started_at` and `ended_at`, `rideable_type`and `member_casual`.
+There are multiple ways to handle missing data, but in this case, it was decided to remove those columns as they contains many missing values and are not required for this analysis. Finally, the ***trip_data_v2*** data has only 5 columns, including `ride_id`, `started_at` and `ended_at`, `rideable_type`and `member_casual`.
 
 ## Transforming the Data
 
-The next step is to add three new columns to the dataset, namely `month`, `day_of_week`, and `ride_length`, in order to facilitate data analysis and visualization. The `month` column will store the month in which the trip was taken, the `day_of_week` column will store the day of the week on which the trip was taken, and the `ride_length` column will store the duration of the trip in minutes. The following R codes can be used to add these three new columns to the dataset:
+```{r add-new-columns}
+# Calculate the difference between the two times and store it as the 'ride_length' variable
+trip_data_v2$ride_length <- as.double(difftime(trip_data_v2$ended_at, trip_data_v2$started_at, units = "mins"))
 
- 
-
-```{r add-new-columns, echo=TRUE}
-trip_data_v2$ride_length <- as.double(
-  difftime(trip_data_v2$ended_at, 
-           trip_data_v2$started_at, 
-           units = "mins"))
-# trip_data_v2$day_of_week <- weekdays(trip_data_v2$started_at)
+# Extract the day of the week from the 'trip_data_v2$started_at' column
 trip_data_v2$day_of_week <- wday(trip_data_v2$started_at, label = TRUE)
+
+# Extract the month of the year from the 'trip_data_v2$started_at' column
 trip_data_v2$month <- format(trip_data_v2$started_at, "%b")
 ```
 
- 
+The next step is to add three new columns to the data, called `ride_length`, `day_of_week`, and `month`, in order to facilitate data analysis and visualization. 
+
+- The `ride_length` column will store the duration of the trip in minutes
+- The `day_of_week` column will store the day of the week on which the trip was taken
+- The `month` column will store the month in which the trip was taken
+
+```{r preview-data-2}
+trip_data_v2 %>%
+  head(1) %>%
+  t() %>%
+  knitr::kable()
+```
 
 ## Removing Outliers
 
-Once three new columns have been added to the dataset, it can be used for data analysis and visualization. The `skim_without_charts()` function is used to provides a concise summary of the *trip_data_v2* dataset again. The figure shows that there are minus number in minimum value (min) in the `ride_length` column. 
+```{r remove-outliers}
+# Remove the rows with error ride lengths
+trip_data_v2 <- trip_data_v2[!(trip_data_v2$ride_length < 1 | trip_data_v2$ride_length > 1440), ]
 
-![A broad overview of dataset summary in the Cyclistic's historical trip data (*trip_data_v2*) from `skim_without_charts()`](./images/post-skim-data.png){width="90%"}
-
-This means that there are outliers in the datset. Outliers can be caused by errors in data entry, measurement, or other factors. They can distort the results of an analysis, so it is important to remove them before proceeding. In this case, all trip data that were less than 60 seconds were filtered out. These trips are likely to be false starts or users attempting to re-dock a bike to ensure its security. Trips that exceeded a period of 24 consecutive hours were also removed. This is because these trips are likely to be the result of the rider not returning the bike. This was accomplished by running the following R code:
-
- 
-
-```{r remove-outliers, echo=TRUE}
-error_rows <- trip_data_v2$ride_length < 1 
-timeout_rows <- trip_data_v2$ride_length > 1440
-
-trip_data_v2 <- trip_data_v2[!(error_rows | timeout_rows), ]
+# Remove the rows that contain docked_bike in rideable_type
+trip_data_v2 <- trip_data_v2 %>%
+  filter(!grepl("docked_bike", rideable_type))
 ```
 
- 
+The last step is to remove unwanted data out of the table. The `skim_without_charts()` function is used to provides a concise summary of the ***trip_data_v2*** data again. It shows that there are minus number in the minimum values (min) in the `ride_length` column. There are also higher number with `r prettyNum(max(trip_data_v2$ride_length), big.mark = ",")` mins in the `ride_length` column. This means that there are outliers in the data. Outliers can distort the results of an analysis, so that it is important to remove them before proceeding. 
 
-This completes the data cleaning and manipulation process, and the data is now ready for analysis.
+In this case, all trip data that were less than 60 seconds were filtered out. These trips are likely to be false starts or users attempting to re-dock a bike to ensure its security. Trips that exceeded a period of 24 consecutive hours were also removed. This is because these trips are likely to be the result of the rider not returning the bike.
+
+![](./images/post-skim-data.png){width="100%"}
+
+The picture also shows that there are unique values in the `rideable_type` column. After checking, there are `classis_bike`, `electric_bike`, and `docked_bike`. Because there are only `classis_bike` and `electric_bike`, `docked_bike` needed to be remove from the data. The data is completely processed and is ready for the data analysis. The data contains `r prettyNum(count(trip_data), big.mark = ",")` rows and `r prettyNum(ncol(trip_data))` columns.
 
 # Data Analysis
 
-```{r order-date}
+```{r setup-2}
 # Convert the 'day_of_week' column to a factor variable with a specified level order
 trip_data_v2$day_of_week <- ordered(
-  trip_data_v2$day_of_week, 
+  trip_data_v2$day_of_week,
   levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 )
 
 # Order the levels of the month from January to December
 trip_data_v2$month <- ordered(
-  trip_data_v2$month, 
+  trip_data_v2$month,
   levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 )
-```
 
-This section presents an analysis of Cyclistic's historical trip data from January 2022 to December 2022, with the objective of identifying the differences in the use of Cyclistic bikes between annual members and casual riders. The R script used for this analysis is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/2-data-analysis.R).
-
-Overall, the data has been processed and is now ready for analysis. Our initial step is to calculate basic statistics to gain insights into the data's structure. Table 2 presents a statistical summary for the Cyclistic's time durationfor all users including casual riders and annual members. 
-
-```{r summarize-descriptive-statistics}
 # Define function to calculate mode
 find_mode <- function(x) {
   u <- unique(x)
   tab <- tabulate(match(x, u))
   u[tab == max(tab)]
 }
+```
 
+This section presents an analysis of Cyclistic's historical trip data from January 2022 to December 2022, with the objective of identifying the differences in the use of Cyclistic bikes between annual members and casual riders. The R script used for this analysis is available on the [GitHub repository](https://github.com/thanakorntha/cyclistic-analysis/tree/main/scripts/2-data-analysis.R).
+
+## Overall Cyclistic Rides in 2022
+
+As shown in the below table, it presents a statistical summary of time duration for Cyclistic's users, including casual riders and annual members.
+
+```{r summarize-descriptive-statistics}
 # Create descriptive statistics by the 'ride_length' column
 trip_data_v2 %>% 
   summarize(
-    Size = n(), 
-    Mean = mean(ride_length), 
-    Min = min(ride_length), 
-    Mode = find_mode(ride_length), 
-    Median = median(ride_length), 
-    Max = max(ride_length), 
-    SD = sd(ride_length)
-  ) %>% 
+    Mean = mean(ride_length),
+    Min = min(ride_length),
+    Mode = find_mode(ride_length),
+    Median = median(ride_length),
+    Max = max(ride_length),
+    SD = sd(ride_length),
+    Size = n(),
+    Popular_Day = find_mode(day_of_week)
+  ) %>%
   knitr::kable(
-    format = "simple", 
+    format = "simple",
     caption = "Descriptive Statistics by Time Duration"
   )
 ```
- 
-The histogram below displays a positively skewed distribution, where there is a cluster of lower values and a spread-out tail on the right. In such distributions, the median is the most informative measure of central tendency as it is less affected by skewed data or outliers. We learned in the earlier quarterly analysis that the average ride_length for casual riders was significantly impacted by outliers, so median is a more accurate measurement for our analysis:
+
+The time duration of Cyclistic's rides can also be visualized by a histogram. The histogram shows that the distribution of ride times is positively skewed, with a high cluster of lower values and a spread-out tail on the right. This means that there are a few rides that are much longer than the majority of rides.
 
  
-
 ```{r plot-distribution-duration-all}
 # Create a histogram
 plot_01 <- ggplot(trip_data_v2, aes(x = ride_length)) +
   geom_histogram(color = "black", fill = "darkgray") +
-  xlim(0, 40) +
-  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) +
+  scale_x_continuous(limits = c(0, 40)) +
+  scale_y_continuous(limits = c(0, 600000), labels = unit_format(unit = "k", scale = 1e-3), expand = c(0, 0)) +
+  theme(axis.line.x = element_line(arrow = grid::arrow(length = unit(0.10, "cm"), type = "closed"))) +
   labs(
-    x = "Time Duration (in Minutes)",
-    y = "Number of Rides",
-    title = "Distribution of Time Duration of Cyclistic Rides",
-    subtitle = "Data source: Cyclistic (Divvy) dataset, 2022"
+    x = "Time duration (min.)",
+    y = "Number of rides",
+    title = "Distribution of rides at a time duration"
   )
 
-# Add annotation
+# Add annotation for plot_01
 plot_01 +
-  geom_vline(
-    xintercept = c(median(trip_data_v2$ride_length), mean(trip_data_v2$ride_length), find_mode(trip_data_v2$ride_length)),
-    color = c("red", "blue", "darkgreen"),
-    linetype = "longdash",
-    size = 0.50
-  ) +
+  # Median
+  geom_vline(xintercept = median(trip_data_v2$ride_length), linetype = "dashed", size = 0.50, color = "red") +
   annotate(
-    "text",
-    label = c("Median", "Mean", "Mode"),
-    x = c(median(trip_data_v2$ride_length), mean(trip_data_v2$ride_length), find_mode(trip_data_v2$ride_length)),
-    y = Inf,
-    vjust = 1.50,
-    hjust = -0.20,
-    size = 2.50,
-    color = c("red", "blue", "darkgreen")
+    "text", label = "Median:\n10.25",
+    x = median(trip_data_v2$ride_length), y = 600000,
+    vjust = 1.25, hjust = -0.25,
+    size = 2.50, color = "red"
+  ) +
+  # Mean
+  geom_vline(xintercept = mean(trip_data_v2$ride_length), linetype = "dashed", size = 0.50, color = "blue") +
+  annotate(
+    "text", label = "Mean:\n15.54",
+    x = mean(trip_data_v2$ride_length), y = 600000,
+    vjust = 1.25, hjust = -0.25,
+    size = 2.50, color = "blue"
+  ) +
+  # Mode
+  geom_vline(xintercept = find_mode(trip_data_v2$ride_length), linetype = "dashed", size = 0.50, color = "darkgreen") +
+  annotate(
+    "text", label = "Mode:\n5.38",
+    x = find_mode(trip_data_v2$ride_length), y = 600000,
+    vjust = 1.25, hjust = -0.25,
+    size = 2.50, color = "darkgreen"
+  ) +
+  # Standard Deviation
+  geom_vline(xintercept = sd(trip_data_v2$ride_length), linetype = "dashed", size = 0.50, color = "purple") +
+  annotate(
+    "text", label = "SD:\n25.07",
+    x = sd(trip_data_v2$ride_length), y = 600000,
+    vjust = 1.25, hjust = -0.25,
+    size = 2.50, color = "purple"
   )
 ```
 
-\newpage
+Because of the positive skew, the mean ride time is not a very accurate measure of the typical ride time. The median ride time is a more accurate measure, as it is not as affected by the outliers. So, the median ride time will be chosen to conduct further descriptive analysis.
 
-## The Difference of Bike Usage between Casual Riders and Annual Members
+## Casual Riders vs Annual Members
 
 ```{r define-user-variables}
 # Group the data by the 'member_casual' column, calculating stats for each group
-stats_user <- trip_data_v2 %>% 
-  group_by(member_casual) %>% 
+stats_user <- trip_data_v2 %>%
+  group_by(member_casual) %>%
   summarize(
-    mean_ride_length = mean(ride_length), 
-    median_ride_length = median(ride_length), 
-    min_ride_length = min(ride_length), 
-    max_ride_length = max(ride_length), 
-    sd_ride_length = sd(ride_length), 
+    mean_ride_length = mean(ride_length),
+    median_ride_length = median(ride_length),
+    min_ride_length = min(ride_length),
+    max_ride_length = max(ride_length),
+    sd_ride_length = sd(ride_length),
     ride_count = n()
   )
 ```
@@ -358,75 +385,79 @@ stats_user <- trip_data_v2 %>%
 Casual riders appear to ride for longer periods of time than annual members. The median time duration for casual riders is 13.27 minutes, which is higher compared to the median time duration of 9.03 minutes for annual members. However, the data also shows that casual riders took a total of 2,269,498 rides, while annual members took 3,271,770 rides. From these findings, it can be concluded that annual members tend to be more regular users of the bike-sharing service. On the other hand, casual riders are more likely to take longer trips when they do use the service, even though they use it less frequently.
 
  
-
 ```{r plot-bar-duration-user}
 # Create a bar chart
 plot_02 <- ggplot(stats_user, aes(x = member_casual, y = median_ride_length, fill = member_casual)) +
   geom_bar(stat = "identity", color = "black") +
+  scale_y_continuous(limits = c(0, 15), expand = c(0, 0)) +
+  scale_x_discrete(labels = c("Casual", "Member")) +
   theme(legend.position = "none") +
   labs(
-    x = "User Type",
-    y = "Time Duration (in minutes)",
-    title = "Median Time Duration on Cyclistic Bikes"
+    x = "User type",
+    y = "Time duration (min.)",
+    title = "Median time duration on bikes, by user type"
   )
 
-# Add annotation
+# Add annotation for plot_02
 plot_02 +
   # Text label for bar chart
-  geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.9), vjust = 2) + 
+  geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.90), vjust = 2) +
   # Annotation for value difference
   annotate(
     "segment",
-    x = 2, xend = 2,
-    y = (13.27 / 1.03), yend = (9.03 * 1.03),
-    arrow = arrow(ends = "both", angle = 90, length = unit(0.25,"cm")),
+    x = 2, 
+    xend = 2,
+    y = (13.27 / 1.03), 
+    yend = (9.03 * 1.03),
+    arrow = arrow(ends = "both", angle = 90, length = unit(0.25, "cm")),
     color = "red"
   ) +
-  annotate("text", label = "± 4.24 min.", x = 2, y = 11.15, hjust = -0.2, color = "red")
+  annotate("text", label = "± 4.24 min.", x = 2, y = 11.15, hjust = -0.20, color = "red")
 ```
-
  
-
 ```{r plot-bar-count-user}
 # Create a bar chart
 plot_03 <- ggplot(stats_user, aes(x = member_casual, y = ride_count, fill = member_casual)) +
   geom_bar(stat = "identity", color = "black") +
-  scale_y_continuous(labels = unit_format(unit = "M", scale = 1e-6)) +
+  scale_y_continuous(limits = c(0, 4000000), labels = unit_format(unit = "M", scale = 1e-6), expand = c(0, 0)) +
+  scale_x_discrete(labels = c("Casual", "Member")) +
   theme(legend.position = "none") +
   labs(
-    x = "User Type",
-    y = "Number of Rides",
-    title = "Total Number of Cyclistic Rides"
+    x = "User type",
+    y = "Number of rides",
+    title = "Total number of rides, by user type"
   )
 
-# Add annotation
+# Add annotation for plot_03
 plot_03 +
   # Text label for bar chart
-  geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), position = position_dodge(width = 0.9), vjust = 2) +
+  geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), position = position_dodge(width = 0.90), vjust = 2) +
   # Annotation for value difference
   annotate(
     "segment",
-    x = 1, xend = 1,
-    y = (3271770 / 1.03), yend = (2269498 * 1.03),
-    arrow = arrow(ends = "both", angle = 90, length = unit(0.25,"cm")),
+    x = 1,
+    xend = 1,
+    y = (3271770 / 1.03),
+    yend = (2269498 * 1.03),
+    arrow = arrow(ends = "both", angle = 90, length = unit(0.25, "cm")),
     color = "red"
   ) +
-  annotate("text", label = "± 1,002,272", x = 1, y = 2770634, hjust = -0.2, color = "red")
+  annotate("text", label = "± 1,002,272", x = 1, y = 2770634, hjust = -0.20, color = "red")
 ```
 
 ## Day of Week
 
 ```{r define-user-day-variables}
 # Group the data by 'member_casual' and 'day_of_week' columns, calculating stats for each group
-stats_user_day <- trip_data_v2 %>% 
-  group_by(member_casual, day_of_week) %>% 
+stats_user_day <- trip_data_v2 %>%
+  group_by(member_casual, day_of_week) %>%
   summarize(
-    mean_ride_length = mean(ride_length), 
-    median_ride_length = median(ride_length), 
-    min_ride_length = min(ride_length), 
-    max_ride_length = max(ride_length), 
-    sd_ride_length = sd(ride_length), 
-    ride_count = n(), 
+    mean_ride_length = mean(ride_length),
+    median_ride_length = median(ride_length),
+    min_ride_length = min(ride_length),
+    max_ride_length = max(ride_length),
+    sd_ride_length = sd(ride_length),
+    ride_count = n(),
     .groups = "drop"
   )
 ```
@@ -434,57 +465,58 @@ stats_user_day <- trip_data_v2 %>%
 Casual riders tend to take longer bike rides than annual members, especially on the weekend. On average, casual riders spend about 15 minutes longer on bikes than annual members on the weekend, but annual members take time cycling at a consistent level throughout the day. In contrast, annual members use Cyclistic bikes more frequently on the weekday and their usage gradually decreases as the weekend approaches. Casual riders, on the other hand, tend to take more bike rides on weekends. This suggests that the longer ride times of casual riders are highly correlated with their increased usage during the weekends.
 
  
-
 ```{r ride-length-user-day}
 # Create a bar chart
 plot_04 <- ggplot(stats_user_day, aes(x = day_of_week, y = median_ride_length, fill = member_casual)) +
   geom_bar(stat = "identity", position = "dodge", color = "black") +
+  scale_y_continuous(limits = c(0, 20), expand = c(0, 0)) +
+  scale_fill_discrete(labels = c("Casual", "Member")) +
   labs(
-    x = "Day of Week",
-    y = "Time Duration (in minutes)",
-    title = "Median Time Duration on Cyclistic Bikes by Day"
+    x = "Day of week",
+    y = "Time duration (min.)",
+    title = "Median time duration on bikes, by user type and \nday of week"
   )
 
-# Add annotation
+# Add annotation for plot_04
 plot_04 +
   # Text label for bar chart
   geom_text(aes(label = round(median_ride_length, 2)), position = position_dodge(width = 0.90), hjust = -0.10, angle = 270) +
+  # Median line
   geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
   annotate(
     "text",
-    label = "Median \n 10.52",
+    label = "Median:\n10.52",
     x = 7,
     y = median(trip_data_v2$ride_length),
-    vjust = -0.30,
-    hjust = -0.20,
+    vjust = -0.50,
+    hjust = -0.25,
     size = 2.50,
     color = "darkgray"
   )
 ```
-
  
-
 ```{r ride-count-user-day}
 # Create a bar chart
 plot_05 <- ggplot(stats_user_day, aes(x = day_of_week, y = ride_count, fill = member_casual)) +
   geom_bar(stat = "identity", position = "dodge", color = "black") +
-  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) + 
+  scale_y_continuous(limits = c(0, 600000), labels = unit_format(unit = "k", scale = 1e-3), expand = c(0, 0)) + 
+  scale_fill_discrete(labels = c("Casual", "Member")) +
   labs(
-    x = "Day of Week",
-    y = "Number of Rides", 
-    title = "Total Number of Cyclistic Rides by Day"
+    x = "Day of week",
+    y = "Number of rides",
+    title = "Total number of rides, by user type and day of week"
   )
 
-# Add annotation
+# Add annotation for plot_05
 plot_05 +
   # Text label for bar chart
-  geom_text(aes(label = prettyNum(ride_count, big.mark = ",")),position = position_dodge(width = 0.90), hjust = -0.10, angle = 270)
+  geom_text(aes(label = prettyNum(ride_count, big.mark = ",")), position = position_dodge(width = 0.90), hjust = -0.10, angle = 270)
 ```
 
 ## Hour
 
 ```{r define-user-hour-variables}
-# Group the data by 'member_casual' and 'day_of_week' columns, calculating stats for each group
+# Group the data by 'member_casual' and 'hour' columns, calculating stats for each group
 stats_user_hour <- trip_data_v2 %>% 
   mutate(hour = as.numeric(format(started_at, "%H"))) %>% 
   group_by(member_casual, hour) %>% 
@@ -502,60 +534,55 @@ stats_user_hour <- trip_data_v2 %>%
 Casual riders are most likely to take longer bike rides after the midday hours, from 1 PM to 3 PM. After that, their usage decreases slightly. Annual members, on the other hand, take time on bikes at a consistent level throughout the day, with no significant spikes or dips in usage. By the number of rides, annual members use Cyclistic bikes at a consistent rate throughout the day, with three peaks in usage: at 8 AM, at 12 PM, and at 5 PM, whereas casual riders start using Cyclistic bikes at 5 AM and gradually increase their usage until they peak at 5 PM.
 
  
-
 ```{r plot-line-duration-user-hour}
 # Create a line chart
 plot_06 <- ggplot(stats_user_hour, aes(x = hour, y = median_ride_length, group = member_casual)) +
   geom_line(aes(color = member_casual), size = 1) +
-  geom_point(aes(color = member_casual), size = 2) +
-  xlim(0, 23) +
-  expand_limits(y = c(0, 20)) +
+  geom_point(aes(color = member_casual), size = 1) +
+  scale_x_continuous(limits = c(0, 23), breaks = seq(0, 23, 1)) +
+  scale_y_continuous(limits = c(0, 20), expand = c(0, 0)) +
+  scale_color_discrete(labels = c("Casual", "Member")) +
   labs(
     x = "Hour",
-    y = "Time Duration (in minutes)",
-    title = "Median Time Duration on Cyclistic Bikes by Hour"
+    y = "Time duration (min.)",
+    title = "Median time duration on bikes, by user type and hour"
   )
-# Add annotation
+
+# Add annotation for plot_06
 plot_06 +
+  # Median line
   geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
-  annotate("text", label = "Median = 10.52", x = 23, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "darkgray")
-  # annotate(geom = "text", label = c("8 AM", "12 PM", "5 PM"), x = c(8, 12, 17), y = Inf, vjust = 1.50, hjust = -0.20, size = 2.50, color = "darkgray")
+  annotate(
+    "text",
+    label = "Median: 10.52",
+    x = 23,
+    y = median(trip_data_v2$ride_length),
+    vjust = -0.75,
+    hjust = 0.70,
+    size = 2.50,
+    color = "darkgray"
+  )
 ```
-
  
-
 ```{r plot-line-count-user-hour}
 # Create a line chart
 plot_07 <- ggplot(stats_user_hour, aes(x = hour, y = ride_count, group = member_casual)) +
   geom_line(aes(color = member_casual), size = 1) +
-  geom_point(aes(color = member_casual), size = 2) +
-  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) +
-  xlim(0, 23) +
-  expand_limits(y = c(0, 400000)) +
+  geom_point(aes(color = member_casual), size = 1) +
+  scale_x_continuous(limits = c(0, 23), breaks = seq(from = 0, to = 23, by = 1)) +
+  scale_y_continuous(limits = c(0, 400000), labels = unit_format(unit = "k", scale = 1e-3), expand = c(0, 0)) +
+  scale_color_discrete(labels = c("Casual", "Member")) +
   labs(
     x = "Hour",
-    y = "Number of Rides", 
-    title = "Total Number of Cyclistic Rides by Hour"
+    y = "Number of rides",
+    title = "Total number of rides, by user type and hour"
   )
 
-# Add annotation
+# Add annotation for plot_07
 plot_07 +
-  # geom_vline(xintercept = c(8, 12, 17), linetype = "dashed", size = 0.50, color = "darkgray") +
-  # annotate(geom = "text", label = c("8 AM", "12 PM", "5 PM"), x = c(8, 12, 17), y = Inf, vjust = 1.50, hjust = -0.20, size = 2.50, color = "darkgray")
-  # Annotation for casual's peak
-  annotate("segment", x = 17, xend = 17, y = 120000, yend = 190000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
-  annotate("text", x = 17, y = 100000, size = 2.50, color = "gray40", label = "Casual riders' bike usage \n also peaks at 5 PM") +
-  # Annotation for member's peak
-  annotate("segment", x = 5, xend = 7.75, y = 375000, yend = 220000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
-  annotate("segment", x = 5, xend = 11.50, y = 375000, yend = 200000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
-  annotate("segment", x = 5, xend = 16.50, y = 375000, yend = 343000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
-  annotate("text", x = 5, y = 400000, size = 2.50, color = "gray40", label = "Annual members' bike usage \n peaks at 8 AM, 12 PM and 5 PM")
-  # # Annotation for overall trend
-  # annotate("segment", x = 5, xend = 17, y = 0, yend = 0, arrow = arrow(ends = "both", angle = 90, length = unit(0.10,"cm")), color = "darkgray") #+
-  # annotate(
-  #   "text", x = 6.50, y = 30000, size = 2.50, color = "gray50", 
-  #   label = "The number of users gradually increases from February to a peak in July and August, \n followed by a decrease in the remaining months of the year"
-  # )
+  # Median
+  annotate("rect", xmin = 8, xmax = 17, ymin = 0, ymax = 400000, alpha = 0.10, fill = "darkorange") +
+  geom_vline(xintercept = c(8, 12, 17), linetype = "dashed", size = 0.50, color = "darkorange")
 ```
 
 ## Month
@@ -578,59 +605,53 @@ stats_user_month <- trip_data_v2 %>%
 The findings show that the median ride time for both casual and member riders is relatively consistent throughout the year, with the exception of three months: March, April and May. However, casual riders tend to spend more time on bikes than annual members. They also shows that the number of Cyclistic rides increases from month to month, with a peak in July for casual riders and August for annual members. After that, the number of rides suddenly declines. This can be concluded that 
 
  
-
 ```{r plot-line-duration-user-month}
 # Create a line chart
 plot_08 <- ggplot(stats_user_month, aes(x = month, y = median_ride_length, group = member_casual)) +
   geom_line(aes(color = member_casual), size = 1) +
-  geom_point(aes(color = member_casual), size = 2) +
-  # geom_line(aes(color = member_casual), stat = "smooth", linetype = "longdash", alpha = 0.20) +
-  expand_limits(y = c(0, 20)) +
+  geom_point(aes(color = member_casual), size = 1) +
+  scale_y_continuous(limits = c(0, 20), expand = c(0, 0)) +
+  scale_color_discrete(labels = c("Casual", "Member")) +
   labs(
-    x = "Month", 
-    y = "Time Duration (in minutes)", 
-    title = "Median Time Duration on Cyclistic Bikes by Month"
+    x = "Month",
+    y = "Time duration (min.)",
+    title = "Median time duration on bikes, by user type and month"
   )
 
-# Add annotation
+# Add annotation for plot_08
 plot_08 +
   # Median line
-  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkorange", linetype = "dashed", size = 0.50) +
-  annotate("text", label = "Median = 10.52", x = 12, y = median(trip_data_v2$ride_length), vjust = -1, hjust = 0.75, size = 2.50, color = "darkorange") +
-  # Annotation for casual's trend
-  annotate("segment", x = 3, xend = 6, y = 17, yend = 17, arrow = arrow(ends = "both", angle = 90, length = unit(0.15,"cm")), color = "darkgray") +
-  annotate("text", x = 4.50, y = 18.25, size = 2.50, color = "gray40", label = "Casuals took a longer time \n on bikes from March to May")
+  geom_hline(yintercept = median(trip_data_v2$ride_length), color = "darkgray", linetype = "dashed", size = 0.50) +
+  annotate(
+    "text",
+    label = "Median: 10.52",
+    x = 12,
+    y = median(trip_data_v2$ride_length),
+    vjust = -0.75,
+    hjust = 0.70,
+    size = 2.50,
+    color = "darkgray"
+  )
 ```
-
  
-
 ```{r plot-line-count-user-month}
 # Create line chart
 plot_09 <- ggplot(stats_user_month, aes(x = month, y = ride_count, group = member_casual)) +
   geom_line(aes(color = member_casual), size = 1) +
-  geom_point(aes(color = member_casual), size = 2) +
-  scale_y_continuous(labels = unit_format(unit = "k", scale = 1e-3)) +
-  expand_limits(y = c(0, 500000)) +
+  geom_point(aes(color = member_casual), size = 1) +
+  scale_y_continuous(limits = c(0, 500000), labels = unit_format(unit = "k", scale = 1e-3), expand = c(0, 0)) +
+  scale_color_discrete(labels = c("Casual", "Member")) +
   labs(
-    x = "Month", 
-    y = "Number of Rides", 
-    title = "Total Number of Cyclistic Rides by Month",
+    x = "Month",
+    y = "Number of rides",
+    title = "Total number of rides, by user type and month"
   )
 
-# Add annotation
-plot_09 + 
-  # Annotation for casual's trend
-  annotate("segment", x = 7, xend = 7, y = 325000, yend = 370000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
-  annotate("text", x = 7, y = 300000, size = 2.50, color = "gray40", label = "Casual riders' bike usage \n peaks in July") +
-  # Annotation for member's trend
-  annotate("segment", x = 8, xend = 8, y = 475000, yend = 430000, arrow = arrow(type = "closed", length = unit(0.02, "npc")), color = "darkgray") +
-  annotate("text", x = 8, y = 500000, size = 2.50, color = "gray40", label = "Annual members' bike usage \n peaks in August") +
-  # Annotation for upward trend
-  annotate("segment", x = 3, xend = 8, y = 60000, yend = 60000, arrow = arrow(ends = "both", angle = 90, length = unit(0.15,"cm")), color = "darkgray") +
-  annotate( # \n Then, a number of users declined afterwards.
-    "text", x = 5.50, y = 25000, size = 2.50, color = "gray40", 
-    label = "Casuals and members grew 51% and 18% per month \n respectively, from March to July and August."
-  )
+# Add annotation for plot_09
+plot_09 +
+  # 
+  annotate("rect", xmin = 7, xmax = 8, ymin = 0, ymax = 500000, alpha = 0.10, fill = "darkorange") +
+  geom_vline(xintercept = c(7, 8), linetype = "dashed", size = 0.50, color = "darkorange")
 ```
 
 # Summary

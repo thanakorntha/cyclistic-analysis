@@ -1,12 +1,11 @@
-# Cyclistic Bike-Sharing Data Analysis
+<p align="center">
+  <img src="logo.png" height="256">
+  <h1 align="center">Cyclistic Bike-Sharing Data Analysis</h1>
+</p>
 
-Welcome to my fictional Cyclistic bike-share analysis case study! It is a part of the [Google Data Analytics Professional Certificate](https://www.coursera.org/professional-certificates/google-data-analytics) on [Coursera](https://www.coursera.org/).
+Welcome to my fictional Cyclistic bike-share data analysis case study! This analysis is a capstone part of the [Google Data Analytics Professional Certificate](https://www.coursera.org/professional-certificates/google-data-analytics) on Coursera. 
 
-In this case, I'm a junior data analyst in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, my team wants to understand how casual riders and annual members use Cyclistic bikes differently. My team and I are going to come up with a fresh new marketing strategy that turns those casual riders into annual members and are going to deliver top-notch recommendations to Cyclistic's decision-makers, supported by insightful data and polished visualizations.
-
-> *Project Status: In-Progress*
-
-## Case Overview
+## Background
 
 In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geo-tracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime.
 
@@ -16,16 +15,30 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
 
 Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the marketing analyst team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends.
 
-## Stakeholders
+## Business Task
 
-The following stakeholders are included in this report:
+This analysis aims to analyze Cyclistic's historical bike trip data from January 2022 to December 2022 in order to identify how annual members and casual riders use Cyclistic bikes differently. Then, it also aims to extract insights and develop the most appropriate marketing strategies that appeal to casual riders and encourage them to subscribe to annual memberships. 
 
-1. **Cyclistic executive team** who approve the recommended marketing program.
-2. **Cyclistic marketing manager** who is responsible for the development of campaigns and initiatives to promote the bike-share program. These may include email, social media, and other channels.
-3. **Cyclistic marketing analytics team** who collect, analyze, and report data to help guide Cyclistic's marketing strategy. 
+## Methodology
+
+This analysis follows the steps of the data analysis process: **ask**, **prepare**, **process**, **analyze**, **share**, and **act**. 
+
+## Tools
+
+This analysis utilize ***R programming*** to gather all the information, process it, explore the data, and use it to find bike usage's patterns and insights.
 
 ## Dataset
 
+The primary dataset used in this project is Cyclistic's historical trip data from January 2022 to December 2022. The data is collected by the City of Chicago (a government agency) and published by Cyclistic. The data is publicly available on [this website](https://divvy-tripdata.s3.amazonaws.com/index.html).
 
+Another option is to run the following code to download the data in 2022:
 
-***Note:** The datasets have a different name because Cyclistic is a fictional company created for this course. The real company name is Divvy. However, for this case study, the datasets are appropriate and will enable you to answer the business questions. The data has been made available by Motivate International Inc. under this [license](https://ride.divvybikes.com/data-license-agreement).*
+``` bash
+cd ./cyclistic-analysis/data
+./cyclistic-bulk-download.bat
+```
+
+## Deliverables
+
+- [Report - Cyclistic Data Analysis](https://github.com/thanakorntha/cyclistic-analysis/blob/main/report/cyclistic-report.pdf)
+- [Presentation - Cyclistic: A Possible Way to Convert Casual Riders into Annual Members](https://docs.google.com/presentation/d/10rjNoz974A2b5eaHbziuGUkXN23U-6WRiy8WsUE7ves/edit?usp=sharing)

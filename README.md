@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" height="256">
+  <img src="./images/logo.png" height="256">
   <h1 align="center">Cyclistic Bike-Sharing Data Analysis</h1>
 </p>
 

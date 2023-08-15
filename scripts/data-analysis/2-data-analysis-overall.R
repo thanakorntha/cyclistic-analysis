@@ -21,7 +21,7 @@ trip_data_v2 %>%
 ## ------------------------------------------------------- ##
 
 # Create a histogram
-plot_01 <- ggplot(trip_data_v2, aes(x = ride_length)) +
+plot_time_all <- ggplot(trip_data_v2, aes(x = ride_length)) +
   geom_histogram(color = "black", fill = "darkgray") +
   scale_x_continuous(limits = c(0, 40)) +
   scale_y_continuous(limits = c(0, 600000), labels = unit_format(unit = "k", scale = 1e-3), expand = c(0, 0)) +
@@ -32,12 +32,12 @@ plot_01 <- ggplot(trip_data_v2, aes(x = ride_length)) +
     title = "Distribution of rides at a time duration"
   )
 
-# Add annotation for plot_01
-plot_01 +
+# Add annotation for plot_time_all
+plot_time_all +
   # Median
   geom_vline(xintercept = median(trip_data_v2$ride_length), linetype = "dashed", size = 0.50, color = "red") +
   annotate(
-    "text", label = "Median:\n10.20",
+    "text", label = "Median:\n10.25",
     x = median(trip_data_v2$ride_length), y = 600000,
     vjust = 1.25, hjust = -0.25,
     size = 2.50, color = "red"
@@ -45,7 +45,7 @@ plot_01 +
   # Mean
   geom_vline(xintercept = mean(trip_data_v2$ride_length), linetype = "dashed", size = 0.50, color = "blue") +
   annotate(
-    "text", label = "Mean:\n15.50",
+    "text", label = "Mean:\n15.54",
     x = mean(trip_data_v2$ride_length), y = 600000,
     vjust = 1.25, hjust = -0.25,
     size = 2.50, color = "blue"
@@ -61,7 +61,7 @@ plot_01 +
   # Standard Deviation
   geom_vline(xintercept = sd(trip_data_v2$ride_length), linetype = "dashed", size = 0.50, color = "purple") +
   annotate(
-    "text", label = "SD:\n25.10",
+    "text", label = "SD:\n25.07",
     x = sd(trip_data_v2$ride_length), y = 600000,
     vjust = 1.25, hjust = -0.25,
     size = 2.50, color = "purple"

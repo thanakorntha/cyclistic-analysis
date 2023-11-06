@@ -1,0 +1,566 @@
+---
+title: "Cyclistic Bike-Sharing Data Analysis"
+author: "Thanakorn Thanakraikiti"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 5
+    number_sections: true
+    df_print: paged
+    theme: simplex
+---
+
+```{r setup, include=FALSE}
+
+# Set root directory
+knitr::opts_knit$set(root.dir = "/Users/thanakorntha/Documents/GitHub/Data/cyclistic-analysis")
+
+# Set chunk options
+knitr::opts_chunk$set(message = FALSE, 
+                      warning = FALSE, 
+                      fig.align = "center", 
+                      fig.asp = 0.80, 
+                      fig.width = 6, 
+                      out.width = "70%")
+
+# Load necessary library
+library(tidyverse)
+```
+
+```{r theme_ggplot2, echo = FALSE}
+# Creating a ggplot2 theme
+my_theme <- function(base_size = 12) {
+  theme_bw(base_size = base_size) %+replace%
+    theme(
+      # Figure
+      plot.title = element_text(size = rel(1), 
+                                face = "bold", 
+                                margin = margin(0, 0, 10, 0), 
+                                color = "#343434", 
+                                hjust = 0),
+      plot.subtitle = element_text(size = rel(0.80), 
+                                   margin = margin(0, 0, 10, 0), 
+                                   color = "#343434",  
+                                   hjust = 0),
+      plot.caption = element_text(size = rel(0.70), 
+                                  face = "italic", 
+                                  margin = margin(5, 0, 5, 0), 
+                                  color = "#343434",  
+                                  hjust = 0),
+      # Graph area
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.border = element_blank(),
+      # Axis
+      axis.title = element_text(size = rel(0.70), face = "bold", color = "#343434", hjust = 1),
+      axis.text = element_text(size = rel(0.60), color = "#343434"),
+      axis.line.x = element_line(color = "#343434"),
+      axis.ticks.x = element_line(color = "#343434"),
+      axis.line.y = element_blank(),
+      axis.ticks.y = element_blank(),
+      # Legend
+      legend.title = element_blank(),
+      legend.text = element_text(size = rel(0.60)),
+      legend.position = "top",
+      legend.key = element_rect(fill = "transparent", colour = NA),
+      legend.key.size = unit(1, "lines"),
+      legend.background = element_rect(fill = "transparent", colour = NA),
+      legend.margin = margin(0, 0, 0, 0),
+      # The labels (faceting)
+      strip.background = element_rect(fill = "#343434", color = "#343434"),
+      strip.text = element_text(size = rel(0.80), face = "bold", color = "white", margin = margin(5, 0, 5, 0))
+    )
+}
+
+# Changing the default theme
+theme_set(my_theme())
+```
+
+***
+
+# Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus leo et nulla maximus auctor. Nam at sapien porta, vulputate leo et, accumsan ex.
+
+## Methodology
+
+This analysis follows the six steps of the data analysis process: *ask*, *prepare*, *process*, *analyze*, *share*, and *act*.
+
+***
+
+# ASK Phase: Ask Questions to Make Data-Driven Decisions
+
+The first step in the process is to **ask** the right questions in order to find the right solution to the problem. It includes defining business task and identify key stakeholders in the project.
+
+## Business Task
+
+The goal of this project is to identify the behavioural differences between the Cyclistic members and the Casual riders among the stations. This project will focus on the trip data according to the hour, day, month and day of the week for both of the customer groups of the year 2022. The final deliverable will recommend 3 suggestions to convert Casual riders into Cyclistic members.
+
+Our business task is to understand how annual members and casual riders use Cyclistic bikes differently. It also aims to extract insights and develop the most appropriate marketing strategies that appeal to casual riders and encourage them to subscribe to annual memberships. 
+
+## Key Stakeholders
+
+Three stakeholders include in the project:
+
+* **The Cyclistic executive team** who decides whether to approve the recommended marketing program.
+* **The marketing director** who is responsible for the development of campaigns and initiatives to promote the bike-share program.
+* **The Cyclistic marketing analytics team** who is responsible for collecting, analyzing, and reporting data that helps guide marketing strategies.
+
+***
+
+# PREPARE Phase: Prepare Data for Exploration
+
+The second step is to **prepare** and collect the data. It includes the following tasks:
+
+* Collecting and storing the data for further analysis.
+* Determining its integrity, credibility and accessibility.
+* Preparing the data to be ready for data cleaning.
+
+## Data Dictionary
+
+Each historical bike trip dataset contains the following fields:
+
+* **ride_id:** unique ID number for all rides
+* **rideable_type:** type of bike (classic_bike, docked_bike, and electric_bike)
+* **started_at:** date and time the ride started
+* **ended_at:** date and time the ride ended
+* **start_station_name:** name of the station where the ride started
+* **start_station_id:** ID number of the station where the ride started
+* **end_station_name:** name of the station where the ride started
+* **end_station_id:** ID number of the station where the ride started
+* **start_lat:** latitude of the location where the ride started
+* **start_lng:** longitude of the location where the ride started
+* **end_lat:** latitude of the location where the ride ended
+* **end_lng:** longitude of the location where the ride ended
+* **member_casual:** type of user (casual and member)
+
+## Data Preparation
+
+It is important to set up and import the data in the environment after downloading and storing CSV files in the desired location. **RStudio** and **R programming** will be utilized at this step.
+
+### Install and Load Libraries
+
+First, it requires installing and loading the `tidyverse` library. It is used for the following tasks:
+
+* Importing and wrangling the data such as `readr`, `tidyr`, and `dplyr`.
+* Visualizing the data such as `ggplot2`.
+
+```{r load-packages}
+# Load necessary library
+library(tidyverse)
+```
+
+### Import Data
+
+After the environment has already been set up, the next step is to import all 12-month data and then merge them into a single data frame, called ***trip_data***. The `read_csv` and `bind_rows` functions are used to read and combine each file.
+
+```{r import-data}
+# Import CSV files into 'trip_data' data frame
+trip_data <- list.files(path = "./data/", 
+                        pattern = "*-divvy-tripdata.csv", 
+                        full.names = TRUE) %>% 
+  lapply(read_csv) %>% 
+  bind_rows %>% 
+  arrange(started_at)
+```
+
+### Preview Data
+
+The data is ready to use for the next step. Before going to the next process, let's preview the data frame using `glimpse()` and `head()` functions. From the below output, the data frame contains 5,667,717 rows and 13 columns. It also provide the following data type in each column.
+
+* **Character (chr):** `ride_id`, `rideable_type`, `start_station_name`, `start_station_id`, `end_station_name`, `end_station_id`, and `member_casual.`
+* **Datetime (dttm):** `started_at` and `ended_at.`
+* **Double (dbl):** `start_lat`, `start_lng`, `end_lat`, and `end_lng.`
+
+```{r inspect-data-1}
+# Inspect data frame using 'glimpse' function
+glimpse(trip_data)
+
+# Inspect data frame using 'head' function
+head(trip_data)
+```
+
+***
+
+# PROCESS Phase: Process Data from Dirty to Clean
+
+```{r assign-new-variable}
+# Create 'trip_data_v2' data frame in order to use it for cleaning data
+trip_data_v2 <- trip_data
+```
+
+## Remove Duplicate Observations
+
+```{r check-duplicates}
+# Check duplicate values of 'ride_id' in 'trip_data_v2' data frame
+sum(duplicated(trip_data_v2$ride_id))
+```
+
+## Fix Structural Errors
+
+### Bike Type: `rideable_type`
+
+```{r inspect-rideable-type-1}
+# Check unique type of bikes
+bike_type <- count(trip_data_v2, rideable_type, name = "ride_count")
+bike_type
+```
+
+```{r fix-rideable-type}
+# Change values from 'docked_bike' to 'classic_bike' and assign back to 'trip_data_v2' data frame
+trip_data_v2 <- trip_data_v2 %>% 
+  mutate(rideable_type = str_replace_all(rideable_type, "docked_bike", "classic_bike"))
+```
+
+```{r inspect-rideable-type-2}
+# Recheck unique type of bikes
+bike_type_v2 <- count(trip_data_v2, rideable_type, name = "ride_count")
+bike_type_v2
+```
+
+### Member Type: `member_casual`
+
+```{r inspect-member-casual}
+# Check unique type of members
+member_type <- count(trip_data_v2, member_casual, name = "ride_count")
+member_type
+```
+
+### Start and End Stations: `start_station_name` and `end_station_name`
+
+```{r inspect-stations-3, rows.print=5}
+# Recheck unique start stations and assign to 'start_station_v3' variable
+start_station_v3 <- trip_data_v2 %>% 
+  count(start_lat, start_lng, start_station_name, name = "station_count") %>% 
+  arrange(start_lat, start_lng)
+
+start_station_v3
+
+# Recheck unique end stations and assign to 'end_station_v3' variable
+end_station_v3 <- trip_data_v2 %>% 
+  count(end_lat, end_lng, end_station_name, name = "station_count") %>% 
+  arrange(end_lat, end_lng)
+end_station_v3
+```
+
+```{r remove-test-stations}
+# List all test stations and assign to 'test_station_list' variable
+test_station_list <- c("Pawel Bialowas - Test- PBSC charging station", 
+                       "Hastings WH 2", 
+                       "DIVVY CASSETTE REPAIR MOBILE STATION", 
+                       "Base - 2132 W Hubbard Warehouse", 
+                       "Base - 2132 W Hubbard", 
+                       "NewHastings", 
+                       "WestChi", 
+                       "WEST CHI-WATSON")
+
+# Remove test stations and assign back to 'trip_data_v2' data frame
+trip_data_v2 <- trip_data_v2 %>% 
+  filter(!(trip_data_v2$start_station_name %in% test_station_list | 
+           trip_data_v2$end_station_name %in% test_station_list))
+
+# Check number of rows and columns
+dim(trip_data_v2)
+```
+
+```{r fix-station-name}
+# List all inconsistent words and assign to 'test_station_list' variable
+words <- c("*", " - Charging", " (Temp)", "amp;", "Public Rack - ")
+# " - midblock", 
+# " - North", " - N", " N", "- north corner", 
+# " - South", " - S", " S","-  south corner", " - midblock south", 
+# " - East", " - E", " E", 
+# " - West", " - W", " W", 
+# " - NE", " - NW", " - SE", " - SW", 
+# " NE", " NW", " SE", " SW"
+
+# Repeat word in the 'words' list
+for (word in words) {
+  # Change specific texts to make them all aligned and assign back to 'trip_data_v2' data frame
+  trip_data_v2 <- trip_data_v2 %>% 
+    mutate(start_station_name = str_replace_all(start_station_name, fixed(word), "")) %>% 
+    mutate(end_station_name   = str_replace_all(end_station_name,   fixed(word), ""))
+}
+```
+
+```{r inspect-stations-4, rows.print=5}
+# Recheck unique start stations and assign to 'start_station_v4' variable
+start_station_v4 <- trip_data_v2 %>% 
+  count(start_lat, start_lng, start_station_name, name = "station_count") %>% 
+  arrange(start_lat, start_lng)
+
+start_station_v4
+
+# Recheck unique end stations and assign to 'end_station_v4' variable
+end_station_v4 <- trip_data_v2 %>% 
+  count(end_lat, end_lng, end_station_name, name = "station_count") %>% 
+  arrange(end_lat, end_lng)
+
+end_station_v4
+```
+
+## Handle Missing Data
+
+```{r check-missing-columns-1, rows.print=13}
+# Check missing values each column
+na_col_count <- data.frame(colSums(is.na(trip_data_v2)))
+colnames(na_col_count)[1] <- "na_count"
+na_col_count
+```
+
+```{r inspect-stations-1, rows.print=5}
+# Check unique start stations and assign to 'start_station' variable
+start_station <- trip_data_v2 %>% 
+  count(start_lat, start_lng, start_station_name, name = "station_count") %>% 
+  arrange(start_lat, start_lng)
+
+start_station
+
+# Check unique end stations and assign to 'end_station' variable
+end_station <- trip_data_v2 %>% 
+  count(end_lat, end_lng, end_station_name, name = "station_count") %>% 
+  arrange(end_lat, end_lng)
+
+end_station
+```
+
+```{r impute-missing-station-names}
+# Impute missing start/end station names and IDs by using geographic coordinate as reference
+digit <- 5 # Set digits to start with 5
+
+# Repeat rounding digits from 5 to 2
+while (digit > 1) {
+  # Add four columns to round digits
+  trip_data_v2 <- trip_data_v2 %>% 
+    mutate(start_lat_round = round(start_lat, digits = digit), 
+           start_lng_round = round(start_lng, digits = digit), 
+           end_lat_round   = round(end_lat,   digits = digit), 
+           end_lng_round   = round(end_lng,   digits = digit))
+  
+  # Fill in missing start station names & IDs, referencing with 'start_lat_round' and 'start_lng_round'
+  trip_data_v2 <- trip_data_v2 %>% 
+    group_by(start_lat_round, start_lng_round) %>% 
+    fill(start_station_name, .direction = "downup") %>% 
+    fill(start_station_id,   .direction = "downup") %>% 
+    ungroup()
+  
+  # Fill in missing end station names & IDs, referencing with 'end_lat_round' and 'end_lng_round'
+  trip_data_v2 <- trip_data_v2 %>% 
+    group_by(end_lat_round, end_lng_round) %>% 
+    fill(end_station_name, .direction = "downup") %>% 
+    fill(end_station_id,   .direction = "downup") %>% 
+    ungroup()
+  
+  # Decrement digits by 1
+  digit <- digit - 1
+}
+```
+
+```{r check-missing-columns-2, rows.print=13}
+# Check missing values each column
+na_col_count_v2 <- data.frame(colSums(is.na(trip_data_v2)))
+colnames(na_col_count_v2)[1] <- "na_count"
+na_col_count_v2
+```
+
+```{r inspect-stations-2, rows.print=5}
+# Recheck unique start stations and assign to 'start_station_v2' variable
+start_station_v2 <- trip_data_v2 %>% 
+  count(start_lat, start_lng, start_station_name, name = "station_count") %>% 
+  arrange(start_lat, start_lng)
+
+start_station_v2
+
+# Recheck unique end stations and assign to 'end_station_v2' variable
+end_station_v2 <- trip_data_v2 %>% 
+  count(end_lat, end_lng, end_station_name, name = "station_count") %>% 
+  arrange(end_lat, end_lng)
+
+end_station_v2
+```
+
+```{r remove-missing-values}
+# Remove rows containing missing values and assign back to 'trip_data_v2' data frame
+trip_data_v2 <- drop_na(trip_data_v2)
+
+# Check number of rows and columns
+dim(trip_data_v2)
+```
+
+## Add New Columns
+
+```{r add-columns}
+# Add three columns into data frame: 'ride_length_min', 'day_of_week', and 'month'
+trip_data_v2$ride_length_min <- as.double(difftime(trip_data_v2$ended_at, 
+                                                   trip_data_v2$started_at, 
+                                                   units = "mins"))
+trip_data_v2$day_of_week <- wday(trip_data_v2$started_at, label = TRUE)
+trip_data_v2$month <- format(trip_data_v2$started_at, "%b")
+```
+
+```{r convert-order-level}
+# Order levels of 'day_of_week' from Monday to Sunday
+trip_data_v2$day_of_week <- ordered(trip_data_v2$day_of_week, 
+                                    levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
+
+# Order levels of 'month' from January to December
+trip_data_v2$month <- ordered(trip_data_v2$month, 
+                              levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                                         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+```
+
+```{r inspect-data-2}
+# Inspect data frame using 'head' function
+head(trip_data_v2)
+```
+
+## Remove Unwated Data
+
+### Irrelevant Columns
+
+```{r drop-columns}
+# Drop irrelevant columns and assign back to 'trip_data_v2' data frame
+trip_data_v2 <- trip_data_v2 %>% 
+  select(!c(start_station_id, end_station_id, 
+            start_lat_round, start_lng_round, 
+            end_lat_round, end_lng_round))
+```
+
+```{r inspect-data-3}
+# Check number of rows and columns
+dim(trip_data_v2)
+
+# Inspect data frame using 'head' function
+head(trip_data_v2)
+```
+
+### Error Inputs
+
+```{r remove-error-1}
+trip_data_v2 <- trip_data_v2 %>% 
+  filter( !(trip_data_v2$start_lat == 0 | 
+            trip_data_v2$start_lng == 0 | 
+            trip_data_v2$end_lat   == 0 | 
+            trip_data_v2$end_lng   == 0) )
+```
+
+```{r inspect-data-4}
+# Check number of rows and columns
+dim(trip_data_v2)
+```
+
+```{r summarize-ride-length-1}
+summary(trip_data_v2$ride_length_min)
+```
+
+```{r remove-error-2}
+trip_data_v2 <- trip_data_v2 %>% 
+  filter(!(trip_data_v2$ride_length_min < 1 | trip_data_v2$ride_length_min > 1440))
+```
+
+```{r inspect-data-5}
+# Check number of rows and columns
+dim(trip_data_v2)
+```
+
+### Potential Outliers
+
+```{r summarize-ride-length-2}
+summary(trip_data_v2$ride_length_min)
+```
+
+```{r}
+ggplot(data = trip_data_v2, aes(x = member_casual, y = ride_length_min, fill = member_casual)) + 
+  geom_boxplot() +
+  coord_flip() + 
+  theme(legend.position="none") + 
+  labs(x = "Member type", 
+       y = "Ride length (in minutes)", 
+       title = "Box plot showing 'ride_length_min' before removing outliers")
+```
+
+```{r}
+median_value <- median(trip_data_v2$ride_length_min)
+q1 <- as.numeric(quantile(trip_data_v2$ride_length_min, probs = 0.25))
+q3 <- as.numeric(quantile(trip_data_v2$ride_length_min, probs = 0.75))
+
+iqr_value <- IQR(trip_data_v2$ride_length_min)
+
+lower_limit <- q1 - ( 1.5 * iqr_value )
+upper_limit <- q3 + ( 1.5 * iqr_value )
+```
+
+```{r}
+trip_data_v2 <- trip_data_v2 %>% 
+  filter(!(trip_data_v2$ride_length_min < lower_limit | trip_data_v2$ride_length_min > upper_limit))
+```
+
+```{r}
+summary(trip_data_v2$ride_length_min)
+```
+
+```{r}
+ggplot(data = trip_data_v2, aes(x = member_casual, y = ride_length_min, fill = member_casual)) + 
+  geom_boxplot() +
+  coord_flip() + 
+  theme(legend.position="none") + 
+  labs(x = "Member type", 
+       y = "Ride length (in minutes)", 
+       title = "Box plot showing 'ride_length_min' after removing outliers")
+```
+
+## Data Validation
+
+### Data Preview
+
+```{r inspect-data-6}
+# Inspect data frame using 'glimpse' function
+glimpse(trip_data_v2)
+```
+
+### Empirical Rule
+
+```{r prove-empirical-rule-1}
+# 
+summary_stats <- summarise(trip_data_v2,
+                           sd = sd(ride_length_min),
+                           mean = mean(ride_length_min),
+                           count = n())
+
+# 
+calculate_percentage <- function(n_sd) {
+  filtered_count <- trip_data_v2 %>%
+    filter(between(ride_length_min, summary_stats$mean - n_sd * summary_stats$sd, summary_stats$mean + n_sd * summary_stats$sd)) %>%
+    summarise(count = n())
+
+  round((filtered_count$count / summary_stats$count) * 100, 2)
+}
+
+# 
+percentage_sd1 <- calculate_percentage(1)
+percentage_sd2 <- calculate_percentage(2)
+percentage_sd3 <- calculate_percentage(3)
+```
+
+```{r prove-empirical-rule-2}
+paste0("One standard deviation: ", format(percentage_sd1, nsmall = 2), "%")
+paste0("Two standard deviations: ", percentage_sd2, "%")
+paste0("Three standard deviations: ", percentage_sd3, "%")
+```
+
+***
+
+# ANALYZE Phase: Analyze Data to Answer Questions
+
+***
+
+# SHARE Phase: Share Data Through the Art of Visualization
+
+***
+
+# ACT Phase: Act Based on Data and Make Recommendations
+
+***

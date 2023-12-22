@@ -1,4 +1,9 @@
-: Download historical trip data from January 2022 to December 2022
+# #!/bin/bash
+
+# Change to the 'data' directory
+cd ../data
+
+# Download historical trip data (January 2022 to December 2022)
 wget https://divvy-tripdata.s3.amazonaws.com/202201-divvy-tripdata.zip
 wget https://divvy-tripdata.s3.amazonaws.com/202202-divvy-tripdata.zip
 wget https://divvy-tripdata.s3.amazonaws.com/202203-divvy-tripdata.zip
@@ -12,7 +17,7 @@ wget https://divvy-tripdata.s3.amazonaws.com/202210-divvy-tripdata.zip
 wget https://divvy-tripdata.s3.amazonaws.com/202211-divvy-tripdata.zip
 wget https://divvy-tripdata.s3.amazonaws.com/202212-divvy-tripdata.zip 
 
-: Extract all zip files
+# Unzip files
 unzip 202201-divvy-tripdata.zip
 unzip 202202-divvy-tripdata.zip
 unzip 202203-divvy-tripdata.zip
@@ -26,8 +31,7 @@ unzip 202210-divvy-tripdata.zip
 unzip 202211-divvy-tripdata.zip
 unzip 202212-divvy-tripdata.zip
 
-: Rename September data to 202209-divvy-tripdata
+# Arrange and clean up files 
 mv 202209-divvy-publictripdata.csv 202209-divvy-tripdata.csv
-
-: Remove __MACOSX directory
+rm -f *.zip
 rm -r __MACOSX

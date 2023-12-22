@@ -4,8 +4,9 @@
 # R Project
 .Rproj.user
 .Rhistory
-cyclistic-analysis.Rproj
 .RData
+.Ruserdata
+.Rapp.history
 
 # Files
 *.csv
